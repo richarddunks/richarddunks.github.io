@@ -1,0 +1,21 @@
+[
+{"name”:”africa.africa”,”imports":[]}, 
+{"name”:”africa.uganda”,”imports":[]},
+{"name”:”africa.kenya”,”imports":[]},
+
+{"name”:”europe.europe”,"imports":[]},
+{"name":"europe.spain","imports:[“africa.uganda”]},
+{"name":"europe.italy","imports”:[“asia.singapore”]},
+{"name":"europe.france","imports":[]},
+
+{"name”:”asia.asia”,”imports":[]},
+{"name”:”asia.singapore”,”imports":[“africa.uganda”]},
+{"name”:”asia.japan”,”imports":[“africa.uganda”]},
+{"name”:”asia.india”,”imports":[“africa.uganda”]},
+{"name”:”asia.malaysia”,”imports":[“asia.singapore”]},
+{"name”:”asia.indonesia”,”imports":[“asia.singapore”]},
+{"name”:”asia.thailand”,”imports":[“asia.singapore”]},
+{"name”:”asia.china”,”imports":[“asia.singapore”, “africa.uganda”]}
+
+]
+

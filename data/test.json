@@ -1,0 +1,17 @@
+[
+{"name":"owner.owner","imports":[]}, 
+{"name":"owner.john","imports":[]},
+{"name":"owner.mary","imports":[]},
+
+{"name":"cat.wildcat","imports":["owner.mary"]},
+{"name":"cat.yellowcat","imports":["owner.mary"]},
+{"name":"cat.blackcat","imports":["owner.mary"]},
+
+{"name":"dog.dog","imports":[]},
+{"name":"dog.beagle","imports":["owner.mary"]},
+{"name":"dog.shepard","imports":["owner.mary"]},
+{"name":"dog.doodle","imports":["owner.mary"]}
+
+
+]
+

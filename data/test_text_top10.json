@@ -1,0 +1,1667 @@
+[
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.EasternEurope.CzechRepublic", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Belgium", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica"
+        ], 
+        "name": "Europe.EasternEurope.Poland"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Italy", 
+            "Europe.SouthernEurope.Greece", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.SouthernEurope.Serbia", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.SouthernEurope.Spain"
+        ], 
+        "name": "Europe.SouthernEurope.Albania"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.Japan", 
+            "Africa.MiddleAfrica.Cameroon", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.SouthernAsia.India", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Africa.MiddleAfrica.CentralAfricanRepublic"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.EasternEurope.Slovakia", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.EasternEurope.Hungary"
+        ], 
+        "name": "Europe.EasternEurope.CzechRepublic"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.SouthAmerica.Argentina", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Colombia", 
+            "Americas.SouthAmerica.Peru"
+        ], 
+        "name": "Americas.SouthAmerica.Chile"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.NorthernEurope.Ireland", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.Japan"
+        ], 
+        "name": "Europe.WesternEurope.Belgium"
+    }, 
+    {
+        "imports": [
+            "Americas.SouthAmerica.Brazil", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.CentralAmerica.Mexico", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.RepublicofKorea"
+        ], 
+        "name": "Americas.SouthAmerica.Argentina"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.NorthernEurope.Norway", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.EasternEurope.Poland"
+        ], 
+        "name": "Europe.NorthernEurope.Denmark"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Greece", 
+            "Asia.WesternAsia.Israel", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.WesternEurope.Belgium"
+        ], 
+        "name": "Asia.WesternAsia.Cyprus"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Switzerland", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Asia.SouthernAsia.India", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "\"Asia.EasternAsia.ChinaHongKongSpecialAdministrativeRegion\""
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.NorthernEurope.Norway", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.NorthernEurope.Ireland", 
+            "Europe.SouthernEurope.Spain"
+        ], 
+        "name": "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.SouthAmerica.Ecuador", 
+            "Americas.SouthAmerica.Argentina", 
+            "Americas.SouthAmerica.Colombia", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Chile"
+        ], 
+        "name": "Americas.SouthAmerica.Peru"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Colombia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.CentralAmerica.Guatemala", 
+            "Europe.WesternEurope.Germany"
+        ], 
+        "name": "Americas.CentralAmerica.Panama"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.CentralAmerica.Guatemala", 
+            "Americas.CentralAmerica.ElSalvador", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.WesternEurope.Germany"
+        ], 
+        "name": "Americas.CentralAmerica.Nicaragua"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Belgium", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Europe.SouthernEurope.Greece"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Austria", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Croatia", 
+            "Europe.EasternEurope.Hungary", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.CzechRepublic", 
+            "Europe.SouthernEurope.Spain"
+        ], 
+        "name": "Europe.SouthernEurope.Slovenia"
+    }, 
+    {
+        "imports": [
+            "Asia.SouthernAsia.India", 
+            "Asia.EasternAsia.China", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "\"Asia.EasternAsia.ChinaHongKongSpecialAdministrativeRegion\"", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.WesternEurope.Switzerland"
+        ], 
+        "name": "Asia.SouthernAsia.SriLanka"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.WesternAsia.Turkey", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.SouthernAsia.India"
+        ], 
+        "name": "Asia.WesternAsia.Israel"
+    }, 
+    {
+        "imports": [
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.Ukraine", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Africa.EasternAfrica.Zambia", 
+            "Europe.WesternEurope.Switzerland", 
+            "Asia.SouthernAsia.India", 
+            "Asia.South-EasternAsia.Singapore"
+        ], 
+        "name": "Africa.SouthernAfrica.Namibia"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.Canada", 
+            "Americas.CentralAmerica.Mexico", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.SouthernAsia.India", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Americas.NorthernAmerica.UnitedStatesofAmerica"
+    }, 
+    {
+        "imports": [
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Europe.NorthernEurope.Denmark", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.NorthernAmerica.Canada", 
+            "Europe.EasternEurope.Poland"
+        ], 
+        "name": "Europe.NorthernEurope.Norway"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.SouthernAsia.India", 
+            "Asia.South-EasternAsia.Thailand"
+        ], 
+        "name": "Africa.WesternAfrica.Togo"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Africa.EasternAfrica.Mauritius", 
+            "Asia.SouthernAsia.India", 
+            "Asia.WesternAsia.Bahrain", 
+            "Asia.SouthernAsia.Pakistan", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Europe.WesternEurope.Germany"
+        ], 
+        "name": "Africa.EasternAfrica.Madagascar"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Ukraine", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.Romania", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.EasternEurope.Bulgaria"
+        ], 
+        "name": "Asia.WesternAsia.Armenia"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Portugal", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.SouthernEurope.Spain", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Belgium"
+        ], 
+        "name": "Africa.WesternAfrica.CaboVerde"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Americas.NorthernAmerica.Canada"
+        ], 
+        "name": "Asia.EasternAsia.Japan"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.EasternEurope.CzechRepublic"
+        ], 
+        "name": "Europe.WesternEurope.Germany"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Americas.CentralAmerica.Mexico", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.ElSalvador", 
+            "Americas.SouthAmerica.Colombia", 
+            "Americas.CentralAmerica.Panama", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.SouthAmerica.Brazil"
+        ], 
+        "name": "Americas.CentralAmerica.Guatemala"
+    }, 
+    {
+        "imports": [
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.SouthAmerica.Argentina", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.SouthAmerica.Peru", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.SouthAmerica.Chile", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Colombia", 
+            "Europe.WesternEurope.Germany"
+        ], 
+        "name": "Americas.SouthAmerica.Bolivia(PlurinationalStateof)"
+    }, 
+    {
+        "imports": [
+            "Asia.South-EasternAsia.Malaysia", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.SouthernAsia.India", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco"
+        ], 
+        "name": "Asia.South-EasternAsia.Singapore"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.SouthernAsia.India"
+        ], 
+        "name": "Asia.WesternAsia.Turkey"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.NorthernAmerica.Canada", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.CentralAmerica.Mexico", 
+            "Oceania.AustraliaandNewZealand.NewZealand", 
+            "Americas.SouthAmerica.Brazil"
+        ], 
+        "name": "Americas.Caribbean.Barbados"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.CzechRepublic", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.EasternEurope.Hungary", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco"
+        ], 
+        "name": "Europe.EasternEurope.Slovakia"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Asia.SouthernAsia.India"
+        ], 
+        "name": "Asia.South-EasternAsia.Indonesia"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.EasternEurope.Belarus"
+        ], 
+        "name": "Asia.CentralAsia.Kazakhstan"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.NorthernAmerica.Canada", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Europe.SouthernEurope.Italy", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.SouthernEurope.Spain"
+        ], 
+        "name": "Americas.CentralAmerica.Mexico"
+    }, 
+    {
+        "imports": [
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Europe.SouthernEurope.Portugal", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.SouthernAsia.India", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.WesternAsia.Bahrain"
+        ], 
+        "name": "Africa.EasternAfrica.Mozambique"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Americas.SouthAmerica.Brazil", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Europe.EasternEurope.RussianFederation"
+        ], 
+        "name": "Asia.EasternAsia.China"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.EasternEurope.RussianFederation"
+        ], 
+        "name": "Europe.WesternEurope.Monaco"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.Mexico", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Italy", 
+            "Africa.NorthernAfrica.Algeria"
+        ], 
+        "name": "Americas.NorthernAmerica.Canada"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.Hungary", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.WesternEurope.Austria", 
+            "Asia.CentralAsia.Kazakhstan", 
+            "Asia.WesternAsia.Turkey"
+        ], 
+        "name": "Europe.EasternEurope.Romania"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.SouthernAsia.India", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Africa.WesternAfrica.Nigeria", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.South-EasternAsia.Thailand"
+        ], 
+        "name": "Africa.SouthernAfrica.SouthAfrica"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Africa.EasternAfrica.Kenya", 
+            "Asia.SouthernAsia.India", 
+            "Asia.EasternAsia.Japan", 
+            "Africa.EasternAfrica.UnitedRepublicofTanzania", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Europe.WesternEurope.Netherlands"
+        ], 
+        "name": "Africa.EasternAfrica.Rwanda"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Belgium", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.SouthernEurope.Italy", 
+            "Americas.CentralAmerica.Mexico", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Switzerland"
+        ], 
+        "name": "Europe.WesternEurope.Luxembourg"
+    }, 
+    {
+        "imports": [
+            "Asia.WesternAsia.Turkey", 
+            "Europe.EasternEurope.Ukraine", 
+            "Asia.WesternAsia.Azerbaijan", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.EasternEurope.Romania", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.Bulgaria"
+        ], 
+        "name": "Asia.WesternAsia.Georgia"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.SouthAmerica.Brazil", 
+            "Asia.SouthernAsia.India", 
+            "Americas.Caribbean.AntiguaandBarbuda", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Africa.WesternAfrica.Nigeria"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.EasternAsia.China", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Oceania.AustraliaandNewZealand.NewZealand", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.South-EasternAsia.Thailand"
+        ], 
+        "name": "Oceania.Melanesia.NewCaledonia"
+    }, 
+    {
+        "imports": [
+            "Asia.WesternAsia.Israel", 
+            "Asia.WesternAsia.Turkey", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.WesternAsia.Jordan", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.WesternEurope.Switzerland"
+        ], 
+        "name": "Asia.WesternAsia.StateofPalestine"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.SouthernAsia.India"
+        ], 
+        "name": "Africa.NorthernAfrica.Egypt"
+    }, 
+    {
+        "imports": [
+            "Africa.WesternAfrica.Senegal", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.SouthernAsia.India", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.EasternEurope.Ukraine"
+        ], 
+        "name": "Africa.WesternAfrica.Mali"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.SouthAmerica.Argentina", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Africa.WesternAfrica.Nigeria", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.SouthernAsia.India"
+        ], 
+        "name": "Americas.SouthAmerica.Brazil"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.EasternEurope.CzechRepublic", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Hungary", 
+            "Europe.EasternEurope.Slovakia", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Belgium"
+        ], 
+        "name": "Europe.WesternEurope.Austria"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Hungary", 
+            "Europe.EasternEurope.Romania", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.SouthernEurope.Slovenia", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.SouthernEurope.BosniaandHerzegovina"
+        ], 
+        "name": "Europe.SouthernEurope.Serbia"
+    }, 
+    {
+        "imports": [
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.SouthAmerica.Argentina", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Africa.WesternAfrica.Nigeria", 
+            "Americas.CentralAmerica.Mexico", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.RepublicofKorea"
+        ], 
+        "name": "Americas.SouthAmerica.Uruguay"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.SouthernEurope.Italy", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.EasternEurope.CzechRepublic"
+        ], 
+        "name": "Europe.EasternEurope.Belarus"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Colombia", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Americas.SouthAmerica.Argentina"
+        ], 
+        "name": "Americas.Caribbean.DominicanRepublic"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.CentralAmerica.Panama", 
+            "Americas.SouthAmerica.Colombia", 
+            "Americas.SouthAmerica.Paraguay", 
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.NorthernEurope.Finland"
+        ], 
+        "name": "Americas.Caribbean.Aruba"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.EasternEurope.Romania", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.Belarus", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.WesternEurope.Austria"
+        ], 
+        "name": "Europe.EasternEurope.RepublicofMoldova"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "\"Asia.EasternAsia.ChinaHongKongSpecialAdministrativeRegion\"", 
+            "Europe.WesternEurope.Switzerland", 
+            "Asia.EasternAsia.RepublicofKorea"
+        ], 
+        "name": "Asia.South-EasternAsia.Thailand"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Africa.WesternAfrica.Nigeria", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.SouthernAsia.India", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.SouthernEurope.Spain", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Belgium", 
+            "Asia.WesternAsia.Turkey"
+        ], 
+        "name": "Africa.WesternAfrica.Senegal"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.Norway", 
+            "Europe.NorthernEurope.Denmark", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.NorthernEurope.Finland", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Belgium"
+        ], 
+        "name": "Europe.NorthernEurope.Sweden"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Spain", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Belgium", 
+            "Americas.SouthAmerica.Brazil", 
+            "Africa.WesternAfrica.Nigeria"
+        ], 
+        "name": "Europe.SouthernEurope.Portugal"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.WesternEurope.Belgium", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Europe.SouthernEurope.Italy"
+    }, 
+    {
+        "imports": [
+            "Asia.SouthernAsia.India", 
+            "Asia.EasternAsia.China", 
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Netherlands"
+        ], 
+        "name": "Africa.EasternAfrica.Kenya"
+    }, 
+    {
+        "imports": [
+            "Asia.SouthernAsia.India", 
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Europe.WesternEurope.Switzerland", 
+            "Asia.EasternAsia.China", 
+            "Asia.WesternAsia.Bahrain", 
+            "Asia.EasternAsia.Japan", 
+            "Africa.EasternAfrica.Kenya", 
+            "Americas.NorthernAmerica.Canada", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.SouthAmerica.Argentina"
+        ], 
+        "name": "Africa.EasternAfrica.UnitedRepublicofTanzania"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.CentralAsia.Kazakhstan", 
+            "Asia.EasternAsia.Japan"
+        ], 
+        "name": "Asia.WesternAsia.Azerbaijan"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Americas.CentralAmerica.Guatemala", 
+            "Americas.CentralAmerica.Mexico", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.Nicaragua", 
+            "Americas.SouthAmerica.Ecuador", 
+            "Americas.SouthAmerica.Colombia", 
+            "Americas.CentralAmerica.Panama", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.SouthAmerica.Brazil"
+        ], 
+        "name": "Americas.CentralAmerica.ElSalvador"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.China", 
+            "Asia.CentralAsia.Kazakhstan", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.EasternEurope.Belarus", 
+            "Asia.EasternAsia.RepublicofKorea"
+        ], 
+        "name": "Asia.CentralAsia.Kyrgyzstan"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Oceania.AustraliaandNewZealand.NewZealand"
+    }, 
+    {
+        "imports": [
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.NorthernEurope.Norway", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Europe.NorthernEurope.Ireland"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Italy", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.WesternAsia.Turkey"
+        ], 
+        "name": "Africa.NorthernAfrica.Morocco"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Europe.EasternEurope.Belarus", 
+            "Europe.EasternEurope.Poland", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.WesternEurope.Monaco"
+        ], 
+        "name": "Europe.EasternEurope.Ukraine"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.NorthernEurope.Norway", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.WesternAsia.Turkey", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.SouthernAsia.India", 
+            "Americas.SouthAmerica.Brazil"
+        ], 
+        "name": "Europe.EuropeanUnion"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.WesternEurope.Germany", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "\"Asia.EasternAsia.ChinaHongKongSpecialAdministrativeRegion\""
+        ], 
+        "name": "Asia.South-EasternAsia.Malaysia"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.Romania", 
+            "Europe.SouthernEurope.Greece", 
+            "Asia.WesternAsia.Turkey", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.EasternEurope.Ukraine", 
+            "Europe.SouthernEurope.Spain"
+        ], 
+        "name": "Europe.EasternEurope.Bulgaria"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.NorthernEurope.Ireland", 
+            "Europe.SouthernEurope.Spain"
+        ], 
+        "name": "Europe.WesternEurope.Switzerland"
+    }, 
+    {
+        "imports": [
+            "Europe.NorthernEurope.Lithuania", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.NorthernEurope.Estonia", 
+            "Europe.NorthernEurope.Finland", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.EasternEurope.Belarus", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Europe.NorthernEurope.Latvia"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.SouthAmerica.Argentina", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.SouthAmerica.Uruguay", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Chile"
+        ], 
+        "name": "Americas.SouthAmerica.Paraguay"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.SouthernAsia.India", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.South-EasternAsia.Thailand"
+        ], 
+        "name": "Asia.SouthernAsia.Pakistan"
+    }, 
+    {
+        "imports": [
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.South-EasternAsia.Indonesia"
+        ], 
+        "name": "Asia.South-EasternAsia.BruneiDarussalam"
+    }, 
+    {
+        "imports": [
+            "Europe.NorthernEurope.Norway", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.SouthAmerica.Brazil", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.Denmark", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Europe.NorthernEurope.Iceland"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Italy", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Spain", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Switzerland", 
+            "Asia.South-EasternAsia.Singapore"
+        ], 
+        "name": "Europe.SouthernEurope.Malta"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.SouthAmerica.Argentina", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Americas.SouthAmerica.Ecuador"
+        ], 
+        "name": "Americas.SouthAmerica.Colombia"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Africa.WesternAfrica.Nigeria", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.SouthernAsia.India", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Belgium"
+        ], 
+        "name": "Africa.MiddleAfrica.Cameroon"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Switzerland", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Europe.WesternEurope.Germany", 
+            "Africa.WesternAfrica.Nigeria", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Belgium"
+        ], 
+        "name": "Asia.SouthernAsia.India"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.NorthernEurope.Latvia", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.NorthernEurope.Estonia", 
+            "Europe.WesternEurope.Monaco"
+        ], 
+        "name": "Europe.NorthernEurope.Lithuania"
+    }, 
+    {
+        "imports": [
+            "Asia.SouthernAsia.India", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Europe.SouthernEurope.Spain", 
+            "Asia.EasternAsia.Japan", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Africa.EasternAfrica.Mauritius"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.EasternEurope.Ukraine", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.Belarus", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.CentralAsia.Kazakhstan"
+        ], 
+        "name": "Europe.EasternEurope.RussianFederation"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.NorthernAmerica.Canada", 
+            "Americas.SouthAmerica.Brazil", 
+            "Americas.Caribbean.Barbados", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Switzerland", 
+            "Americas.Caribbean.DominicanRepublic"
+        ], 
+        "name": "Americas.Caribbean.AntiguaandBarbuda"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Germany", 
+            "Africa.NorthernAfrica.Egypt", 
+            "Asia.WesternAsia.Turkey", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.SouthernAsia.India", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.Japan"
+        ], 
+        "name": "Asia.WesternAsia.Jordan"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Serbia", 
+            "Europe.SouthernEurope.Greece", 
+            "Europe.SouthernEurope.BosniaandHerzegovina", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.SouthernEurope.Croatia", 
+            "Europe.SouthernEurope.Slovenia", 
+            "Europe.WesternEurope.Austria", 
+            "Asia.WesternAsia.Turkey"
+        ], 
+        "name": "Europe.SouthernEurope.Montenegro"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Belgium", 
+            "Asia.EasternAsia.Japan", 
+            "Africa.EasternAfrica.Zambia", 
+            "Africa.EasternAfrica.Kenya", 
+            "Africa.EasternAfrica.UnitedRepublicofTanzania", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.SouthernAsia.India", 
+            "Africa.NorthernAfrica.Egypt", 
+            "Africa.SouthernAfrica.SouthAfrica"
+        ], 
+        "name": "Africa.EasternAfrica.Burundi"
+    }, 
+    {
+        "imports": [
+            "Europe.NorthernEurope.Finland", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.NorthernEurope.Latvia", 
+            "Europe.NorthernEurope.Lithuania", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.EasternEurope.Poland", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Europe.NorthernEurope.Estonia"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.China", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Europe.WesternEurope.Germany", 
+            "\"Asia.EasternAsia.ChinaHongKongSpecialAdministrativeRegion\""
+        ], 
+        "name": "Asia.South-EasternAsia.Philippines"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Greece", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.SouthernEurope.Serbia", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.EasternEurope.Bulgaria", 
+            "Asia.EasternAsia.China", 
+            "Asia.WesternAsia.Turkey", 
+            "Europe.SouthernEurope.Slovenia"
+        ], 
+        "name": "Europe.SouthernEurope.TheformerYugoslavRepublicofMacedonia"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Netherlands", 
+            "Africa.WesternAfrica.Togo", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.SouthernAsia.India", 
+            "Asia.EasternAsia.Japan", 
+            "Africa.WesternAfrica.Nigeria"
+        ], 
+        "name": "Africa.WesternAfrica.BurkinaFaso"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.SouthernEurope.Slovenia", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.EasternEurope.Hungary", 
+            "Europe.SouthernEurope.BosniaandHerzegovina", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.WesternEurope.Netherlands"
+        ], 
+        "name": "Europe.SouthernEurope.Croatia"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.SouthernAsia.India", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.WesternAsia.Turkey", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.South-EasternAsia.Indonesia"
+        ], 
+        "name": "Africa.EasternAfrica.Ethiopia"
+    }, 
+    {
+        "imports": [
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Asia.EasternAsia.China", 
+            "Asia.SouthernAsia.India", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Asia.EasternAsia.Japan", 
+            "Africa.EasternAfrica.Kenya", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Africa.EasternAfrica.Zimbabwe", 
+            "Europe.NorthernEurope.Sweden", 
+            "Asia.South-EasternAsia.Singapore"
+        ], 
+        "name": "Africa.EasternAfrica.Zambia"
+    }, 
+    {
+        "imports": [
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.NorthernEurope.Sweden", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Netherlands", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.NorthernEurope.Denmark", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.NorthernEurope.Estonia"
+        ], 
+        "name": "Europe.NorthernEurope.Finland"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.South-EasternAsia.Thailand", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Oceania.AustraliaandNewZealand.NewZealand", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Oceania.AustraliaandNewZealand.Australia"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.China", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.SouthernEurope.Spain", 
+            "Europe.WesternEurope.Germany", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.WesternAsia.Turkey", 
+            "Americas.SouthAmerica.Argentina", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Americas.SouthAmerica.Brazil"
+        ], 
+        "name": "Africa.NorthernAfrica.Algeria"
+    }, 
+    {
+        "imports": [
+            "Africa.SouthernAfrica.SouthAfrica", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Africa.EasternAfrica.Zambia", 
+            "Asia.EasternAsia.China", 
+            "Africa.EasternAfrica.Mozambique", 
+            "Asia.SouthernAsia.India", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.NorthernEurope.Sweden"
+        ], 
+        "name": "Africa.EasternAfrica.Zimbabwe"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.Caribbean.AntiguaandBarbuda", 
+            "Asia.EasternAsia.Japan", 
+            "Asia.EasternAsia.China", 
+            "Americas.Caribbean.Barbados", 
+            "Americas.NorthernAmerica.Canada", 
+            "Americas.SouthAmerica.Colombia", 
+            "Europe.WesternEurope.Monaco", 
+            "Americas.Caribbean.DominicanRepublic"
+        ], 
+        "name": "Americas.Caribbean.Dominica"
+    }, 
+    {
+        "imports": [
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.EasternAsia.China", 
+            "Americas.SouthAmerica.Colombia", 
+            "Americas.CentralAmerica.Panama", 
+            "Americas.CentralAmerica.Mexico", 
+            "Americas.SouthAmerica.Peru", 
+            "Asia.EasternAsia.RepublicofKorea", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.SouthAmerica.Brazil", 
+            "Europe.WesternEurope.Germany"
+        ], 
+        "name": "Americas.SouthAmerica.Ecuador"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.SouthernAsia.India", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Americas.NorthernAmerica.Canada", 
+            "Europe.WesternEurope.Switzerland", 
+            "Europe.WesternEurope.Monaco"
+        ], 
+        "name": "Asia.WesternAsia.Bahrain"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Austria", 
+            "Europe.EasternEurope.Slovakia", 
+            "Europe.EasternEurope.Poland", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.EasternEurope.CzechRepublic"
+        ], 
+        "name": "Europe.EasternEurope.Hungary"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Europe.WesternEurope.Monaco", 
+            "Europe.SouthernEurope.Italy", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Netherlands", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.SouthernEurope.Portugal", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.WesternEurope.Belgium", 
+            "Europe.EasternEurope.RussianFederation"
+        ], 
+        "name": "Europe.SouthernEurope.Spain"
+    }, 
+    {
+        "imports": [
+            "Asia.EasternAsia.China", 
+            "Asia.EasternAsia.Japan", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Oceania.AustraliaandNewZealand.Australia", 
+            "Europe.WesternEurope.Germany", 
+            "Asia.South-EasternAsia.Indonesia", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Asia.South-EasternAsia.Singapore", 
+            "Asia.South-EasternAsia.Malaysia", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland"
+        ], 
+        "name": "Asia.EasternAsia.RepublicofKorea"
+    }, 
+    {
+        "imports": [
+            "Europe.WesternEurope.Germany", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Belgium", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Europe.NorthernEurope.UnitedKingdomofGreatBritainandNorthernIreland", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.WesternEurope.Monaco", 
+            "Asia.EasternAsia.Japan", 
+            "Europe.NorthernEurope.Norway", 
+            "Europe.SouthernEurope.Italy"
+        ], 
+        "name": "Europe.WesternEurope.Netherlands"
+    }, 
+    {
+        "imports": [
+            "Europe.SouthernEurope.Croatia", 
+            "Europe.WesternEurope.Germany", 
+            "Europe.EasternEurope.RussianFederation", 
+            "Europe.SouthernEurope.Serbia", 
+            "Europe.SouthernEurope.Italy", 
+            "Europe.SouthernEurope.Slovenia", 
+            "Asia.EasternAsia.China", 
+            "Europe.WesternEurope.Austria", 
+            "Americas.NorthernAmerica.UnitedStatesofAmerica", 
+            "Asia.WesternAsia.Turkey"
+        ], 
+        "name": "Europe.SouthernEurope.BosniaandHerzegovina"
+    }
+]

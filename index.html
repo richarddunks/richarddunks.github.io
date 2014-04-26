@@ -70,10 +70,11 @@
     <script type="text/javascript" id="line_chart">
       //SVG for Line
 	  d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
-	  var w = "800";
-	  var h = "200";
-	  var padding = "25";
-      
+	  var w = "1000";
+	  var h = "300";
+	  var padding = "75";
+
+      //Variables for brushing
           var x2 = d3.scale.linear().range([0, w]),
               y2 = d3.scale.linear().range([h, 0]);
 
@@ -81,6 +82,7 @@
              .x(x2)
              .on("brush", brushed);
 
+      //Variables for line graph 
 	  var svg = d3.select("body")
 	      .append("svg")
                   .attr("width",w)
@@ -88,24 +90,24 @@
 	  var xScale = d3.scale.linear()
                          .domain([0,48])
                          .range([padding,w-padding]);
-	  var yScale = d3.scale
+	 //___NEED TO update domain to be a function of the max value of weight or value sum 
+         var yScale = d3.scale
                         .linear()
                         .domain([0,5000000000])
                         .range([h-padding,padding]);
-          var focus = svg.append("g")
-                   .attr("class", "focus")
-                   .attr("transform", "translate(" + padding + "," + padding + ")");
+
+      //This is key for the selection of the range
           var context = svg.append("g")
                        .attr("class", "context")
                        .attr("transform", "translate(" + padding + "," + padding + ")");
 
-
+      //Data & Line for line graph 
 	  var theLine = d3.svg.line()
 	              .x(function(d, i) {return xScale(i);})
-	              .y(function(d) {return yScale(d.weight_sum);})
-	  
+	              .y(function(d) {return yScale(d.weight_sum);}) 
 	  var dataset = data;
-
+      
+      //Appending the line graph
 	  svg.append("path").attr("d",theLine(data))
 	                    .attr("fill", "none").attr("stroke","red");
         //Making Axes: 
@@ -120,21 +122,21 @@
 	      .attr("transform", "translate(" + padding + ",0)").call(yAxis);
 
 
-
+      //Highlighting the brushed area
       context.append("g")
       .attr("class", "x brush")
       .call(brush)
       .selectAll("rect")
       .attr("y", -6)
       .attr("height", h);
-      });
-      
-        function brushed() {
-             x.domain(brush.empty() ? x.domain() : brush.extent());
-             focus.select(".area").attr("d", area);
-             focus.select(".x.axis").call(xAxis);
-             }
 
+      //Can extract values of range here, but need to figure out how to use these as global variables for selection of time range in dorling map
+       function brushed() { 
+             range_min =  brush.extent()[0];
+             range_max =  brush.extent()[1];      
+             };
+      });
+							     
     </script>
 
 

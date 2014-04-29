@@ -214,15 +214,15 @@
       var dropdown = d3.select("#country-list");
       var change = function() {
         // var source = dropdown.node().options[dropdown.node().selectedIndex].value;
-        var key = d3.event.target.value;
-        alert("You clicked " + key);
+        var country = d3.event.target.value;
+        alert("You clicked " + country);
         // d3.json(source, function(json) {
         //   //continue doing stuff here.
         // })
       };
 
       dropdown.on("change", change);
-      change(); //trigger json on load
+      // change(); //trigger json on load
 
       // var log = function() {
       //   key = this.selectedIndex;

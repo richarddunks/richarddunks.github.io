@@ -10,20 +10,29 @@
 
     <title>Starter Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	<style>
+	  .axis path,
+	  .axis line {
+	    fill: none;
+	    stroke: black;
+	    shape-rendering: crispEdges;
+	    }
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	  .axis text {
+	    font-family: sans-serif;
+	    font-size: 11px;
+	    }
+	   rect:hover {fill:orange;}
+	  .brush .extent {
+	  stroke: #fff;
+	  fill-opacity: .125;
+	  shape-rendering: crispEdges;
+	  }
+	</style>
   </head>
 
   <body>
@@ -58,11 +67,82 @@
 
     </div><!-- /.container -->
 
+    <script type="text/javascript" id="line_chart">
+      //SVG for Line
+	  d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
+	  var w = "1000";
+	  var h = "300";
+	  var padding = "75";
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+      //Variables for brushing
+          var x2 = d3.scale.linear().range([0, w]),
+              y2 = d3.scale.linear().range([h, 0]);
+
+          var brush = d3.svg.brush()
+             .x(x2)
+             .on("brush", brushed);
+
+      //Variables for line graph 
+	  var svg = d3.select("body")
+	      .append("svg")
+                  .attr("width",w)
+                  .attr("height",h);
+	  var xScale = d3.scale.linear()
+                         .domain([0,48])
+                         .range([padding,w-padding]);
+	 //___NEED TO update domain to be a function of the max value of weight or value sum 
+         var yScale = d3.scale
+                        .linear()
+                        .domain([0,5000000000])
+                        .range([h-padding,padding]);
+
+      //This is key for the selection of the range
+          var context = svg.append("g")
+                       .attr("class", "context")
+                       .attr("transform", "translate(" + padding + "," + padding + ")");
+
+      //Data & Line for line graph 
+	  var theLine = d3.svg.line()
+	              .x(function(d, i) {return xScale(i);})
+	              .y(function(d) {return yScale(d.weight_sum);}) 
+	  var dataset = data;
+      
+      //Appending the line graph
+	  svg.append("path").attr("d",theLine(data))
+	                    .attr("fill", "none").attr("stroke","red");
+        //Making Axes: 
+	  var xAxis = d3.svg.axis();
+	  xAxis.scale(xScale).orient("bottom").ticks(15);
+	  svg.append("g").attr("class","axis")
+	      .attr("transform", "translate(0," + (h - padding) + ")").call(xAxis);
+
+	  var yAxis = d3.svg.axis();
+	  yAxis.scale(yScale).orient("left").ticks(5);
+	  svg.append("g").attr("class","axis")
+	      .attr("transform", "translate(" + padding + ",0)").call(yAxis);
+
+
+      //Highlighting the brushed area
+      context.append("g")
+      .attr("class", "x brush")
+      .call(brush)
+      .selectAll("rect")
+      .attr("y", -6)
+      .attr("height", h);
+
+       function brushed() { 
+             range_min =  brush.extent()[0];
+             range_max =  brush.extent()[1];   
+            //We need to put the function to render the dorling graph in here to select the time limits on brushing
+             };
+
+      });
+							     
+    </script>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+      
   </body>
 </html>

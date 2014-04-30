@@ -196,7 +196,17 @@
 
     <script type="text/javascript" id="line_chart">
     //SVG for Line
-	  d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
+    var rect_range_min;
+    var rect_range_max;
+    var data;
+
+	  function draw_slider(data){
+       if(typeof data == 'undefined') {
+        d3.csv('data/denmark_weight_value_bydate.csv', function(error, json){
+          data = json;
+        }
+       }
+    //d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
   	  var w = "1000";
   	  var h = "300";
   	  var padding = "75";
@@ -253,6 +263,7 @@
       //Highlighting the brushed area
       context.append("g")
               .attr("class", "x brush")
+              .attr("id", "selection")
               .call(brush)
               .selectAll("rect")
               .attr("y", -6)
@@ -260,11 +271,17 @@
 
        function brushed() { 
              range_min =  brush.extent()[0];
-             range_max =  brush.extent()[1];   
+             range_max =  brush.extent()[1];
+             rect_range_min = range_min;
+             rect_range_max = range_max;   
             //We need to put the function to render the dorling graph in here to select the time limits on brushing
              };
-
-      });
+             var selected = d3.select(".extent");
+              var start = selected.attr("x");
+              var end = start + selected.attr("width");
+              console.log(start + " " + end);
+      //});
+}
 							     
     </script>
 
@@ -279,6 +296,7 @@
         alert("You clicked " + country);
         // d3.json(source, function(json) {
         //   //continue doing stuff here.
+          draw_slider(json);
         // })
       };
 

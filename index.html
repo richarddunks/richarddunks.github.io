@@ -130,11 +130,12 @@
       .attr("y", -6)
       .attr("height", h);
 
-      //Can extract values of range here, but need to figure out how to use these as global variables for selection of time range in dorling map
        function brushed() { 
              range_min =  brush.extent()[0];
-             range_max =  brush.extent()[1];      
+             range_max =  brush.extent()[1];   
+            //We need to put the function to render the dorling graph in here to select the time limits on brushing
              };
+
       });
 							     
     </script>

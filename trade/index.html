@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>Dorling Cartogram</title>
+<title>TEST Dorling Cartogram</title>
 <style>
 
 circle {
@@ -16,22 +16,19 @@ circle {
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
-// Ratio of Obese (BMI >= 30) in U.S. Adults, CDC 2008
-var valueById = [
-   NaN, .200, .200,  NaN, .200, .175, .151,  NaN, .100, .125,
-  .171,  NaN, .172, .133,  NaN, .108, .142, .167, .201, .175,
-  .159, .169, .177, .141, .163, .117, .182, .153, .195, .189,
-  .134, .163, .133, .151, .145, .130, .139, .169, .164, .175,
-  .135, .152, .169,  NaN, .132, .167, .139, .184, .159, .140,
-  .146, .157,  NaN, .139, .183, .160, .900
-];
+// denmark_weight_sum_array
+var valueById = [NaN,4782500,124687400,NaN,NaN,7671200,82266400,3057200,342607300,388087400,16512100,NaN,11109900,NaN,523000,93481800,1194123600,NaN,NaN,NaN,NaN,12837300,11678600,NaN,155261800,1845300,65253100,3664200,552100,NaN,NaN,3941700,815432900,838200,NaN,160800,NaN,68684300,1656097400,40892600,NaN,NaN,NaN,NaN,NaN,46669000,NaN,60105300,389891200,NaN,NaN,946700,57802000,6448000,146228100,2740300,NaN,NaN,NaN,400269900,32943800,NaN,2570877200,3535032500,NaN,NaN,NaN,NaN,11140000,34161464400,NaN,NaN,370566900,NaN,3641300,NaN,NaN,NaN,NaN,NaN,NaN,NaN,225307000,388940600,342234100,82595200,NaN,NaN,996911500,134214900,1764436900,NaN,715886700,78139700,36082300,7420700,NaN,NaN,1215500,NaN,480152300,NaN,NaN,NaN,NaN,NaN,542102400,29313800,NaN,12338200,900200,NaN,128585000,NaN,602800,33167000,NaN,NaN,5872500,77593200,NaN,10261800,NaN,NaN,828000,250362400,5708400,NaN,13916000,NaN,NaN,8664676200,38488000,1680200,NaN,106691300,NaN,6433015600,NaN,67554100,NaN,1987900,19228400,NaN,1918300,49711800,142111100,3256824900,410142400,NaN,NaN,380290300,1879438700,30915800,NaN,NaN,NaN,NaN,NaN,24517300,36449900,NaN,NaN,117050300,172150700,32256400,NaN,NaN,119776300,315202800,2073798200,24516300,NaN,NaN,NaN,NaN,NaN,26741186700,215542500,NaN,NaN,8757500,154432800,NaN,NaN,2737700,NaN,NaN,NaN,1789088800,NaN,NaN,NaN,NaN,199754400,15678037600,1392735600,85024000,NaN,NaN,NaN,NaN,NaN,NaN,973700,3233100];
 
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     padding = 3;
-
+/*
 var projection = d3.geo.albersUsa();
+*/
+var projection = d3.geo.mercator()
+      .translate([480, 300])
+      .scale(970);
 
 var radius = d3.scale.sqrt()
     .domain([0, d3.max(valueById)])
@@ -48,7 +45,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("us-state-centroids.json", function(error, states) {
+d3.json("world-country-centroids.json", function(error, states) {
   var nodes = states.features
       .filter(function(d) { return !isNaN(valueById[+d.id]); })
       .map(function(d) {

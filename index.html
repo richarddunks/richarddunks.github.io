@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <!-- <link rel="shortcut icon" href="../../assets/ico/favicon.ico"> -->
 
     <title>Awesome UNGP Visualization</title>
     <!-- Bootstrap core CSS -->
@@ -14,9 +14,26 @@
 
     <!-- Custom styles for this template -->
     <!-- <link href="starter-template.css" rel="stylesheet"> -->
+    <style>
 
-	   <style>
-  	  .axis path,
+      .graticule {
+        fill: none;
+        stroke: #777;
+        stroke-opacity: .5;
+        stroke-width: .5px;
+      }
+
+      .land {
+        fill: #222;
+      }
+
+      .boundary {
+        fill: none;
+        stroke: #fff;
+        stroke-width: .5px;
+      }
+
+      .axis path,
   	  .axis line {
   	    fill: none;
   	    stroke: black;
@@ -45,6 +62,8 @@
 
     <!-- d3 reference -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
     <!-- <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -64,10 +83,72 @@
           </ul>
         </div>
       </div>
-    </div>
- -->
+    </div>-->
 
     <div class="container">
+    <script type="text/javascript" id="line_chart">
+
+      var margin = {top: 0, right: 0, bottom: 0, left: 0},
+          width = 960 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom,
+          padding = 3;
+
+      var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
+
+      var projection = d3.geo.mercator()
+                              .scale((width + 1) / 2 / Math.PI)
+                              .translate([width / 2, height / 2])
+                              .precision(.1);
+
+      var path = d3.geo.path()
+          .projection(projection);
+
+      var graticule = d3.geo.graticule();
+
+      var svg = d3.select("body").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+      //the gridlines
+      // svg.append("path")
+      //     .datum(graticule)
+      //     .attr("class", "graticule")
+      //     .attr("d", path);
+
+      d3.json("data/world-50m.json", function(error, world) {
+        svg.insert("path", ".graticule")
+            .datum(topojson.feature(world, world.objects.land))
+            .attr("class", "land")
+            .attr("d", path);
+
+        svg.insert("path", ".graticule")
+            .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+            .attr("class", "boundary")
+            .attr("d", path);
+      // });
+
+        d3.csv("data/world-country-centroids.csv", function(data){
+          svg.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("cx", function(d){
+                return projection([d.lon, d.lat])[0];
+              })
+              .attr("cy", function(d){
+                return projection([d.lon, d.lat])[1];
+              })
+              .attr("r",5)
+              .style("fill",function(d){
+                return region_color[d.region];
+              })
+              .style("opacity",0.75);
+          });
+      });
+
+      d3.select(self.frameElement).style("height", height + "px");
+
+    </script>
 
      <!-- <div class="starter-template">
         <h1>Bootstrap starter template</h1>
@@ -191,7 +272,6 @@
       <option value="Zimbabwe">Zimbabwe</option>
     </select>
 
-
     </div><!-- /.container -->
 
     <script type="text/javascript" id="line_chart">
@@ -271,6 +351,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- dropdown menu event listener -->
     <script>
 
       var dropdown = d3.select("#country-list");
@@ -285,5 +366,6 @@
       dropdown.on("change", change);
       
     </script>
+
   </body>
 </html>

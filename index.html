@@ -80,6 +80,8 @@ var margin = {top: 0, right: 0, bottom: 0, left: 0},
     height = 500 - margin.top - margin.bottom,
     padding = 3;
 
+var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
+
 var projection = d3.geo.mercator()
                         .scale((width + 1) / 2 / Math.PI)
                         .translate([width / 2, height / 2])
@@ -124,7 +126,9 @@ d3.json("data/world-50m.json", function(error, world) {
           return projection([d.lon, d.lat])[1];
         })
         .attr("r",5)
-        .style("fill","yellow")
+        .style("fill",function(d){
+          return region_color[d.region];
+        })
         .style("opacity",0.75);
     });
 });

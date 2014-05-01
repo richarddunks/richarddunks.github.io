@@ -8,8 +8,7 @@
     <meta name="author" content="">
     <!-- <link rel="shortcut icon" href="../../assets/ico/favicon.ico"> -->
 
-    <title>Starter Template for Bootstrap</title>
-
+    <title>Awesome UNGP Visualization</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,20 +33,36 @@
         stroke-width: .5px;
       }
 
-    </style>
+      .axis path,
+  	  .axis line {
+  	    fill: none;
+  	    stroke: black;
+  	    shape-rendering: crispEdges;
+  	    }
 
+  	  .axis text {
+  	    font-family: sans-serif;
+  	    font-size: 11px;
+  	    }
+      
+      rect:hover {
+        fill:orange;
+      }
+  	  
+      .brush .extent {
+  	  stroke: #fff;
+  	  fill-opacity: .125;
+  	  shape-rendering: crispEdges;
+  	  }
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  	</style>
   </head>
 
   <body>
+
+    <!-- d3 reference -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
 
     <!-- <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -71,80 +86,286 @@
     </div>-->
 
     <div class="container">
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script>
+    <script type="text/javascript" id="line_chart">
 
-var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
-    padding = 3;
+      var margin = {top: 0, right: 0, bottom: 0, left: 0},
+          width = 960 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom,
+          padding = 3;
 
-var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
+      var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
 
-var projection = d3.geo.mercator()
-                        .scale((width + 1) / 2 / Math.PI)
-                        .translate([width / 2, height / 2])
-                        .precision(.1);
+      var projection = d3.geo.mercator()
+                              .scale((width + 1) / 2 / Math.PI)
+                              .translate([width / 2, height / 2])
+                              .precision(.1);
 
-var path = d3.geo.path()
-    .projection(projection);
+      var path = d3.geo.path()
+          .projection(projection);
 
-var graticule = d3.geo.graticule();
+      var graticule = d3.geo.graticule();
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+      var svg = d3.select("body").append("svg")
+          .attr("width", width)
+          .attr("height", height);
 
-//the gridlines
-// svg.append("path")
-//     .datum(graticule)
-//     .attr("class", "graticule")
-//     .attr("d", path);
+      //the gridlines
+      // svg.append("path")
+      //     .datum(graticule)
+      //     .attr("class", "graticule")
+      //     .attr("d", path);
 
-d3.json("data/world-50m.json", function(error, world) {
-  svg.insert("path", ".graticule")
-      .datum(topojson.feature(world, world.objects.land))
-      .attr("class", "land")
-      .attr("d", path);
+      d3.json("data/world-50m.json", function(error, world) {
+        svg.insert("path", ".graticule")
+            .datum(topojson.feature(world, world.objects.land))
+            .attr("class", "land")
+            .attr("d", path);
 
-  svg.insert("path", ".graticule")
-      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-      .attr("class", "boundary")
-      .attr("d", path);
-// });
+        svg.insert("path", ".graticule")
+            .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+            .attr("class", "boundary")
+            .attr("d", path);
+      // });
 
-  d3.csv("data/world-country-centroids.csv", function(data){
-    svg.selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", function(d){
-          return projection([d.lon, d.lat])[0];
-        })
-        .attr("cy", function(d){
-          return projection([d.lon, d.lat])[1];
-        })
-        .attr("r",5)
-        .style("fill",function(d){
-          return region_color[d.region];
-        })
-        .style("opacity",0.75);
-    });
-});
+        d3.csv("data/world-country-centroids.csv", function(data){
+          svg.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("cx", function(d){
+                return projection([d.lon, d.lat])[0];
+              })
+              .attr("cy", function(d){
+                return projection([d.lon, d.lat])[1];
+              })
+              .attr("r",5)
+              .style("fill",function(d){
+                return region_color[d.region];
+              })
+              .style("opacity",0.75);
+          });
+      });
 
-d3.select(self.frameElement).style("height", height + "px");
+      d3.select(self.frameElement).style("height", height + "px");
 
-</script>
+    </script>
 
+     <!-- <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div> -->
+
+
+    <select id="country-list" name="country-list">
+      <option value="Select Country:">Select Country:</option>
+      <option value="Albania">Albania</option>
+      <option value="Algeria">Algeria</option>
+      <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+      <option value="Argentina">Argentina</option>
+      <option value="Armenia">Armenia</option>
+      <option value="Aruba">Aruba</option>
+      <option value="Australia">Australia</option>
+      <option value="Austria">Austria</option>
+      <option value="Azerbaijan">Azerbaijan</option>
+      <option value="Bahrain">Bahrain</option>
+      <option value="Barbados">Barbados</option>
+      <option value="Belarus">Belarus</option>
+      <option value="Belgium">Belgium</option>
+      <option value="Bolivia">Bolivia</option>
+      <option value="Bosnia Herzegovina">Bosnia Herzegovina</option>
+      <option value="Brazil">Brazil</option>
+      <option value="Brunei Darussalam">Brunei Darussalam</option>
+      <option value="Bulgaria">Bulgaria</option>
+      <option value="Burkina Faso">Burkina Faso</option>
+      <option value="Burundi">Burundi</option>
+      <option value="Cabo Verde">Cabo Verde</option>
+      <option value="Cameroon">Cameroon</option>
+      <option value="Canada">Canada</option>
+      <option value="Central African Republic">Central African Republic</option>
+      <option value="Chile">Chile</option>
+      <option value="China">China</option>
+      <option value="China, Hong Kong SAR">China, Hong Kong SAR</option>
+      <option value="Colombia">Colombia</option>
+      <option value="Croatia">Croatia</option>
+      <option value="Cyprus">Cyprus</option>
+      <option value="Czech Republic">Czech Republic</option>
+      <option value="Denmark">Denmark</option>
+      <option value="Dominica">Dominica</option>
+      <option value="Dominican Republic">Dominican Republic</option>
+      <option value="Ecuador">Ecuador</option>
+      <option value="Egypt">Egypt</option>
+      <option value="El Salvador">El Salvador</option>
+      <option value="Estonia">Estonia</option>
+      <option value="Ethiopia">Ethiopia</option>
+      <option value="EU-27">EU-27</option>
+      <option value="Faeroe Isds">Faeroe Islands</option>
+      <option value="Finland">Finland</option>
+      <option value="France">France</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Germany">Germany</option>
+      <option value="Greece">Greece</option>
+      <option value="Guatemala">Guatemala</option>
+      <option value="Hungary">Hungary</option>
+      <option value="Iceland">Iceland</option>
+      <option value="India">India</option>
+      <option value="Indonesia">Indonesia</option>
+      <option value="Ireland">Ireland</option>
+      <option value="Israel">Israel</option>
+      <option value="Italy">Italy</option>
+      <option value="Japan">Japan</option>
+      <option value="Jordan">Jordan</option>
+      <option value="Kazakhstan">Kazakhstan</option>
+      <option value="Kenya">Kenya</option>
+      <option value="Kyrgyzstan">Kyrgyzstan</option>
+      <option value="Latvia">Latvia</option>
+      <option value="Lithuania">Lithuania</option>
+      <option value="Luxembourg">Luxembourg</option>
+      <option value="Macedonia">Macedonia</option>
+      <option value="Madagascar">Madagascar</option>
+      <option value="Malaysia">Malaysia</option>
+      <option value="Mali">Mali</option>
+      <option value="Malta">Malta</option>
+      <option value="Mauritius">Mauritius</option>
+      <option value="Mexico">Mexico</option>
+      <option value="Montenegro">Montenegro</option>
+      <option value="Morocco">Morocco</option>
+      <option value="Mozambique">Mozambique</option>
+      <option value="Namibia">Namibia</option>
+      <option value="Netherlands">Netherlands</option>
+      <option value="New Caledonia">New Caledonia</option>
+      <option value="New Zealand">New Zealand</option>
+      <option value="Nicaragua">Nicaragua</option>
+      <option value="Nigeria">Nigeria</option>
+      <option value="Norway">Norway</option>
+      <option value="Pakistan">Pakistan</option>
+      <option value="Panama">Panama</option>
+      <option value="Paraguay">Paraguay</option>
+      <option value="Peru">Peru</option>
+      <option value="Philippines">Philippines</option>
+      <option value="Poland">Poland</option>
+      <option value="Portugal">Portugal</option>
+      <option value="Republic of Korea">Republic of Korea</option>
+      <option value="Republic of Moldova">Republic of Moldova</option>
+      <option value="Romania">Romania</option>
+      <option value="Russian Federation">Russian Federation</option>
+      <option value="Rwanda">Rwanda</option>
+      <option value="Senegal">Senegal</option>
+      <option value="Serbia">Serbia</option>
+      <option value="Singapore">Singapore</option>
+      <option value="Slovakia">Slovakia</option>
+      <option value="Slovenia">Slovenia</option>
+      <option value="South Africa">South Africa</option>
+      <option value="Spain">Spain</option>
+      <option value="Sri Lanka">Sri Lanka</option>
+      <option value="State of Palestine">State of Palestine</option>
+      <option value="Sweden">Sweden</option>
+      <option value="Switzerland">Switzerland</option>
+      <option value="Thailand">Thailand</option>
+      <option value="Togo">Togo</option>
+      <option value="Turkey">Turkey</option>
+      <option value="Ukraine">Ukraine</option>
+      <option value="United Kingdom">United Kingdom</option>
+      <option value="United Republic of Tanzania">United Republic of Tanzania</option>
+      <option value="Uruguay">Uruguay</option>
+      <option value="USA">USA</option>
+      <option value="Zambia">Zambia</option>
+      <option value="Zimbabwe">Zimbabwe</option>
+    </select>
 
     </div><!-- /.container -->
 
+    <script type="text/javascript" id="line_chart">
+    //SVG for Line
+	  d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
+  	  var w = "1000";
+  	  var h = "300";
+  	  var padding = "75";
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+      //Variables for brushing
+      var x2 = d3.scale.linear().range([0, w]),
+          y2 = d3.scale.linear().range([h, 0]);
+
+      var brush = d3.svg.brush()
+         .x(x2)
+         .on("brush", brushed);
+
+      //Variables for line graph 
+  	  var svg = d3.select("body")
+          	      .append("svg")
+                  .attr("width",w)
+                  .attr("height",h);
+  	  
+      var xScale = d3.scale.linear()
+                         .domain([0,48])
+                         .range([padding,w-padding]);
+	 //___NEED TO update domain to be a function of the max value of weight or value sum 
+      var yScale = d3.scale
+                    .linear()
+                    .domain([0,5000000000])
+                    .range([h-padding,padding]);
+
+      //This is key for the selection of the range
+      var context = svg.append("g")
+                   .attr("class", "context")
+                   .attr("transform", "translate(" + padding + "," + padding + ")");
+
+      //Data & Line for line graph 
+  	  var theLine = d3.svg.line()
+  	              .x(function(d, i) {return xScale(i);})
+  	              .y(function(d) {return yScale(d.weight_sum);}) 
+  	  var dataset = data;
+      
+      //Appending the line graph
+  	  svg.append("path").attr("d",theLine(data))
+  	                    .attr("fill", "none").attr("stroke","red");
+        //Making Axes: 
+  	  var xAxis = d3.svg.axis();
+  	  xAxis.scale(xScale).orient("bottom").ticks(15);
+  	  svg.append("g").attr("class","axis")
+  	      .attr("transform", "translate(0," + (h - padding) + ")").call(xAxis);
+
+  	  var yAxis = d3.svg.axis();
+  	  yAxis.scale(yScale).orient("left").ticks(5);
+  	  svg.append("g").attr("class","axis")
+  	      .attr("transform", "translate(" + padding + ",0)").call(yAxis);
+
+
+      //Highlighting the brushed area
+      context.append("g")
+              .attr("class", "x brush")
+              .call(brush)
+              .selectAll("rect")
+              .attr("y", -6)
+              .attr("height", h);
+
+       function brushed() { 
+             range_min =  brush.extent()[0];
+             range_max =  brush.extent()[1];   
+            //We need to put the function to render the dorling graph in here to select the time limits on brushing
+             };
+
+      });
+							     
+    </script>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- dropdown menu event listener -->
+    <script>
+
+      var dropdown = d3.select("#country-list");
+      var change = function() {
+        var country = d3.event.target.value;
+        alert("You clicked " + country);
+        // d3.json(source, function(json) {
+        //   //continue doing stuff here.
+        // })
+      };
+
+      dropdown.on("change", change);
+      
+    </script>
+
   </body>
 </html>

@@ -1,3 +1,0 @@
-line 1 H
-line 2 b
-line 3 c

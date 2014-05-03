@@ -109,6 +109,7 @@
           .attr("width", width)
           .attr("height", height);
 
+      // var global_country_data;
       //the gridlines
       // svg.append("path")
       //     .datum(graticule)
@@ -127,9 +128,30 @@
             .attr("d", path);
       // });
 
-        d3.csv("data/country_csv/denmark.csv", function(error, country_list) {
-          var country_data = country_list;
+        d3.csv("data/country_csv/denmark.csv", function(error, partner_country) {
+          // console.log(partner_country);
+          var country_data = d3.nest()
+                                .key(function (d){
+                                  return d.partner_country;
+                                })
+                                .rollup( function (d) {
+                                  return d3.sum(d, function(g) {
+                                    return g.net_weight;
+                                  })
+                                })
+                                .entries(partner_country);
+          
+          // country_data.forEach(function(d){
+          //   d.country = d.key;
+          //   d.net_weight = d.values;
+          // });
 
+          // global_country_data = country_data;
+          var countryMap = {};
+          for (var i = 0, len = country_data.length; i < len; i++) {
+            countryMap[country_data[i].key] = country_data[i].values;
+          }
+          window.countryMap = countryMap;
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
@@ -142,7 +164,9 @@
                 .attr("cy", function(d){
                   return projection([d.lon, d.lat])[1];
                 })
-                .attr("r",5)
+                .attr("r", function(d){
+                  return country_data[d.country];
+                })
                 .style("fill",function(d){
                   return region_color[d.region];
                 })
@@ -150,6 +174,12 @@
             });
         });
       });
+
+    // function aggregate_by_country(datafile) {
+    //   //join associative array and return
+
+    // };
+
 
       d3.select(self.frameElement).style("height", height + "px");
 

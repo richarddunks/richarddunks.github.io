@@ -69,8 +69,6 @@
         shape-rendering: crispEdges;
         }
 
-      .axis {padding:1000px;}
-      .y axis {paddion: 100px;}
       .axis text {
         font-family: sans-serif;
         font-size: 11px;
@@ -370,6 +368,7 @@
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")
+            .attr("class","whole")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         //Line Graph vars
@@ -378,7 +377,7 @@
         var max = d3.max(data, function(d){return d.weight_sum;})
         var yScale = d3.scale
                       .linear()
-                      .domain([0,max])
+                      .domain([0,max]).nice() //.nice to round up! 
                       .range([height,0]);
 
         var theLine = d3.svg.line()

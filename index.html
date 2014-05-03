@@ -174,7 +174,11 @@
                 .style("fill",function(d){
                   return region_color[d.region];
                 })
-                .style("opacity",0.75);
+                .style("opacity",0.75)
+                .append("svg:title")
+                .text(function(d){
+                  return d.country;
+                });
             });
         });
       });

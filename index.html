@@ -1,148 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+<meta charset="utf-8">
+<style>
 
-    <title>Starter Template for Bootstrap</title>
+.axis text {
+  font: 11px sans-serif;
+}
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+.axis path {
+  display: none;
+}
 
-    <link href="starter-template.css" rel="stylesheet">
-        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-	<style>
-	  .axis path,
-	  .axis line {
-	    fill: none;
-	    stroke: black;
-	    shape-rendering: crispEdges;
-	    }
+.axis line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
-	  .axis text {
-	    font-family: sans-serif;
-	    font-size: 11px;
-	    }
-	   rect:hover {fill:orange;}
-	  .brush .extent {
-	  stroke: #fff;
-	  fill-opacity: .125;
-	  shape-rendering: crispEdges;
-	  }
-	</style>
-  </head>
 
-  <body>
+.grid line,
+.grid path {
+  fill: none;
+  stroke: #C0C0C0;
+  shape-rendering: crispEdges;
+}
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+.grid .minor.tick line {
+  stroke-opacity: .5;
+}
 
-    <div class="container">
+.brush .extent {
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
 
-    </div><!-- /.container -->
+ d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
 
-    <script type="text/javascript" id="line_chart">
-      //SVG for Line
-	  d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
-	  var w = "1000";
-	  var h = "300";
-	  var padding = "75";
+var margin = {top: 200, right: 14, bottom: 200, left: 80},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-      //Variables for brushing
-          var x2 = d3.scale.linear().range([0, w]),
-              y2 = d3.scale.linear().range([h, 0]);
+var x = d3.time.scale()
+    .domain([new Date(2009,12) , new Date(2013, 11) - 1])
+    .range([0, width]);
 
-          var brush = d3.svg.brush()
-             .x(x2)
-             .on("brush", brushed);
+var brush = d3.svg.brush()
+    .x(x)
+    .on("brushend", brushended);
 
-      //Variables for line graph 
-	  var svg = d3.select("body")
-	      .append("svg")
-                  .attr("width",w)
-                  .attr("height",h);
-	  var xScale = d3.scale.linear()
-                         .domain([0,48])
-                         .range([padding,w-padding]);
-	 //___NEED TO update domain to be a function of the max value of weight or value sum 
-         var yScale = d3.scale
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+//Line Graph vars
+          var yScale = d3.scale
                         .linear()
                         .domain([0,5000000000])
-                        .range([h-padding,padding]);
+                        .range([height,0]);
 
-      //This is key for the selection of the range
-          var context = svg.append("g")
-                       .attr("class", "context")
-                       .attr("transform", "translate(" + padding + "," + padding + ")");
-
-      //Data & Line for line graph 
 	  var theLine = d3.svg.line()
-	              .x(function(d, i) {return xScale(i);})
+	              .x(function(d) {return x(new Date (d.year, d.month));})
 	              .y(function(d) {return yScale(d.weight_sum);}) 
 	  var dataset = data;
       
+          //Grid lines
+          svg.append("g")
+              .attr("class", "x grid")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.svg.axis()
+                  .scale(x)
+                  .orient("bottom")
+                  .ticks(d3.time.month)
+                  .tickSize(-height)
+                  .tickFormat(""))
+
+          svg.append("g")
+              .attr("class", "y grid")
+              .call(d3.svg.axis()
+                  .scale(yScale)
+                  .orient("left")
+                  .tickSize(-width)
+                  .tickFormat(""))
+          
       //Appending the line graph
 	  svg.append("path").attr("d",theLine(data))
 	                    .attr("fill", "none").attr("stroke","red");
-        //Making Axes: 
-	  var xAxis = d3.svg.axis();
-	  xAxis.scale(xScale).orient("bottom").ticks(15);
-	  svg.append("g").attr("class","axis")
-	      .attr("transform", "translate(0," + (h - padding) + ")").call(xAxis);
 
-	  var yAxis = d3.svg.axis();
+      //y-axis
+   	  var yAxis = d3.svg.axis();
 	  yAxis.scale(yScale).orient("left").ticks(5);
 	  svg.append("g").attr("class","axis")
-	      .attr("transform", "translate(" + padding + ",0)").call(yAxis);
+	      .attr("transform", "translate(" - margin.right + ",0)").call(yAxis);
 
+//x-axis
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.svg.axis()
+      .scale(x)
+      .orient("bottom")
+      .ticks(d3.time.month,2)
+      .tickFormat(d3.time.format("%m/%y"))
+      .tickPadding(0))
+  .selectAll("text")
+    .attr("x", -15)
+    .style("text-anchor", null);
 
-      //Highlighting the brushed area
-      context.append("g")
-      .attr("class", "x brush")
-      .call(brush)
-      .selectAll("rect")
-      .attr("y", -6)
-      .attr("height", h);
+//Highligh brushed area
+var gBrush = svg.append("g")
+    .attr("class", "brush")
+    .call(brush)
+    .call(brush.event);
 
-       function brushed() { 
-             range_min =  brush.extent()[0];
-             range_max =  brush.extent()[1];   
-            //We need to put the function to render the dorling graph in here to select the time limits on brushing
-             };
+gBrush.selectAll("rect")
+    .attr("height", height);
 
-      });
-							     
-    </script>
+//Brushing function with snapping
+function brushended() {
+  if (!d3.event.sourceEvent) return; // only transition after input
+  var extent0 = brush.extent(),
+      extent1 = extent0.map(d3.time.month.round);
 
+  // if empty when rounded, use floor & ceil instead
+  if (extent1[0] >= extent1[1]) {
+    extent1[0] = d3.time.month.floor(extent0[0]);
+    extent1[1] = d3.time.month.ceil(extent0[1]);
+  }
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-      
-  </body>
-</html>
+  d3.select(this).transition()
+      .call(brush.extent(extent1))
+      .call(brush.event);
+}
+});
+
+</script>

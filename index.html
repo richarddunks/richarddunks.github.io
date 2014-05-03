@@ -394,6 +394,8 @@
     </div><!-- /.container -->
 
     <script type="text/javascript" id="line_chart">
+      var range_max,
+          range_min;
 
       d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
 
@@ -487,19 +489,21 @@
           if (!d3.event.sourceEvent) return; // only transition after input
           var extent0 = brush.extent(),
               extent1 = extent0.map(d3.time.month.round);
+     
+               // if empty when rounded, use floor & ceil instead
+               if (extent1[0] >= extent1[1]) {
+                      extent1[0] = d3.time.month.floor(extent0[0]);
+                      extent1[1] = d3.time.month.ceil(extent0[1]);			  
+                        };
+	     range_min = extent1[0];
+	     range_max = extent1[1];	
 
-          // if empty when rounded, use floor & ceil instead
-          if (extent1[0] >= extent1[1]) {
-            extent1[0] = d3.time.month.floor(extent0[0]);
-            extent1[1] = d3.time.month.ceil(extent0[1]);
-        }
-
-        d3.select(this).transition()
-            .call(brush.extent(extent1))
-            .call(brush.event);
-      }
+             d3.select(this).transition()
+                 .call(brush.extent(extent1))
+                 .call(brush.event);					 
+      };
     });
-
+							 
     </script>
 
 

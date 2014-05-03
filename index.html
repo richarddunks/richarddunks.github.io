@@ -165,7 +165,11 @@
                   return projection([d.lon, d.lat])[1];
                 })
                 .attr("r", function(d){
-                  return country_data[d.country];
+                  if (countryMap[d.country]) {
+                    return Math.sqrt(countryMap[d.country])/5000;
+                  } else {
+                    return 0;
+                  }
                 })
                 .style("fill",function(d){
                   return region_color[d.region];

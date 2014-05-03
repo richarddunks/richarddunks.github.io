@@ -136,10 +136,12 @@
       var graticule = d3.geo.graticule();
 
       var svg = d3.select("body").append("svg")
+          .attr("class","dorling")
           .attr("width", width)
           .attr("height", height);
 
-      // var global_country_data;
+      var global_countryMap;
+
       //the gridlines
       // svg.append("path")
       //     .datum(graticule)
@@ -158,7 +160,7 @@
             .attr("d", path);
       // });
 
-        d3.csv("data/country_csv/denmark.csv", function(error, partner_country) {
+        d3.csv("data/country_csv/algeria.csv", function(error, partner_country) {
           // console.log(partner_country);
           var country_data = d3.nest()
                                 .key(function (d){
@@ -171,17 +173,13 @@
                                 })
                                 .entries(partner_country);
           
-          // country_data.forEach(function(d){
-          //   d.country = d.key;
-          //   d.net_weight = d.values;
-          // });
-
-          // global_country_data = country_data;
+          //restructure nested map to standard hash map
           var countryMap = {};
           for (var i = 0, len = country_data.length; i < len; i++) {
             countryMap[country_data[i].key] = country_data[i].values;
           }
-          window.countryMap = countryMap;
+          // kick countryMap up to global scope
+          // window.countryMap = countryMap;
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
@@ -210,8 +208,56 @@
                   return d.country;
                 });
             });
-        });
-      });
+        }); //end country csv
+      
+      var dropdown = d3.select("#country-list");
+      
+      var change = function() {
+        var country = d3.event.target.value;
+        country = country.toLowerCase();
+
+        var csvFileName = "data/country_csv/" + country + ".csv";
+        //console.log(csvFileName);
+        d3.csv(csvFileName, function(error, partner_country) {
+          // console.log(partner_country);
+          var country_data = d3.nest()
+                                .key(function (d){
+                                  return d.partner_country;
+                                })
+                                .rollup( function (d) {
+                                  return d3.sum(d, function(g) {
+                                    return g.net_weight;
+                                  })
+                                })
+                                .entries(partner_country);
+          
+          //restructure nested map to standard hash map
+          var countryMap = {};
+          for (var i = 0, len = country_data.length; i < len; i++) {
+            countryMap[country_data[i].key] = country_data[i].values;
+          }
+          // kick countryMap up to global scope
+          global_countryMap = countryMap;
+
+          d3.csv("data/reporters_centroid.csv", function(data){
+            svg.selectAll("circle")
+                .data(data)
+                .attr("r", function(d){
+                  if (countryMap[d.country]) {
+                    return Math.sqrt(countryMap[d.country])/5000;
+                  } else {
+                    return 0;
+                  };
+                });
+                
+              }); //end of d3.csv
+
+          });//end of d3 county 
+        }; //end of function change
+      dropdown.on("change", change);
+      
+
+      }); //end world json
 
     // function aggregate_by_country(datafile) {
     //   //join associative array and return
@@ -363,7 +409,6 @@
             .x(x)
             .on("brushend", brushended);
 
-
         var svg = d3.select("body").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -456,22 +501,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- dropdown menu event listener -->
-    <script>
-
-      var dropdown = d3.select("#country-list");
-      var change = function() {
-        var country = d3.event.target.value;
-        alert("You clicked " + country);
-        // d3.json(source, function(json) {
-        //   //continue doing stuff here.
-        // })
-      };
-
-      dropdown.on("change", change);
-      
-    </script>
-
+    <!-- dropdown menu event listener OLD PLACEHOLDER -->
+    
   </body>
 </html>
 

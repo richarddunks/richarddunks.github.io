@@ -1,0 +1,112 @@
+country,country2,region,lat,lon
+Albania,Albania,Europe,41.115789,20.036435
+Algeria,Algeria,Africa,28.648929,2.550384
+Antigua and Barbuda,Antigua_Barbuda,Americas,17.326884,-61.79147
+Argentina,Argentina,Americas,-34.069346,-64.554019
+Armenia,Armenia,Asia,40.143019,45.185632
+Aruba,Aruba,Americas,12.5183,-69.964
+Australia,Australia,Oceania,-25.457025,135.343151
+Austria,Austria,Europe,47.559579,13.460688
+Azerbaijan,Azerbaijan,Asia,40.217768,47.780519
+Bahrain,Bahrain,Asia,25.980963,50.601739
+Barbados,Barbados,Americas,13.184835,-59.561554
+Belarus,Belarus,Europe,53.460297,27.984375
+Belgium,Belgium,Europe,50.653901,4.625375
+Bolivia (Plurinational State of),Bolivia,Americas,-16.733626,-64.475512
+Bosnia Herzegovina,Bosnia_Herzegovina,Europe,44.133901,17.883773
+Brazil,Brazil,Americas,-9.872666,-53.169127
+Brunei Darussalam,Brunei,Asia,4.581283,114.819152
+Bulgaria,Bulgaria,Europe,42.808479,25.268387
+Burkina Faso,Burkina_Faso,Africa,12.146713,-1.747007
+Burundi,Burundi,Africa,-3.241797,29.899848
+Cabo Verde,Cape_Verde,Africa,16.067023,-23.958685
+Cameroon,Cameroon,Africa,6.626626,13.030155
+Canada,Canada,Americas,58.622302,-102.046052
+Central African Rep.,Central_Africa_Republic,Africa,6.342249,20.686201
+Chile,Chile,Americas,-37.616333,-72.198999
+China,China,Asia,35.703649,107.400296
+"China, Hong Kong SAR",Hong_Kong,Asia,22.346283,114.11677
+Colombia,Colombia,Americas,4.25306,-72.868391
+Croatia,Croatia,Europe,44.444795,16.343293
+Cyprus,Cyprus,Asia,35.145334,33.440153
+Czech Rep.,Czech_Republic,Europe,49.811836,15.49225
+Denmark,Denmark,Europe,55.890028,10.392256
+Dominica,Dominica,Americas,15.426026,-61.359058
+Dominican Rep.,Dominican_Republic,Americas,18.81433,-70.277471
+Ecuador,Ecuador,Americas,-1.147179,-78.247751
+Egypt,Egypt,Africa,27.185703,30.479459
+El Salvador,El_Salvador,Americas,13.726028,-88.822732
+Estonia,Estonia,Europe,58.663435,24.607346
+Ethiopia,Ethiopia,Africa,8.842762,39.863899
+Faeroe Isds,Faeroe Isds,Europe,62.1269,-6.9895
+Finland,Finland,Europe,64.500053,27.218937
+France,France,Europe,46.336883,2.270183
+Georgia,Georgia,Asia,42.238473,43.427589
+Germany,Germany,Europe,51.77387,10.574742
+Greece,Greece,Europe,38.481022,23.758809
+Guatemala,Guatemala,Americas,15.852383,-90.272178
+Hungary,Hungary,Europe,47.260378,19.359526
+Iceland,Iceland,Europe,65.232709,-19.976364
+India,India,Asia,22.606858,79.627816
+Indonesia,Indonesia,Asia,-2.974959,119.267292
+Ireland,Ireland,Europe,53.332306,-8.629055
+Israel,Israel,Asia,31.545732,35.035337
+Italy,Italy,Europe,42.051185,12.461401
+Japan,Japan,Asia,35.992619,137.776432
+Jordan,Jordan,Asia,31.384543,36.995909
+Kazakhstan,Kazakhstan,Asia,48.286181,66.197373
+Kenya,Kenya,Africa,0.638006,38.025679
+Kyrgyzstan,Kyrgyzstan,Asia,41.22812,73.842561
+Latvia,Latvia,Europe,56.851106,24.580203
+Lithuania,Lithuania,Europe,55.294758,23.833139
+Luxembourg,Luxembourg,Europe,49.768616,6.098623
+Madagascar,Madagascar,Africa,-18.054455,47.108621
+Malaysia,Malaysia,Asia,3.948639,110.52886
+Mali,Mali,Africa,16.515929,-4.506424
+Malta,Malta,Europe,35.891981,14.442436
+Mauritius,Mauritius,Africa,-20.163688,58.765571
+Mexico,Mexico,Americas,24.127293,-103.578389
+Montenegro,Montenegro,Europe,42.751687,19.296053
+Morocco,Morocco,Africa,31.416697,-6.735714
+Mozambique,Mozambique,Africa,-17.646889,35.189844
+Namibia,Namibia,Africa,-21.547573,18.124303
+Netherlands,Netherlands,Europe,52.160556,5.208745
+New Caledonia,New Caledonia,Oceania,-21.242,165.5067
+New Zealand,New_Zealand,Oceania,-44.818879,169.429133
+Nicaragua,Nicaragua,Americas,12.905887,-84.953159
+Nigeria,Nigeria,Africa,8.976808,7.987788
+Norway,Norway,Europe,61.518479,9.50363
+Pakistan,Pakistan,Asia,29.656567,68.682852
+Panama,Panama,Americas,8.458999,-80.108938
+Paraguay,Paraguay,Americas,-23.520255,-58.175581
+Peru,Peru,Americas,-9.667213,-75.326728
+Philippines,Philippines,Asia,11.244724,122.731179
+Poland,Poland,Europe,52.096874,19.183304
+Portugal,Portugal,Europe,39.638365,-7.970937
+Rep. of Korea,South_Korea,Asia,35.861497,127.355541
+Rep. of Moldova,Moldova,Europe,47.089793,28.503436
+Romania,Romania,Europe,45.645985,25.17443
+Russian Federation,Russia,Europe,62.844319,90.124708
+Rwanda,Rwanda,Africa,-2.032464,29.893166
+Senegal,Senegal,Africa,13.848381,-14.866348
+Serbia,Serbia,Europe,44.092352,20.720026
+Singapore,Singapore,Asia,1.351663,103.813638
+Slovakia,Slovakia,Europe,48.724856,19.669794
+Slovenia,Slovenia,Europe,46.131639,14.872133
+South Africa,South_Africa,Africa,-28.695832,25.029527
+Spain,Spain,Europe,38.632397,-5.0852
+Sri Lanka,Sri_Lanka,Asia,8.173787,80.549014
+State of Palestine,Palestine,Asia,31.92157,35.20329
+Sweden,Sweden,Europe,64.545152,16.738748
+Switzerland,Switzerland,Europe,46.757811,8.328122
+TFYR of Macedonia,Macedonia,Europe,41.589333,21.697598
+Thailand,Thailand,Asia,15.502027,101.199542
+Togo,Togo,Africa,8.747135,0.88087
+Turkey,Turkey,Asia,39.136216,33.36457
+Ukraine,Ukraine,Europe,48.074673,31.752265
+United Kingdom,United_Kingdom,Europe,52.597352,-1.534873
+United Rep. of Tanzania,Tanzania,Africa,-6.42256,35.381934
+Uruguay,Uruguay,Americas,-32.721374,-56.024798
+USA,United_States,Americas,40.252636,-100.999161
+Zambia,Zambia,Africa,-13.047165,28.051606
+Zimbabwe,Zimbabwe,Africa,-18.931388,29.676439

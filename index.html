@@ -94,27 +94,6 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
 
-    <!-- <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>-->
-
     <div class="container">
     <script type="text/javascript" id="line_chart">
 
@@ -130,6 +109,8 @@
                               .translate([width / 2, height / 2])
                               .precision(.1);
 
+      var date_range_arrray = { 201001: 0, 201002: 0, 201003: 0, 201004: 0, 201005: 0, 201006: 0, 201007: 0, 201008: 0, 201009: 0, 201010: 0, 201011: 0, 201012: 0, 201101: 0, 201102: 0, 201103: 0, 201104: 0, 201105: 0, 201106: 0, 201107: 0, 201108: 0, 201109: 0, 201110: 0, 201111: 0, 201112: 0, 201201: 0, 201202: 0, 201203: 0, 201204: 0, 201205: 0, 201206: 0, 201207: 0, 201208: 0, 201209: 0, 201210: 0, 201211: 0, 201212: 0, 201301: 0, 201302: 0, 201303: 0, 201304: 0, 201305: 0, 201306: 0, 201307: 0, 201308: 0, 201309: 0, 201310: 0, 201311: 0, 201312: 0 };
+
       var path = d3.geo.path()
           .projection(projection);
 
@@ -140,7 +121,7 @@
           .attr("width", width)
           .attr("height", height);
 
-      var global_countryMap;
+      var global_time_slider_data;
 
       //the gridlines
       // svg.append("path")
@@ -158,9 +139,8 @@
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
             .attr("class", "boundary")
             .attr("d", path);
-      // });
 
-        d3.csv("data/country_csv/algeria.csv", function(error, partner_country) {
+        d3.csv("data/country_csv/albania.csv", function(error, partner_country) {
           // console.log(partner_country);
           var country_data = d3.nest()
                                 .key(function (d){
@@ -180,6 +160,25 @@
           }
           // kick countryMap up to global scope
           // window.countryMap = countryMap;
+
+          var time_slider_data = d3.nest()
+                                    .key(function (d){
+                                      return d.period;
+                                    })
+                                    .rollup( function (d) {
+                                      return d3.sum(d,function(g) {
+                                        return g.net_weight;
+                                      })
+                                    })
+                                    .entries(partner_country);
+          // var periodMap = {};
+          for (var i = 0, len = time_slider_data.length; i < len; i++) {
+            if (time_slider_data[i].key != "undefined"){
+              date_range_arrray[time_slider_data[i].key] = time_slider_data[i].values;
+            };
+          }
+
+          // global_time_slider_data = time_slider_data;
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
@@ -238,7 +237,26 @@
             countryMap[country_data[i].key] = country_data[i].values;
           }
           // kick countryMap up to global scope
-          global_countryMap = countryMap;
+          // global_countryMap = countryMap;
+
+          var time_slider_data = d3.nest()
+                                    .key(function (d){
+                                      return d.period;
+                                    })
+                                    .rollup( function (d) {
+                                      return d3.sum(d,function(g) {
+                                        return g.net_weight;
+                                      })
+                                    })
+                                    .entries(partner_country);
+
+          // var periodMap = {};
+          for (var i = 0, len = time_slider_data.length; i < len; i++) {
+            date_range_arrray[time_slider_data[i].key] = time_slider_data[i].values;
+          }
+
+          // global_time_slider_data = time_slider_data;
+
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
@@ -270,14 +288,7 @@
 
     </script>
 
-     <!-- <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div> -->
-
-
     <select id="country-list" name="country-list">
-      <option value="Select Country:">Select Country:</option>
       <option value="Albania">Albania</option>
       <option value="Algeria">Algeria</option>
       <option value="Antigua_and_Barbuda">Antigua and Barbuda</option>
@@ -296,7 +307,7 @@
       <option value="Brazil">Brazil</option>
       <option value="Brunei_Darussalam">Brunei Darussalam</option>
       <option value="Bulgaria">Bulgaria</option>
-      <option value="Burkina Faso">Burkina Faso</option>
+      <option value="Burkina_Faso">Burkina Faso</option>
       <option value="Burundi">Burundi</option>
       <option value="Cabo_Verde">Cabo Verde</option>
       <option value="Cameroon">Cameroon</option>
@@ -495,12 +506,12 @@
                       extent1[0] = d3.time.month.floor(extent0[0]);
                       extent1[1] = d3.time.month.ceil(extent0[1]);			  
                         };
-	     range_min = extent1[0];
-	     range_max = extent1[1];	
+  	      range_min = extent1[0];
+  	      range_max = extent1[1];	
 
-             d3.select(this).transition()
-                 .call(brush.extent(extent1))
-                 .call(brush.event);					 
+          d3.select(this).transition()
+             .call(brush.extent(extent1))
+             .call(brush.event);					 
       };
     });
 							 

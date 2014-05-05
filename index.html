@@ -209,6 +209,121 @@
             });
         }); //end country csv
       
+ //____Initial Rendering of Time Slider with ALbania Info 
+
+      var range_max,
+          range_min;
+
+      d3.csv("data/country_csv/albania.csv", function(error, data){
+						     
+        var margin = {top: 15, right: 14, bottom: 50, left: 80},
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var x = d3.time.scale()
+            .domain([new Date(2009, 11) , new Date(2013, 11)])
+            .range([0, width]);
+
+        var brush = d3.svg.brush()
+            .x(x)
+            .on("brushend", brushended);
+
+        var svg = d3.select("body").append("svg").attr("id","line_graph")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("class","whole")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");						     
+						     
+        //Line Graph vars
+
+        //some type of if function here to adjust the input if it is weight of value input
+        var max = d3.max(data, function(d){return d.net_weight;});
+        var yScale = d3.scale
+                      .linear()
+                      .domain([0,max]).nice() //.nice to round up! 
+                      .range([height,0]);
+							     
+        var theLine = d3.svg.line()
+                    .x(function(d) {return x(new Date (d.period.substring(0,3), parseInt(d.period.substring(3,4))+1));})
+                    .y(function(d) {return yScale(d.net_weight);}) 
+        var dataset = data;
+      
+        //Grid lines
+        svg.append("g")
+            .attr("class", "x grid")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .ticks(d3.time.month)
+                .tickSize(-height)
+                .tickFormat(""))
+
+        svg.append("g")
+            .attr("class", "y grid")
+            .call(d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .tickSize(-width)
+                .tickFormat(""))
+          
+        //Appending the line graph
+        svg.append("linePath").attr("d",theLine(data))
+                      .attr("fill", "none").attr("stroke","red");
+
+        //y-axis
+        var yAxis = d3.svg.axis();
+        yAxis.scale(yScale).orient("left").ticks(10);
+        svg.append("g").attr("class","y axis")
+            .attr("transform", "translate(" - margin.right + ",0)").call(yAxis);
+
+        //x-axis
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.svg.axis()
+              .scale(x)
+              .orient("bottom")
+              .ticks(d3.time.month,2)
+              .tickFormat(d3.time.format("%m/%y"))
+              .tickPadding(0))
+          .selectAll("text")
+            .attr("x", -15)
+            .style("text-anchor", null);
+
+        //Highligh brushed area
+        var gBrush = svg.append("g")
+            .attr("class", "brush")
+            .call(brush)
+            .call(brush.event);
+
+        gBrush.selectAll("rect")
+            .attr("height", height);
+
+        //Brushing function with snapping
+        function brushended() {
+          if (!d3.event.sourceEvent) return; // only transition after input
+          var extent0 = brush.extent(),
+              extent1 = extent0.map(d3.time.month.round);
+     
+               // if empty when rounded, use floor & ceil instead
+               if (extent1[0] >= extent1[1]) {
+                      extent1[0] = d3.time.month.floor(extent0[0]);
+                      extent1[1] = d3.time.month.ceil(extent0[1]);			  
+                        };
+  	      range_min = extent1[0];
+  	      range_max = extent1[1];	
+
+          d3.select(this).transition()
+             .call(brush.extent(extent1))
+             .call(brush.event);					 
+      };
+    });
+
+//___END TIME SLIDER FUNCTION
+
+
       var dropdown = d3.select("#country-list");
       
       var change = function() {
@@ -268,13 +383,133 @@
                     return 0;
                   };
                 });
-                
+       
+
               }); //end of d3.csv
+
+
+
+ //____Regenerate the line and y scale of graph based on selected country
+     	
+     d3.csv(csvFileName, function(error, data){
+        d3.select("#line_graph").remove().transition(); //Transition so that it redraws graph in same place
+
+        var margin = {top: 15, right: 14, bottom: 50, left: 80},
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var x = d3.time.scale()
+            .domain([new Date(2009, 11) , new Date(2013, 11)])
+            .range([0, width]);
+
+        var brush = d3.svg.brush()
+            .x(x)
+            .on("brushend", brushended);
+
+        var svg = d3.select("body").append("svg").attr("id","line_graph")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("class","whole")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");						     
+						     
+        //Line Graph vars
+
+        //some type of if function here to adjust the input if it is weight of value input
+        var max = d3.max(data, function(d){return d.net_weight;});
+        var yScale = d3.scale
+                      .linear()
+                      .domain([0,max]).nice() //.nice to round up! 
+                      .range([height,0]);
+							     
+        var theLine = d3.svg.line()
+                    .x(function(d) {return x(new Date (d.period.substring(0,3), parseInt(d.period.substring(3,4))+1));})
+                    .y(function(d) {return yScale(d.net_weight);}) 
+        var dataset = data;
+      
+        //Grid lines
+        svg.append("g")
+            .attr("class", "x grid")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .ticks(d3.time.month)
+                .tickSize(-height)
+                .tickFormat(""))
+
+        svg.append("g")
+            .attr("class", "y grid")
+            .call(d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .tickSize(-width)
+                .tickFormat(""))
+          
+        //Appending the line graph
+        svg.append("linePath").attr("d",theLine(data))
+                      .attr("fill", "none").attr("stroke","red");
+
+        //y-axis
+        var yAxis = d3.svg.axis();
+        yAxis.scale(yScale).orient("left").ticks(10);
+        svg.append("g").attr("class","y axis")
+            .attr("transform", "translate(" - margin.right + ",0)").call(yAxis);
+
+        //x-axis
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.svg.axis()
+              .scale(x)
+              .orient("bottom")
+              .ticks(d3.time.month,2)
+              .tickFormat(d3.time.format("%m/%y"))
+              .tickPadding(0))
+          .selectAll("text")
+            .attr("x", -15)
+            .style("text-anchor", null);
+
+        //Highlight brushed area
+        var gBrush = svg.append("g")
+            .attr("class", "brush")
+            .call(brush)
+            .call(brush.event);
+
+        gBrush.selectAll("rect")
+            .attr("height", height);
+
+        //Brushing function with snapping
+        function brushended() {
+          if (!d3.event.sourceEvent) return; // only transition after input
+          var extent0 = brush.extent(),
+              extent1 = extent0.map(d3.time.month.round);
+     
+               // if empty when rounded, use floor & ceil instead
+               if (extent1[0] >= extent1[1]) {
+                      extent1[0] = d3.time.month.floor(extent0[0]);
+                      extent1[1] = d3.time.month.ceil(extent0[1]);			  
+                        };
+  	      range_min = extent1[0];
+  	      range_max = extent1[1];	
+
+          d3.select(this).transition()
+             .call(brush.extent(extent1))
+             .call(brush.event);					 
+      };
+	
+    });
+
+//___END TIME SLIDER FUNCTION
+
+
 
           });//end of d3 county 
         }; //end of function change
       dropdown.on("change", change);
       
+
+							     
 
       }); //end world json
 
@@ -403,119 +638,6 @@
     </select>
 
     </div><!-- /.container -->
-
-    <script type="text/javascript" id="line_chart">
-      var range_max,
-          range_min;
-
-      d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
-
-        var margin = {top: 15, right: 14, bottom: 50, left: 80},
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
-
-        var x = d3.time.scale()
-            .domain([new Date(2009, 11) , new Date(2013, 11)])
-            .range([0, width]);
-
-        var brush = d3.svg.brush()
-            .x(x)
-            .on("brushend", brushended);
-
-        var svg = d3.select("body").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-            .attr("class","whole")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-        //Line Graph vars
-
-        //some type of if function here to adjust the input if it is weight of value input
-        var max = d3.max(data, function(d){return d.weight_sum;})
-        var yScale = d3.scale
-                      .linear()
-                      .domain([0,max]).nice() //.nice to round up! 
-                      .range([height,0]);
-
-        var theLine = d3.svg.line()
-                    .x(function(d) {return x(new Date (d.year, d.month-1)) ;})
-                    .y(function(d) {return yScale(d.weight_sum);}) 
-        var dataset = data;
-      
-        //Grid lines
-        svg.append("g")
-            .attr("class", "x grid")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.svg.axis()
-                .scale(x)
-                .orient("bottom")
-                .ticks(d3.time.month)
-                .tickSize(-height)
-                .tickFormat(""))
-
-        svg.append("g")
-            .attr("class", "y grid")
-            .call(d3.svg.axis()
-                .scale(yScale)
-                .orient("left")
-                .tickSize(-width)
-                .tickFormat(""))
-          
-        //Appending the line graph
-        svg.append("path").attr("d",theLine(data))
-                      .attr("fill", "none").attr("stroke","red");
-
-        //y-axis
-        var yAxis = d3.svg.axis();
-        yAxis.scale(yScale).orient("left").ticks(10);
-        svg.append("g").attr("class","y axis")
-            .attr("transform", "translate(" - margin.right + ",0)").call(yAxis);
-
-        //x-axis
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.svg.axis()
-              .scale(x)
-              .orient("bottom")
-              .ticks(d3.time.month,2)
-              .tickFormat(d3.time.format("%m/%y"))
-              .tickPadding(0))
-          .selectAll("text")
-            .attr("x", -15)
-            .style("text-anchor", null);
-
-        //Highligh brushed area
-        var gBrush = svg.append("g")
-            .attr("class", "brush")
-            .call(brush)
-            .call(brush.event);
-
-        gBrush.selectAll("rect")
-            .attr("height", height);
-
-        //Brushing function with snapping
-        function brushended() {
-          if (!d3.event.sourceEvent) return; // only transition after input
-          var extent0 = brush.extent(),
-              extent1 = extent0.map(d3.time.month.round);
-     
-               // if empty when rounded, use floor & ceil instead
-               if (extent1[0] >= extent1[1]) {
-                      extent1[0] = d3.time.month.floor(extent0[0]);
-                      extent1[1] = d3.time.month.ceil(extent0[1]);			  
-                        };
-  	      range_min = extent1[0];
-  	      range_max = extent1[1];	
-
-          d3.select(this).transition()
-             .call(brush.extent(extent1))
-             .call(brush.event);					 
-      };
-    });
-							 
-    </script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

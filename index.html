@@ -122,12 +122,8 @@
           .attr("height", height);
 
       var global_time_slider_data;
-
-      //the gridlines
-      // svg.append("path")
-      //     .datum(graticule)
-      //     .attr("class", "graticule")
-      //     .attr("d", path);
+      var global_country_sum;
+      var global_country_data;
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
@@ -140,46 +136,18 @@
             .attr("class", "boundary")
             .attr("d", path);
 
-        d3.csv("data/country_csv/albania.csv", function(error, partner_country) {
-          // console.log(partner_country);
-          var country_data = d3.nest()
-                                .key(function (d){
-                                  return d.partner_country;
-                                })
-                                .rollup( function (d) {
-                                  return d3.sum(d, function(g) {
-                                    return g.net_weight;
-                                  })
-                                })
-                                .entries(partner_country);
+        d3.json("data/country_json/albania.json", function(error, country_data) {
           
-          //restructure nested map to standard hash map
-          var countryMap = {};
-          for (var i = 0, len = country_data.length; i < len; i++) {
-            countryMap[country_data[i].key] = country_data[i].values;
-          }
-          // kick countryMap up to global scope
-          // window.countryMap = countryMap;
+          var country_sum = {};
+          for (var i = 0,len = country_data.length; i < len; i++ ) {
+            if (country_data[i].partner_country != "undefined") {
+              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
+            }
+          } //still generating some random undefined value (total sum?)
 
-          var time_slider_data = d3.nest()
-                                    .key(function (d){
-                                      return d.period;
-                                    })
-                                    .rollup( function (d) {
-                                      return d3.sum(d,function(g) {
-                                        return g.net_weight;
-                                      })
-                                    })
-                                    .entries(partner_country);
-          // var periodMap = {};
-          for (var i = 0, len = time_slider_data.length; i < len; i++) {
-            if (time_slider_data[i].key != "undefined"){
-              date_range_array[time_slider_data[i].key] = time_slider_data[i].values;
-            };
-          }
-
-          // global_time_slider_data = time_slider_data;
-
+          global_country_data = country_data;
+          global_country_sum = country_sum;
+          
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
                 .data(data)
@@ -192,8 +160,8 @@
                   return projection([d.lon, d.lat])[1];
                 })
                 .attr("r", function(d){
-                  if (countryMap[d.country]) {
-                    return Math.sqrt(countryMap[d.country])/5000;
+                  if (country_sum[d.country]) {
+                    return Math.sqrt(country_sum[d.country])/5000;
                   } else {
                     return 0;
                   }
@@ -216,58 +184,27 @@
         country = country.toLowerCase();
         //replace space with underscores
 
-        var csvFileName = "data/country_csv/" + country + ".csv";
+        var jsonFileName = "data/country_json/" + country + ".json";
         //console.log(csvFileName);
-        d3.csv(csvFileName, function(error, partner_country) {
-          // console.log(partner_country);
-          var country_data = d3.nest()
-                                .key(function (d){
-                                  return d.partner_country;
-                                })
-                                .rollup( function (d) {
-                                  return d3.sum(d, function(g) {
-                                    return g.net_weight;
-                                  })
-                                })
-                                .entries(partner_country);
+        d3.json(jsonFileName, function(error, country_data) {
           
-          //restructure nested map to standard hash map
-          var countryMap = {};
-          for (var i = 0, len = country_data.length; i < len; i++) {
-            countryMap[country_data[i].key] = country_data[i].values;
-          }
-          // kick countryMap up to global scope
-          // global_countryMap = countryMap;
-
-          var time_slider_data = d3.nest()
-                                    .key(function (d){
-                                      return d.period;
-                                    })
-                                    .rollup( function (d) {
-                                      return d3.sum(d,function(g) {
-                                        return g.net_weight;
-                                      })
-                                    })
-                                    .entries(partner_country);
-
-          // var periodMap = {};
-          for (var i = 0, len = time_slider_data.length; i < len; i++) {
-            date_range_array[time_slider_data[i].key] = time_slider_data[i].values;
-          }
-
-          // global_time_slider_data = time_slider_data;
-
+          var country_sum = {};
+          for (var i = 0,len = country_data.length; i < len; i++ ) {
+            if (country_data[i].partner_country != "undefined") {
+              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
+            }
+          } //still generating some random undefined value (total sum?)
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
                 .data(data)
                 .attr("r", function(d){
-                  if (countryMap[d.country]) {
-                    return Math.sqrt(countryMap[d.country])/5000;
+                  if (country_sum[d.country]) {
+                    return Math.sqrt(country_sum[d.country])/5000;
                   } else {
                     return 0;
-                  };
-                });
+                  }
+                })
                 
               }); //end of d3.csv
 
@@ -327,7 +264,6 @@
       <option value="El_Salvador">El Salvador</option>
       <option value="Estonia">Estonia</option>
       <option value="Ethiopia">Ethiopia</option>
-      <option value="Faeroe_Isds">Faeroe Islands</option>
       <option value="Finland">Finland</option>
       <option value="France">France</option>
       <option value="Georgia">Georgia</option>

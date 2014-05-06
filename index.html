@@ -122,12 +122,7 @@
           .attr("height", height);
 
       var global_time_slider_data;
-
-      //the gridlines
-      // svg.append("path")
-      //     .datum(graticule)
-      //     .attr("class", "graticule")
-      //     .attr("d", path);
+      var global_country_data;
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
@@ -140,26 +135,29 @@
             .attr("class", "boundary")
             .attr("d", path);
 
-        d3.csv("data/country_csv/albania.csv", function(error, partner_country) {
+        d3.json("data/country_json/albania.json", function(error, json) {
           // console.log(partner_country);
-          var country_data = d3.nest()
-                                .key(function (d){
-                                  return d.partner_country;
-                                })
-                                .rollup( function (d) {
-                                  return d3.sum(d, function(g) {
-                                    return g.net_weight;
-                                  })
-                                })
-                                .entries(partner_country);
+          // var country_data = d3.nest()
+          //                       .key(function (d){
+          //                         return d.partner_country;
+          //                       })
+          //                       .rollup( function (d) {
+          //                         return d3.sum(d, function(g) {
+          //                           return g.net_weight;
+          //                         })
+          //                       })
+          //                       .entries(partner_country);
           
+          
+
           //restructure nested map to standard hash map
-          var countryMap = {};
-          for (var i = 0, len = country_data.length; i < len; i++) {
-            countryMap[country_data[i].key] = country_data[i].values;
-          }
+          // var countryMap = {};
+          // for (var i = 0, len = country_data.length; i < len; i++) {
+          //   countryMap[country_data[i].key] = country_data[i].values;
+          // }
           // kick countryMap up to global scope
           // window.countryMap = countryMap;
+          global_country_data = country_data;
 
           var time_slider_data = d3.nest()
                                     .key(function (d){

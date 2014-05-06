@@ -122,6 +122,7 @@
           .attr("height", height);
 
       var global_time_slider_data;
+      var global_country_sum;
       var global_country_data;
 
       d3.json("data/world-50m.json", function(error, world) {
@@ -135,19 +136,18 @@
             .attr("class", "boundary")
             .attr("d", path);
 
-        d3.json("data/country_json/albania.json", function(error, json) {
+        d3.json("data/country_json/albania.json", function(error, country_data) {
           // console.log(partner_country);
-          // var country_data = d3.nest()
-          //                       .key(function (d){
-          //                         return d.partner_country;
-          //                       })
-          //                       .rollup( function (d) {
-          //                         return d3.sum(d, function(g) {
-          //                           return g.net_weight;
-          //                         })
-          //                       })
-          //                       .entries(partner_country);
-          
+          var country_sum = {};
+          for (var i = 0,len = country_data.length; i < len; i++ ) {
+            if (country_data[i].partner_country != "undefined") {
+              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
+            }
+          }
+          //grab reporting country
+
+          global_country_data = country_data;
+          global_country_sum = country_sum;
           
 
           //restructure nested map to standard hash map
@@ -157,26 +157,26 @@
           // }
           // kick countryMap up to global scope
           // window.countryMap = countryMap;
-          global_country_data = country_data;
-
-          var time_slider_data = d3.nest()
-                                    .key(function (d){
-                                      return d.period;
-                                    })
-                                    .rollup( function (d) {
-                                      return d3.sum(d,function(g) {
-                                        return g.net_weight;
-                                      })
-                                    })
-                                    .entries(partner_country);
-          // var periodMap = {};
-          for (var i = 0, len = time_slider_data.length; i < len; i++) {
-            if (time_slider_data[i].key != "undefined"){
-              date_range_array[time_slider_data[i].key] = time_slider_data[i].values;
-            };
-          }
 
 
+          // var time_slider_data = d3.nest()
+          //                           .key(function (d){
+          //                             return d.period;
+          //                           })
+          //                           .rollup( function (d) {
+          //                             return d3.sum(d,function(g) {
+          //                               return g.net_weight;
+          //                             })
+          //                           })
+          //                           .entries(partner_country);
+          // // var periodMap = {};
+          // for (var i = 0, len = time_slider_data.length; i < len; i++) {
+          //   if (time_slider_data[i].key != "undefined"){
+          //     date_range_array[time_slider_data[i].key] = time_slider_data[i].values;
+          //   };
+          // }
+
+          
           // global_time_slider_data = time_slider_data;
 
           d3.csv("data/reporters_centroid.csv", function(data){
@@ -190,13 +190,14 @@
                 .attr("cy", function(d){
                   return projection([d.lon, d.lat])[1];
                 })
-                .attr("r", function(d){
-                  if (countryMap[d.country]) {
-                    return Math.sqrt(countryMap[d.country])/5000;
-                  } else {
-                    return 0;
-                  }
-                })
+                .attr("r", 5)
+                //   function(d){
+                //   if (countryMap[d.country]) {
+                //     return Math.sqrt(countryMap[d.country])/5000;
+                //   } else {
+                //     return 0;
+                //   }
+                // })
                 .style("fill",function(d){
                   return region_color[d.region];
                 })

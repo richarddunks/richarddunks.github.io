@@ -127,6 +127,7 @@
       // var global_time_slider_data;
       // var global_country_sum;
       // var global_country_data;
+      var jsonFilename = "data/country_json/albania.json";
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
@@ -139,7 +140,7 @@
             .attr("class", "boundary")
             .attr("d", path);
 
-        d3.json("data/country_json/albania.json", function(error, country_data) {
+        d3.json(jsonFilename, function(error, country_data) {
           
           var country_sum = {};
           for (var i = 0,len = country_data.length; i < len; i++ ) {
@@ -148,6 +149,7 @@
             }
           } //still generating some random undefined value (total sum?)
 
+          
           // global_country_data = country_data;
           // global_country_sum = country_sum;
           
@@ -185,11 +187,10 @@
       var change = function() {
         var country = d3.event.target.value;
         country = country.toLowerCase();
-        //replace space with underscores
 
-        var jsonFileName = "data/country_json/" + country + ".json";
-        //console.log(csvFileName);
-        d3.json(jsonFileName, function(error, country_data) {
+        jsonFilename = "data/country_json/" + country + ".json";
+
+        d3.json(jsonFilename, function(error, country_data) {
           
           var country_sum = {};
           for (var i = 0,len = country_data.length; i < len; i++ ) {
@@ -217,11 +218,6 @@
       
 
       }); //end world json
-
-    // function aggregate_by_country(datafile) {
-    //   //join associative array and return
-
-    // };
 
 
       d3.select(self.frameElement).style("height", height + "px");

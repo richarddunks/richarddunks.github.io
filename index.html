@@ -143,7 +143,7 @@
             if (country_data[i].partner_country != "undefined") {
               country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
             }
-          }
+          } //still generating some random undefined value (total sum?)
           //grab reporting country
 
           global_country_data = country_data;
@@ -190,14 +190,13 @@
                 .attr("cy", function(d){
                   return projection([d.lon, d.lat])[1];
                 })
-                .attr("r", 5)
-                //   function(d){
-                //   if (countryMap[d.country]) {
-                //     return Math.sqrt(countryMap[d.country])/5000;
-                //   } else {
-                //     return 0;
-                //   }
-                // })
+                .attr("r", function(d){
+                  if (country_sum[d.country]) {
+                    return Math.sqrt(country_sum[d.country])/5000;
+                  } else {
+                    return 0;
+                  }
+                })
                 .style("fill",function(d){
                   return region_color[d.region];
                 })

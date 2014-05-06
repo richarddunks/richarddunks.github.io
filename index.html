@@ -114,8 +114,6 @@
                               .translate([(width / 2), (height / 2) + 65])
                               .precision(.1);
 
-      var date_range_array = { 201001: 0, 201002: 0, 201003: 0, 201004: 0, 201005: 0, 201006: 0, 201007: 0, 201008: 0, 201009: 0, 201010: 0, 201011: 0, 201012: 0, 201101: 0, 201102: 0, 201103: 0, 201104: 0, 201105: 0, 201106: 0, 201107: 0, 201108: 0, 201109: 0, 201110: 0, 201111: 0, 201112: 0, 201201: 0, 201202: 0, 201203: 0, 201204: 0, 201205: 0, 201206: 0, 201207: 0, 201208: 0, 201209: 0, 201210: 0, 201211: 0, 201212: 0, 201301: 0, 201302: 0, 201303: 0, 201304: 0, 201305: 0, 201306: 0, 201307: 0, 201308: 0, 201309: 0, 201310: 0, 201311: 0, 201312: 0 };
-
       var path = d3.geo.path()
           .projection(projection);
 
@@ -126,9 +124,9 @@
           .attr("width", width)
           .attr("height", height);
 
-      var global_time_slider_data;
-      var global_country_sum;
-      var global_country_data;
+      // var global_time_slider_data;
+      // var global_country_sum;
+      // var global_country_data;
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
@@ -150,8 +148,8 @@
             }
           } //still generating some random undefined value (total sum?)
 
-          global_country_data = country_data;
-          global_country_sum = country_sum;
+          // global_country_data = country_data;
+          // global_country_sum = country_sum;
           
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
@@ -177,7 +175,7 @@
                 .style("opacity",0.75)
                 .append("svg:title")
                 .text(function(d){
-                  return d.country;
+                  return d.country + " " + country_sum[d.country] + "kg";
                 });
             });
         }); //end country csv

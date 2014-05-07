@@ -88,16 +88,47 @@
       fill-opacity: .125;
       shape-rendering: crispEdges;
       }
+      /* tooltip */
+      .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+      }
+
+      /* Creates a small triangle extender for the tooltip 
+      .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+      }
+
+      Style northward tooltips differently 
+      .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+      }
+      */
+
 
     </style>
 
   </head>
 
   <body>
-
     <!-- d3 reference -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
 
     <div class="container">
     <script type="text/javascript" id="line_chart">
@@ -108,12 +139,12 @@
 
       var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
 
+      var date_position_array = {201001: 0, 201002: 1, 201003: 2, 201004: 3, 201005: 4, 201006: 5, 201007: 6, 201008: 7, 201009: 8, 201010: 9, 201011: 10, 201012: 11, 201101: 12, 201102: 13, 201103: 14, 201104: 15, 201105: 16, 201106: 17, 201107: 18, 201108: 19, 201109: 20, 201110: 21, 201111: 22, 201112: 23, 201201: 24, 201202: 25, 201203: 26, 201204: 27, 201205: 28, 201206: 29, 201207: 30, 201208: 31, 201209: 32, 201210: 33, 201211: 34, 201212: 35, 201301: 36, 201302: 37, 201303: 38, 201304: 39, 201305: 40, 201306: 41, 201307: 42, 201308: 43, 201309: 44, 201310: 45, 201311: 46, 201312: 47};
+
       var projection = d3.geo.mercator()
                               .scale((width + 1) / 2 / Math.PI)
                               .translate([(width / 2), (height / 2) + 65])
                               .precision(.1);
-
-      var date_range_array = { 201001: 0, 201002: 0, 201003: 0, 201004: 0, 201005: 0, 201006: 0, 201007: 0, 201008: 0, 201009: 0, 201010: 0, 201011: 0, 201012: 0, 201101: 0, 201102: 0, 201103: 0, 201104: 0, 201105: 0, 201106: 0, 201107: 0, 201108: 0, 201109: 0, 201110: 0, 201111: 0, 201112: 0, 201201: 0, 201202: 0, 201203: 0, 201204: 0, 201205: 0, 201206: 0, 201207: 0, 201208: 0, 201209: 0, 201210: 0, 201211: 0, 201212: 0, 201301: 0, 201302: 0, 201303: 0, 201304: 0, 201305: 0, 201306: 0, 201307: 0, 201308: 0, 201309: 0, 201310: 0, 201311: 0, 201312: 0 };
 
       var path = d3.geo.path()
           .projection(projection);
@@ -124,10 +155,14 @@
           .attr("class","dorling")
           .attr("width", width)
           .attr("height", height);
-
-      var global_time_slider_data;
+    
+      //global variables for checking data types
       var global_country_sum;
       var global_country_data;
+
+      var jsonFilename = "data/country_json/albania.json";
+      var slice_start = 0;
+      var slice_end = 48;
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
@@ -140,14 +175,20 @@
             .attr("class", "boundary")
             .attr("d", path);
 
-        d3.json("data/country_json/albania.json", function(error, country_data) {
+        d3.json(jsonFilename, function(error, country_data) {
           
           var country_sum = {};
           for (var i = 0,len = country_data.length; i < len; i++ ) {
             if (country_data[i].partner_country != "undefined") {
-              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
+              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight.slice(slice_start,slice_end));
             }
           } //still generating some random undefined value (total sum?)
+
+          var tip = d3.tip()
+              .attr("class", "d3-tip")
+              .html(function(d) { 
+                return d.country + "</br>" + country_sum[d.country] + "kg"; 
+              }); // not sure what 
 
           global_country_data = country_data;
           global_country_sum = country_sum;
@@ -174,10 +215,15 @@
                   return region_color[d.region];
                 })
                 .style("opacity",0.75)
-                .append("svg:title")
-                .text(function(d){
-                  return d.country;
-                });
+                //.append("svg:title") //orginal text title 
+                //.text(function(d){
+                //  return d.country;
+                //})
+                .on('mouseover', tip.show) //tooltip 
+                .on('mouseout', tip.hide) // tooltip 
+            
+            svg.call(tip);
+
             });
         }); //end country csv
       
@@ -186,20 +232,20 @@
       var change = function() {
         var country = d3.event.target.value;
         country = country.toLowerCase();
-        //replace space with underscores
 
-        var jsonFileName = "data/country_json/" + country + ".json";
-	var csvFileName = "data/country_csv/" + country + ".csv";
-						
-        //console.log(csvFileName);
-        d3.json(jsonFileName, function(error, country_data) {
+        jsonFilename = "data/country_json/" + country + ".json";
+
+        d3.json(jsonFilename, function(error, country_data) {
           
           var country_sum = {};
           for (var i = 0,len = country_data.length; i < len; i++ ) {
             if (country_data[i].partner_country != "undefined") {
-              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
+              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight.slice(slice_start,slice_end));
             }
           } //still generating some random undefined value (total sum?)
+
+          global_country_data = country_data;
+          global_country_sum = country_sum;
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
@@ -211,6 +257,15 @@
                     return 0;
                   }
                 })
+                .select("svg:title")
+                .text(function(d){
+                  if (country_sum[d.country] != "undefined") {
+                    return d.country + " " + country_sum[d.country] + "kg";
+                  } else {
+                    return d.country + "0kg";
+                  }
+                });
+
                 
               }); //end of d3.csv
 
@@ -220,11 +275,6 @@
       
 
       }); //end world json
-
-    // function aggregate_by_country(datafile) {
-    //   //join associative array and return
-
-    // };
 
 
       d3.select(self.frameElement).style("height", height + "px");

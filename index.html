@@ -154,20 +154,21 @@
 
       var tip = d3.tip()
           .attr("class", "d3-tip")
-          .html(function(d) { return 'country info here!'; }); // change tooltip text here 
+          .html(function(d) { 
+            return d.country; 
+          }); // not sure what 
 
       var svg = d3.select("body").append("svg")
           .attr("class","dorling")
           .attr("width", width)
           .attr("height", height);
     
-
-
+      //global variables for checking data types
       var global_time_slider_data;
       var global_country_sum;
       var global_country_data;
 
-      svg.call(tip);
+      
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
@@ -220,7 +221,8 @@
                 //})
                 .on('mouseover', tip.show) //tooltip 
                 .on('mouseout', tip.hide) // tooltip 
-                
+            
+            svg.call(tip);
 
             });
         }); //end country csv

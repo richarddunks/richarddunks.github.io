@@ -184,6 +184,11 @@
             }
           } //still generating some random undefined value (total sum?)
 
+          var rScale = d3.scale
+                    .linear()
+                    .domain([sum_min,sum_max]).nice() //.nice to round up! 
+                    .range([height,0]);
+
           var tip = d3.tip()
               .attr("class", "d3-tip")
               .html(function(d) { 

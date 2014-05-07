@@ -159,6 +159,8 @@
       //global variables for checking data types
       var global_country_sum;
       var global_country_data;
+      var global_sum_min;
+      var global_sum_max;
 
       var jsonFilename = "data/country_json/albania.json";
       var slice_start = 0;
@@ -184,6 +186,17 @@
             }
           } //still generating some random undefined value (total sum?)
 
+          var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
+          var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
+
+          // global_sum_min = sum_min;
+          // global_sum_max = sum_max;
+
+          var rScale = d3.scale
+                      .linear()
+                      .domain([sum_min,sum_max]) //.nice to round up! 
+                      .range([2,50]);
+
           var tip = d3.tip()
               .attr("class", "d3-tip")
               .html(function(d) { 
@@ -208,7 +221,7 @@
                 })
                 .attr("r", function(d){
                   if (country_sum[d.country]) {
-                    return Math.sqrt(country_sum[d.country])/5000;
+                    return rScale(Math.sqrt(country_sum[d.country]));
                   } else {
                     return 0;
                   }
@@ -216,7 +229,7 @@
                 .style("fill",function(d){
                   return region_color[d.region];
                 })
-                .style("opacity",0.75)
+                .style("opacity",0.6)
                 .on('mouseover', tip.show) //tooltip 
                 .on('mouseout', tip.hide); // tooltip
             }); //end reporters_centroid.csv
@@ -239,6 +252,17 @@
             }
           } //still generating some random undefined value (total sum?)
 
+          var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
+          var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
+
+          // global_sum_min = sum_min;
+          // global_sum_max = sum_max;
+
+          var rScale = d3.scale
+                      .linear()
+                      .domain([sum_min,sum_max]) //.nice to round up! 
+                      .range([2,50]);
+
           var tip = d3.tip()
               .attr("class", "d3-tip")
               .html(function(d) { 
@@ -254,7 +278,7 @@
                 .data(data)
                 .attr("r", function(d){
                   if (country_sum[d.country]) {
-                    return Math.sqrt(country_sum[d.country])/5000;
+                    return rScale(Math.sqrt(country_sum[d.country]));
                   } else {
                     return 0;
                   }

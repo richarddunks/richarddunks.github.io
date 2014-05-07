@@ -152,12 +152,6 @@
 
       var graticule = d3.geo.graticule();
 
-      var tip = d3.tip()
-          .attr("class", "d3-tip")
-          .html(function(d) { 
-            return d.country; 
-          }); // not sure what 
-
       var svg = d3.select("body").append("svg")
           .attr("class","dorling")
           .attr("width", width)
@@ -189,6 +183,12 @@
               country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight);
             }
           } //still generating some random undefined value (total sum?)
+
+          var tip = d3.tip()
+              .attr("class", "d3-tip")
+              .html(function(d) { 
+                return d.country + "</br>" + country_sum[d.country] + "kg"; 
+              }); // not sure what 
 
           global_country_data = country_data;
           global_country_sum = country_sum;

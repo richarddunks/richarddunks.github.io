@@ -268,25 +268,25 @@
                 } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
                   return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14
                 } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
-                  return " FIX"; //rScale(10000000); //10^7
+                  return " 10T "; //rScale(10000000); //10^7
                 } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
-                  return " FIX"; //rScale(5000000); //5 * 10^6
+                  return " 2.5T"; //rScale(5000000); //5 * 10^6
                 } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
-                  return " FIX"; //rScale(1000000); //10^6
+                  return " 100B"; //rScale(1000000); //10^6
                 } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
-                  return " FIX"; //rScale(500000); //5 * 10^5
+                  return " 25B "; //rScale(500000); //5 * 10^5
                 } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
-                  return " FIX"; //rScale(100000); //10^5
+                  return " 10B "; //rScale(100000); //10^5
                 } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
-                  return " FIX"; //rScale(50000); //5 * 10^4
+                  return " 2.5B"; //rScale(50000); //5 * 10^4
                 } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
-                  return " FIX"; //rScale(10000); //10^4
+                  return " 100M"; //rScale(10000); //10^4
                 } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
-                  return " FIX"; //rScale(5000); //5 * 10^3
+                  return " 25M "; //rScale(5000); //5 * 10^3
                 } else {
-                  return " FIX"; //rScale(1000); //10^3
+                  return " 10M "; //rScale(1000); //10^3
                 }
-              })
+              });
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle.country")
@@ -384,9 +384,43 @@
                 } else {
                   return rScale(1000); //10^3
                 }
+              })
+
+          svg.select("text.legend-text")
+              .data([1])
+              .attr("x",function(){
+                return rScale(sum_max) - (padding * 5);
+              })
+              .attr("y", function(){
+                return height - rScale(sum_max);
+              })
+              .text(function(){
+                var sum_avg = (sum_max + sum_min) / 2;
+                // var sum_spread = sum_max - sum_min;
+                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                  return "1000T";//rScale(100000000); //10^8 -> 10^16
+                } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                  return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14
+                } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
+                  return " 10T "; //rScale(10000000); //10^7
+                } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                  return " 2.5T"; //rScale(5000000); //5 * 10^6
+                } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
+                  return " 100B"; //rScale(1000000); //10^6
+                } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                  return " 25B "; //rScale(500000); //5 * 10^5
+                } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
+                  return " 10B "; //rScale(100000); //10^5
+                } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                  return " 2.5B"; //rScale(50000); //5 * 10^4
+                } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
+                  return " 100M"; //rScale(10000); //10^4
+                } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                  return " 25M "; //rScale(5000); //5 * 10^3
+                } else {
+                  return " 10M "; //rScale(1000); //10^3
+                }
               });
-
-
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle.country")

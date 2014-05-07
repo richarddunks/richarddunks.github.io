@@ -211,7 +211,7 @@
           global_country_sum = country_sum;
           
           //y = height; x = rscale(sum_max)
-          svg.selectAll("circle")
+          svg.selectAll("circle.legend")
               .data([1])
               .enter()
               .append("circle")
@@ -230,7 +230,7 @@
               .attr("fill","none");
 
           d3.csv("data/reporters_centroid.csv", function(data){
-            svg.selectAll("circle")
+            svg.selectAll("circle.country")
                 .data(data)
                 .enter()
                 .append("circle")
@@ -295,21 +295,33 @@
           global_country_data = country_data;
           global_country_sum = country_sum;
 
-          svg.selectAll("circle.legend")
+          svg.select("circle.legend")
               .data([1])
               .attr("cx",rScale(sum_max) + padding)
               // .attr("fill","none")
               .attr("r",function(d){
-                if (Math.abs(100000000 - sum_max) < Math.abs(10000000 - sum_max)) {
+                var sum_avg = (sum_max + sum_min) / 2;
+                var sum_spread = sum_max - sum_min;
+                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                   return rScale(100000000); //10^8
-                } else if (Math.abs(10000000 - sum_max) < Math.abs(1000000 - sum_max)) {
+                } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                  return rScale(50000000); //5 * 10^7
+                } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
                   return rScale(10000000); //10^7
-                } else if (Math.abs(1000000 - sum_max) < Math.abs(100000 - sum_max)) {
+                } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                  return rScale(5000000); //5 * 10^6
+                } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
                   return rScale(1000000); //10^6
-                } else if (Math.abs(100000 - sum_max) < Math.abs(10000 - sum_max)) {
+                } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                  return rScale(500000); //5 * 10^5
+                } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
                   return rScale(100000); //10^5
-                } else if (Math.abs(10000 - sum_max) < Math.abs(1000 - sum_max)) {
+                } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                  return rScale(50000); //5 * 10^4
+                } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
                   return rScale(10000); //10^4
+                } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                  return rScale(5000); //5 * 10^3
                 } else {
                   return rScale(1000); //10^3
                 }

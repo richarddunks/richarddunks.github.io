@@ -88,16 +88,47 @@
       fill-opacity: .125;
       shape-rendering: crispEdges;
       }
+      /* tooltip */
+      .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+      }
+
+      /* Creates a small triangle extender for the tooltip 
+      .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+      }
+
+      Style northward tooltips differently 
+      .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+      }
+      */
+
 
     </style>
 
   </head>
 
   <body>
-
     <!-- d3 reference -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
 
     <div class="container">
     <script type="text/javascript" id="line_chart">
@@ -125,7 +156,8 @@
           .attr("class","dorling")
           .attr("width", width)
           .attr("height", height);
-
+    
+      //global variables for checking data types
       var global_country_sum;
       var global_country_data;
 
@@ -153,7 +185,12 @@
             }
           } //still generating some random undefined value (total sum?)
 
-          
+          var tip = d3.tip()
+              .attr("class", "d3-tip")
+              .html(function(d) { 
+                return d.country + "</br>" + country_sum[d.country] + "kg"; 
+              }); // not sure what 
+
           global_country_data = country_data;
           global_country_sum = country_sum;
           
@@ -179,10 +216,15 @@
                   return region_color[d.region];
                 })
                 .style("opacity",0.75)
-                .append("svg:title")
-                .text(function(d){
-                  return d.country + " " + country_sum[d.country] + "kg";
-                });
+                //.append("svg:title") //orginal text title 
+                //.text(function(d){
+                //  return d.country;
+                //})
+                .on('mouseover', tip.show) //tooltip 
+                .on('mouseout', tip.hide) // tooltip 
+            
+            svg.call(tip);
+
             });
         }); //end country csv
       

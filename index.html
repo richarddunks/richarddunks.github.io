@@ -154,7 +154,7 @@
 
       var tip = d3.tip()
           .attr("class", "d3-tip")
-          .html(function(d) { return 'country info here!'; }); // change tip text here 
+          .html(function(d) { return 'country info here!'; }); // change tooltip text here 
 
       var svg = d3.select("body").append("svg")
           .attr("class","dorling")
@@ -218,8 +218,8 @@
                 //.text(function(d){
                 //  return d.country;
                 //})
-                .on('mouseover', tip.show) //tip 
-                .on('mouseout', tip.hide) // tip 
+                .on('mouseover', tip.show) //tooltip 
+                .on('mouseout', tip.hide) // tooltip 
                 
 
             });

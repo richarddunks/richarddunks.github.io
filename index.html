@@ -132,7 +132,6 @@
 
     <div class="container">
     <script type="text/javascript" id="line_chart">
-
       var margin = {top: 0, right: 0, bottom: 0, left: 0},
           width = 960 - margin.left - margin.right,
           height = 550 - margin.top - margin.bottom,
@@ -401,7 +400,8 @@
       var range_max,
           range_min;
 
-      d3.csv('data/denmark_weight_value_bydate.csv', function(error, data){
+//___Initial Draw with Albania
+       d3.json("data/country_json/albania.json", function(error, data){
 
         var margin = {top: 15, right: 14, bottom: 50, left: 80},
             width = 960 - margin.left - margin.right,
@@ -415,7 +415,7 @@
             .x(x)
             .on("brushend", brushended);
 
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select("body").append("svg").attr("id","line_graph")
             .attr("class","line_chart")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -424,19 +424,19 @@
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         //Line Graph vars
-
         //some type of if function here to adjust the input if it is weight of value input
-        var max = d3.max(data, function(d){return d.weight_sum;})
+        var max = d3.max(d3.max(data, function(d){ if (d.partner_country == undefined){return d.net_weight;};}));
+
+      //Y-Scale Function Defined based on max 
         var yScale = d3.scale
                       .linear()
                       .domain([0,max]).nice() //.nice to round up! 
                       .range([height,0]);
 
-        var theLine = d3.svg.line()
-                    .x(function(d) {return x(new Date (d.year, d.month-1)) ;})
-                    .y(function(d) {return yScale(d.weight_sum);}) 
-        var dataset = data;
-      
+      //Create the array for x date values: 
+       date_range = [new Date(2009, 12), new Date(2010, 1), new Date(2010, 2), new Date(2010, 3), new Date(2010, 4), new Date(2010, 5), new Date(2010, 6), new Date(2010, 7), new Date(2010, 8), new Date(2010, 9), new Date(2010, 10), new Date(2010, 11), new Date(2010, 12), new Date(2011, 1), new Date(2011, 2), new Date(2011, 3), new Date(2011, 4), new Date(2011, 5), new Date(2011, 6), new Date(2011, 7), new Date(2011, 8), new Date(2011, 9), new Date(2011, 10), new Date(2011, 11), new Date(2011, 12),new Date(2012, 1), new Date(2012, 2), new Date(2012, 3), new Date(2012, 4), new Date(2012, 5), new Date(2012, 6), new Date(2012, 7), new Date(2012, 8), new Date(2012, 9), new Date(2012, 10), new Date(2012, 11), new Date(2012, 12),new Date(2013, 1), new Date(2013, 2), new Date(2013, 3), new Date(2013, 4), new Date(2013, 5), new Date(2013, 6), new Date(2013, 7), new Date(2013, 8), new Date(2013, 9), new Date(2013, 10), new Date(2013, 11)]  ;
+ 
+
         //Grid lines
         svg.append("g")
             .attr("class", "x grid")
@@ -454,11 +454,25 @@
                 .scale(yScale)
                 .orient("left")
                 .tickSize(-width)
-                .tickFormat(""))
-          
-        //Appending the line graph
-        svg.append("path").attr("d",theLine(data))
-                      .attr("fill", "none").attr("stroke","red");
+                .tickFormat(""));
+
+      //Drawing the line function + call
+      var line = d3.svg.line().x(function(d,i) { return x(date_range[i]); })
+                        .y(function(d) {  return yScale(d); });
+      //line for each partner country
+      svg.selectAll("line").data(data).enter()
+                         .append("path")
+                         .attr("d", function(d) {if (d.partner_country != undefined) {return line(d.net_weight);};})   
+                         .attr("stroke", "gray")
+                         .attr("stroke-width", 1)
+                         .attr("fill", "none");
+     //Aggregate line for reporting country
+      svg.selectAll("line").data(data).enter()
+                         .append("path")
+                         .attr("d", function(d) {if (d.partner_country == undefined) {return line(d.net_weight);};})   
+                         .attr("stroke", "red")
+                         .attr("stroke-width", 1)
+                         .attr("fill", "none");
 
         //y-axis
         var yAxis = d3.svg.axis();
@@ -480,7 +494,7 @@
             .attr("x", -15)
             .style("text-anchor", null);
 
-        //Highligh brushed area
+        //Highlight brushed area
         var gBrush = svg.append("g")
             .attr("class", "brush")
             .call(brush)
@@ -507,7 +521,133 @@
              .call(brush.extent(extent1))
              .call(brush.event);					 
       };
-    });
+	});
+
+
+
+//____UPDATED Draw with selected country -- issue is i'm not getting global variable. Can fix by moving the code into the above code, but may not need to (ask Richard.) This way is preferred for neatness. 
+       d3.json(jsonFileName, function(error, data){
+        d3.select("#line_graph").remove().transition(); //Transition so that it redraws graph in same place
+
+        var margin = {top: 15, right: 14, bottom: 50, left: 80},
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var x = d3.time.scale()
+            .domain([new Date(2009, 11) , new Date(2013, 11)])
+            .range([0, width]);
+
+        var brush = d3.svg.brush()
+            .x(x)
+            .on("brushend", brushended);
+
+        var svg = d3.select("body").append("svg").attr("id","line_graph")
+            .attr("class","line_chart")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("class","whole")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        //Line Graph vars
+        //some type of if function here to adjust the input if it is weight of value input
+        var max = d3.max(d3.max(data, function(d){ if (d.partner_country == undefined){return d.net_weight;};}));
+
+      //Y-Scale Function Defined based on max 
+        var yScale = d3.scale
+                      .linear()
+                      .domain([0,max]).nice() //.nice to round up! 
+                      .range([height,0]);
+
+      //Create the array for x date values: 
+       date_range = [new Date(2009, 12), new Date(2010, 1), new Date(2010, 2), new Date(2010, 3), new Date(2010, 4), new Date(2010, 5), new Date(2010, 6), new Date(2010, 7), new Date(2010, 8), new Date(2010, 9), new Date(2010, 10), new Date(2010, 11), new Date(2010, 12), new Date(2011, 1), new Date(2011, 2), new Date(2011, 3), new Date(2011, 4), new Date(2011, 5), new Date(2011, 6), new Date(2011, 7), new Date(2011, 8), new Date(2011, 9), new Date(2011, 10), new Date(2011, 11), new Date(2011, 12),new Date(2012, 1), new Date(2012, 2), new Date(2012, 3), new Date(2012, 4), new Date(2012, 5), new Date(2012, 6), new Date(2012, 7), new Date(2012, 8), new Date(2012, 9), new Date(2012, 10), new Date(2012, 11), new Date(2012, 12),new Date(2013, 1), new Date(2013, 2), new Date(2013, 3), new Date(2013, 4), new Date(2013, 5), new Date(2013, 6), new Date(2013, 7), new Date(2013, 8), new Date(2013, 9), new Date(2013, 10), new Date(2013, 11)]  ;
+ 
+
+        //Grid lines
+        svg.append("g")
+            .attr("class", "x grid")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .ticks(d3.time.month)
+                .tickSize(-height)
+                .tickFormat(""))
+
+        svg.append("g")
+            .attr("class", "y grid")
+            .call(d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .tickSize(-width)
+                .tickFormat(""));
+
+      //Drawing the line function + call
+      var line = d3.svg.line().x(function(d,i) { return x(date_range[i]); })
+                        .y(function(d) {  return yScale(d); });
+      //line for each partner country
+      svg.selectAll("line").data(data).enter()
+                         .append("path")
+                         .attr("d", function(d) {if (d.partner_country != undefined) {return line(d.net_weight);};})   
+                         .attr("stroke", "gray")
+                         .attr("stroke-width", 1)
+                         .attr("fill", "none");
+     //Aggregate line for reporting country
+      svg.selectAll("line").data(data).enter()
+                         .append("path")
+                         .attr("d", function(d) {if (d.partner_country == undefined) {return line(d.net_weight);};})   
+                         .attr("stroke", "red")
+                         .attr("stroke-width", 1)
+                         .attr("fill", "none");
+
+        //y-axis
+        var yAxis = d3.svg.axis();
+        yAxis.scale(yScale).orient("left").ticks(10);
+        svg.append("g").attr("class","y axis")
+            .attr("transform", "translate(" - margin.right + ",0)").call(yAxis);
+
+        //x-axis
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.svg.axis()
+              .scale(x)
+              .orient("bottom")
+              .ticks(d3.time.month,2)
+              .tickFormat(d3.time.format("%m/%y"))
+              .tickPadding(0))
+          .selectAll("text")
+            .attr("x", -15)
+            .style("text-anchor", null);
+
+        //Highlight brushed area
+        var gBrush = svg.append("g")
+            .attr("class", "brush")
+            .call(brush)
+            .call(brush.event);
+
+        gBrush.selectAll("rect")
+            .attr("height", height);
+
+        //Brushing function with snapping
+        function brushended() {
+          if (!d3.event.sourceEvent) return; // only transition after input
+          var extent0 = brush.extent(),
+              extent1 = extent0.map(d3.time.month.round);
+     
+               // if empty when rounded, use floor & ceil instead
+               if (extent1[0] >= extent1[1]) {
+                      extent1[0] = d3.time.month.floor(extent0[0]);
+                      extent1[1] = d3.time.month.ceil(extent0[1]);			  
+                        };
+  	      range_min = extent1[0];
+  	      range_max = extent1[1];	
+
+          d3.select(this).transition()
+             .call(brush.extent(extent1))
+             .call(brush.event);					 
+      };
+	});
 							 
     </script>
 

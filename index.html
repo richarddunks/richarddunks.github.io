@@ -189,13 +189,15 @@
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
-          // global_sum_min = sum_min;
-          // global_sum_max = sum_max;
+          global_sum_min = sum_min;
+          global_sum_max = sum_max;
 
           var rScale = d3.scale
                       .linear()
                       .domain([sum_min,sum_max]) //.nice to round up! 
                       .range([2,50]);
+
+
 
           var tip = d3.tip()
               .attr("class", "d3-tip")
@@ -208,11 +210,31 @@
           global_country_data = country_data;
           global_country_sum = country_sum;
           
+          //y = height; x = rscale(sum_max)
+          svg.selectAll("circle")
+              .data([1])
+              .enter()
+              .append("circle")
+              .attr("class","legend")
+              .attr("cx",rScale(sum_max) + padding)
+              .attr("cy",height)
+              .attr("r",function(d){
+                if (Math.abs(100000 - sum_max) < Math.abs(10000 - sum_max)) {
+                  return rScale(100000);
+                } else {
+                  return rScale(10000);
+                }
+              })
+              .attr("stroke","black")
+              // .attr("stroke-width","2px")
+              .attr("fill","none");
+
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle")
                 .data(data)
                 .enter()
                 .append("circle")
+                .attr("class","country")
                 .attr("cx", function(d){
                   return projection([d.lon, d.lat])[0];
                 })
@@ -255,8 +277,8 @@
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
-          // global_sum_min = sum_min;
-          // global_sum_max = sum_max;
+          global_sum_min = sum_min;
+          global_sum_max = sum_max;
 
           var rScale = d3.scale
                       .linear()
@@ -273,8 +295,30 @@
           global_country_data = country_data;
           global_country_sum = country_sum;
 
+          svg.selectAll("circle.legend")
+              .data([1])
+              .attr("cx",rScale(sum_max) + padding)
+              // .attr("fill","none")
+              .attr("r",function(d){
+                if (Math.abs(100000000 - sum_max) < Math.abs(10000000 - sum_max)) {
+                  return rScale(100000000); //10^8
+                } else if (Math.abs(10000000 - sum_max) < Math.abs(1000000 - sum_max)) {
+                  return rScale(10000000); //10^7
+                } else if (Math.abs(1000000 - sum_max) < Math.abs(100000 - sum_max)) {
+                  return rScale(1000000); //10^6
+                } else if (Math.abs(100000 - sum_max) < Math.abs(10000 - sum_max)) {
+                  return rScale(100000); //10^5
+                } else if (Math.abs(10000 - sum_max) < Math.abs(1000 - sum_max)) {
+                  return rScale(10000); //10^4
+                } else {
+                  return rScale(1000); //10^3
+                }
+              });
+
+
+
           d3.csv("data/reporters_centroid.csv", function(data){
-            svg.selectAll("circle")
+            svg.selectAll("circle.country")
                 .data(data)
                 .attr("r", function(d){
                   if (country_sum[d.country]) {

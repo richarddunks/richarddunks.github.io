@@ -133,6 +133,8 @@
       var slice_start = 0;
       var slice_end = 48;
 
+      // range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)
+
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
             .datum(topojson.feature(world, world.objects.land))
@@ -187,6 +189,7 @@
         }); //end country csv
       
       var dropdown = d3.select("#country-list");
+      var brush_change = d3.select("#extent");
       
       var change = function() {
         var country = d3.event.target.value;
@@ -230,7 +233,11 @@
 
           });//end of d3 county 
         }; //end of function change
+      var rebrush = function(){
+        alert("You made a change with min " + range_min + " and max " + range_max);
+      }
       dropdown.on("change", change);
+      brush_change.on("change",rebrush);
       
 
       }); //end world json
@@ -472,7 +479,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- dropdown menu event listener OLD PLACEHOLDER -->
     
   </body>
 </html>

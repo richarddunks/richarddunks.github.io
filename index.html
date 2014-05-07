@@ -217,17 +217,10 @@
                   return region_color[d.region];
                 })
                 .style("opacity",0.75)
-                //.append("svg:title") //orginal text title 
-                //.text(function(d){
-                //  return d.country;
-                //})
                 .on('mouseover', tip.show) //tooltip 
-                .on('mouseout', tip.hide) // tooltip 
-            
-
-
-            });
-        }); //end country csv
+                .on('mouseout', tip.hide); // tooltip
+            }); //end reporters_centroid.csv
+        }); //end country json
       
       var dropdown = d3.select("#country-list");
       
@@ -250,7 +243,7 @@
               .attr("class", "d3-tip")
               .html(function(d) { 
                 return d.country + "</br>" + country_sum[d.country] + "kg"; 
-              }); // not sure what 
+              });
           svg.call(tip);
 
           global_country_data = country_data;
@@ -266,17 +259,8 @@
                     return 0;
                   }
                 })
-                // .select("svg:title")
-                // .text(function(d){
-                //   if (country_sum[d.country] != "undefined") {
-                //     return d.country + " " + country_sum[d.country] + "kg";
-                //   } else {
-                //     return d.country + "0kg";
-                //   }
-                // });
                 .on('mouseover', tip.show) //tooltip 
-                .on('mouseout', tip.hide) // tooltip 
-
+                .on('mouseout', tip.hide); // tooltip 
                 
               }); //end of d3.csv
 

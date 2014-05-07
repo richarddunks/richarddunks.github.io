@@ -219,15 +219,74 @@
               .attr("cx",rScale(sum_max) + padding)
               .attr("cy",height)
               .attr("r",function(d){
-                if (Math.abs(100000 - sum_max) < Math.abs(10000 - sum_max)) {
-                  return rScale(100000);
+                var sum_avg = (sum_max + sum_min) / 2;
+                // var sum_spread = sum_max - sum_min;
+                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                  return rScale(100000000); //10^8
+                } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                  return rScale(50000000); //5 * 10^7
+                } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
+                  return rScale(10000000); //10^7
+                } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                  return rScale(5000000); //5 * 10^6
+                } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
+                  return rScale(1000000); //10^6
+                } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                  return rScale(500000); //5 * 10^5
+                } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
+                  return rScale(100000); //10^5
+                } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                  return rScale(50000); //5 * 10^4
+                } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
+                  return rScale(10000); //10^4
+                } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                  return rScale(5000); //5 * 10^3
                 } else {
-                  return rScale(10000);
+                  return rScale(1000); //10^3
                 }
               })
               .attr("stroke","black")
               // .attr("stroke-width","2px")
               .attr("fill","none");
+          
+          svg.selectAll("text.legend-text")
+              .data([1])
+              .enter()
+              .append("text")
+              .attr("class","legend-text")
+              .attr("x",function(){
+                return rScale(sum_max) - (padding * 5);
+              })
+              .attr("y", function(){
+                return height - rScale(sum_max);
+              })
+              .text(function(){
+                var sum_avg = (sum_max + sum_min) / 2;
+                // var sum_spread = sum_max - sum_min;
+                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                  return "1000T";//rScale(100000000); //10^8 -> 10^16
+                } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                  return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14
+                } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
+                  return " FIX"; //rScale(10000000); //10^7
+                } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                  return " FIX"; //rScale(5000000); //5 * 10^6
+                } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
+                  return " FIX"; //rScale(1000000); //10^6
+                } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                  return " FIX"; //rScale(500000); //5 * 10^5
+                } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
+                  return " FIX"; //rScale(100000); //10^5
+                } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                  return " FIX"; //rScale(50000); //5 * 10^4
+                } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
+                  return " FIX"; //rScale(10000); //10^4
+                } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                  return " FIX"; //rScale(5000); //5 * 10^3
+                } else {
+                  return " FIX"; //rScale(1000); //10^3
+                }
+              })
 
           d3.csv("data/reporters_centroid.csv", function(data){
             svg.selectAll("circle.country")

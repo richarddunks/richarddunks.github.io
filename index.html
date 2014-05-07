@@ -189,7 +189,9 @@
               .html(function(d) { 
                 return d.country + "</br>" + country_sum[d.country] + "kg"; 
               }); // not sure what 
-
+          svg.call(tip);
+          
+          //assign local variables to global variables in order to debug
           global_country_data = country_data;
           global_country_sum = country_sum;
           
@@ -215,17 +217,10 @@
                   return region_color[d.region];
                 })
                 .style("opacity",0.75)
-                //.append("svg:title") //orginal text title 
-                //.text(function(d){
-                //  return d.country;
-                //})
                 .on('mouseover', tip.show) //tooltip 
-                .on('mouseout', tip.hide) // tooltip 
-            
-            svg.call(tip);
-
-            });
-        }); //end country csv
+                .on('mouseout', tip.hide); // tooltip
+            }); //end reporters_centroid.csv
+        }); //end country json
       
       var dropdown = d3.select("#country-list");
       
@@ -244,6 +239,13 @@
             }
           } //still generating some random undefined value (total sum?)
 
+          var tip = d3.tip()
+              .attr("class", "d3-tip")
+              .html(function(d) { 
+                return d.country + "</br>" + country_sum[d.country] + "kg"; 
+              });
+          svg.call(tip);
+
           global_country_data = country_data;
           global_country_sum = country_sum;
 
@@ -257,15 +259,8 @@
                     return 0;
                   }
                 })
-                .select("svg:title")
-                .text(function(d){
-                  if (country_sum[d.country] != "undefined") {
-                    return d.country + " " + country_sum[d.country] + "kg";
-                  } else {
-                    return d.country + "0kg";
-                  }
-                });
-
+                .on('mouseover', tip.show) //tooltip 
+                .on('mouseout', tip.hide); // tooltip 
                 
               }); //end of d3.csv
 
@@ -526,7 +521,7 @@
 
 
 //____UPDATED Draw with selected country -- issue is i'm not getting global variable. Can fix by moving the code into the above code, but may not need to (ask Richard.) This way is preferred for neatness. 
-       d3.json(jsonFileName, function(error, data){
+       d3.json(jsonFilename, function(error, data){
         d3.select("#line_graph").remove().transition(); //Transition so that it redraws graph in same place
 
         var margin = {top: 15, right: 14, bottom: 50, left: 80},

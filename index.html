@@ -177,7 +177,7 @@
 
 
  //____Initial draw of line chart 
-      d3.json("data/country_json/albania.json", function(error, data){
+      d3.json(jsonFilename, function(error, data){
 
         var margin = {top: 15, right: 14, bottom: 50, left: 125},
             width = 960 - margin.left - margin.right,
@@ -292,7 +292,7 @@
                           };
     	      range_min = extent1[0];
     	      range_max = extent1[1];
-            	
+            change_date_range();
 
             d3.select(this).transition()
                .call(brush.extent(extent1))

@@ -235,17 +235,30 @@
         //Drawing the line function + call
         var line = d3.svg.line().x(function(d,i) { return x(date_range[i]); })
                           .y(function(d) {  return yScale(d); });
+        
         //line for each partner country
-        svg.selectAll("line").data(data).enter()
+        svg.selectAll("line.partner").data(data).enter()
+                            .append("path")
+                            .attr("d", function(d) {if (d.partner_country != undefined) {return line(d.net_weight);};})   
+                            .attr("class","partner")
+                            .attr("id",function(d){
+                              if (d.partner_country != undefined) {
+                                return d.partner_country;
+                              };
+                            })
+                            .attr("stroke", "gray")
+                            .attr("stroke-width", 1)
+                            .attr("fill", "none");
+
+       //Aggregate line for reporting country -> still draws lots of unnecessary lines
+        svg.selectAll("line.reporter").data(data).enter()
                            .append("path")
-                           .attr("d", function(d) {if (d.partner_country != undefined) {return line(d.net_weight);};})   
-                           .attr("stroke", "gray")
-                           .attr("stroke-width", 1)
-                           .attr("fill", "none");
-       //Aggregate line for reporting country
-        svg.selectAll("line").data(data).enter()
-                           .append("path")
-                           .attr("d", function(d) {if (d.partner_country == undefined) {return line(d.net_weight);};})   
+                           .attr("d", function(d) {
+                              if (d.reporting_country) {
+                                return line(d.net_weight);
+                              };
+                            })   
+                           .attr("class","reporter")
                            .attr("stroke", "red")
                            .attr("stroke-width", 1)
                            .attr("fill", "none");

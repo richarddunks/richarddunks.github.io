@@ -169,11 +169,14 @@
       var slice_start = 0;
       var slice_end = 48;
 
+      var brush_change = d3.select("#extent");
+
       //reset the slice_start and slice_end with values from brush
       var change_date_range = function() {
        slice_start = date_position_array[range_min.toJSON().slice(0,4) + range_min.toJSON().slice(5,7)];
        slice_end = date_position_array[range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)];
-       dorling;
+       // svg.selectAll("circle.country")
+       display();
       };
 
 
@@ -316,8 +319,8 @@
 //____END OF TIME SLIDER INITIAL DRAWING
 
       
-
-      var dorling = d3.json("data/world-50m.json", function(error, world) {
+      function display() {
+       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
             .datum(topojson.feature(world, world.objects.land))
             .attr("class", "land")
@@ -347,8 +350,6 @@
                       .linear()
                       .domain([sum_min,sum_max]) //.nice to round up! 
                       .range([2,50]);
-
-
 
           var tip = d3.tip()
               .attr("class", "d3-tip")
@@ -469,7 +470,7 @@
       
  
       var dropdown = d3.select("#country-list");
-      var brush_change = d3.select("#extent");
+      
       
       var change = function() {
         var country = d3.event.target.value;
@@ -714,12 +715,15 @@
   	      range_min = extent1[0];
   	      range_max = extent1[1];
 
+          change_date_range();
+
           // d3.selectAll("p.hidden")
           //   .data([1])
           //   .enter()
           //   .append("p")
           //   .attr("class","hidden")
           //   .text("TEST");
+
 
           // rebrush();
 
@@ -738,9 +742,10 @@
       // brush_change.on("change",rebrush);
       
 
-      }); //end world json (dorling function)
-
-      dorling;
+      });
+    } //end world json (dorling function)
+    display();
+      // dorling;
 
 
       d3.select(self.frameElement).style("height", height + "px");

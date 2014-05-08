@@ -601,6 +601,17 @@
 
       var dropdown = d3.select("#country-list"); //listener for change in menu options
 
+      function draw_chart () {
+        
+        d3.select(".chart")
+          .selectAll("div")
+            .data(data)
+          .enter().append("div")
+            .style("width", function(d) { return x(d) + "px"; })
+            .text(function(d) { return d; });
+
+      } // end function draw_chart
+
       function change () {
         var country = d3.event.target.value;
         country = country.toLowerCase();

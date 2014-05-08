@@ -385,7 +385,7 @@
                   return rScale(1000); //10^3
                 }
               })
-
+console.log(rScale(10000));
           svg.select("text.legend-text")
               .data([1])
               .attr("x",function(){
@@ -393,7 +393,40 @@
               })
               .attr("y", function(){
                 return height - rScale(sum_max);
+                // (function(){
+                  
+                //   return rScale(10000);
+                // })
               })
+                  
+                  // function(){
+                  // var sum_avg = (sum_max + sum_min) / 2;
+                  // if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                  //   return 100000000; //10^8
+                  // } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                  //   return 50000000; //5 * 10^7
+                  // } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
+                  //   return 10000000; //10^7
+                  // } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                  //   return 5000000; //5 * 10^6
+                  // } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
+                  //   return 1000000; //10^6
+                  // } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                  //   return 500000; //5 * 10^5
+                  // } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
+                  //   return 100000; //10^5
+                  // } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                  //   return 50000; //5 * 10^4
+                  // } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
+                  //   return 10000; //10^4
+                  // } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                  //   return 5000; //5 * 10^3
+                  // } else {
+                  //   return 1000; //10^3
+                  // }
+                // })
+                // )
+              // })
               .text(function(){
                 var sum_avg = (sum_max + sum_min) / 2;
                 // var sum_spread = sum_max - sum_min;

@@ -592,7 +592,9 @@
               .attr("cx",rScale(sum_max) + padding)
               .attr("cy",height)
               .attr("r",function(d){
-                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+               if (sum_avg == 0) {
+                  return 0;
+                } else if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                   return rScale(100000000); //10^8
                 } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
                   return rScale(50000000); //5 * 10^7
@@ -632,7 +634,9 @@
                 return height - rScale(sum_max);
               })
               .text(function(){
-                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                if (sum_avg == 0) {
+                  return "No Trade Reported";
+                } else if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                   return "1000T";//rScale(100000000); //10^8 -> 10^16
                 } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
                   return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14
@@ -666,7 +670,9 @@
             .attr("cx",rScale(sum_max) + padding)
             // .attr("fill","none")
             .attr("r",function(d){
-              if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+              if (sum_avg == 0) {
+                return 0;
+              } else if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                 return rScale(100000000); //10^8
               } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
                 return rScale(50000000); //5 * 10^7
@@ -700,7 +706,9 @@
               return height - rScale(sum_max);
             })
             .text(function(){
-              if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+              if (sum_avg == 0) {
+                return "0";
+              } else if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                 return "1000T";//rScale(100000000); //10^8 -> 10^16
               } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
                 return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14

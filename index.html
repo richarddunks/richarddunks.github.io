@@ -165,18 +165,21 @@
       var range_min;
       var range_max;
 
+      var mapFilename = "data/world-50m.json";
       var jsonFilename = "data/country_json/albania.json";
       var slice_start = 0;
       var slice_end = 48;
 
       var brush_change = d3.select("#extent");
 
+
+
       //reset the slice_start and slice_end with values from brush
       var change_date_range = function() {
        slice_start = date_position_array[range_min.toJSON().slice(0,4) + range_min.toJSON().slice(5,7)];
        slice_end = date_position_array[range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)];
        // svg.selectAll("circle.country")
-       display();
+       display_country_circles();
       };
 
 
@@ -319,8 +322,8 @@
 //____END OF TIME SLIDER INITIAL DRAWING
 
       
-      function display() {
-       d3.json("data/world-50m.json", function(error, world) {
+      function display_map() {
+       d3.json(mapFilename, function(error, world) {
         svg.insert("path", ".graticule")
             .datum(topojson.feature(world, world.objects.land))
             .attr("class", "land")
@@ -331,7 +334,13 @@
             .attr("class", "boundary")
             .attr("d", path);
 
-        d3.json(jsonFilename, function(error, country_data) {
+        display_country_circles();
+
+        })
+      } //end function display_map
+
+        function display_country_circles() {
+          d3.json(jsonFilename, function(error, country_data) {
           
           var country_sum = {};
           for (var i = 0,len = country_data.length; i < len; i++ ) {
@@ -487,8 +496,6 @@
             }
           } //still generating some random undefined value (total sum?)
 
-
-
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
@@ -505,6 +512,7 @@
               .html(function(d) { 
                 return d.country + "</br>" + country_sum[d.country] + "kg"; 
               });
+
           svg.call(tip);
 
           global_country_data = country_data;

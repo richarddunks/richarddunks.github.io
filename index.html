@@ -514,6 +514,14 @@
           global_country_sum = country_sum;
 
           d3.csv("data/reporters_centroid.csv", function(data){
+            var tip = d3.tip()
+                      .attr("class", "d3-tip")
+                      .html(function(d) { 
+                        if (country_sum[d.country] != undefined){
+                          return d.country + "</br>" + country_sum[d.country] + "kg"; 
+                        };
+                      }); // not sure what 
+
             svg.selectAll("circle.country")
                 .data(data)
                 .attr("r", function(d){
@@ -523,9 +531,10 @@
                     return 0;
                   }
                 })
-                // .on('mouseover', tip.show) //tooltip 
-                // .on('mouseout', tip.hide); // tooltip 
-                
+                .on('mouseover', tip.show) //tooltip 
+                .on('mouseout', tip.hide); // tooltip 
+            
+            svg.call(tip);
               }); //end of d3.csv
           update_legend(rScale,sum_max, sum_min);
 
@@ -534,6 +543,13 @@
 
       function display_country_circles(country_sum,rScale) {
         d3.csv("data/reporters_centroid.csv", function(data){
+          var tip = d3.tip()
+                      .attr("class", "d3-tip")
+                      .html(function(d) { 
+                        if (country_sum[d.country] != undefined){
+                          return d.country + "</br>" + country_sum[d.country] + "kg"; 
+                        };
+                      }); // not sure what                 
 
           // console.log(data);
           svg.selectAll("circle.country")
@@ -557,9 +573,12 @@
                   .style("fill",function(d){
                     return region_color[d.region];
                   })
-                  .style("opacity",0.6);
-                  // .on('mouseover', tip.show) //tooltip 
-              });//end csv function  
+                  .style("opacity",0.6)
+                  .on('mouseover', tip.show)
+                  .on('mouseout', tip.hide); //tooltip 
+
+          svg.call(tip);
+        });//end csv function  
       } //end function display_country_circles
 
       function draw_legend(rScale, sum_max, sum_min) {

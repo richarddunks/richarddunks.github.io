@@ -483,6 +483,7 @@
           global_country_sum = country_sum;
 
           display_country_circles(country_sum,rScale);
+          draw_legend(rScale, sum_max, sum_min);
         });//end json call
 
       } //end function display_sum
@@ -526,6 +527,7 @@
                 // .on('mouseout', tip.hide); // tooltip 
                 
               }); //end of d3.csv
+          update_legend(rScale,sum_max, sum_min);
 
           });//end json call
       } //end function update_sum
@@ -637,7 +639,7 @@
               });
       } //function draw_legend
 
-      function update_legend() {
+      function update_legend(rScale, sum_max, sum_min) {
         var sum_avg = (sum_max + sum_min) / 2;
 
         svg.select("circle.legend")

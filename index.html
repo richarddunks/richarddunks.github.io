@@ -125,17 +125,128 @@
   </head>
 
   <body>
-    <!-- d3 reference -->
+        <!-- <div class="country_selector"> -->
+      <select id="country-list" name="country-list">
+        <option value="Albania">Albania</option>
+        <option value="Algeria">Algeria</option>
+        <option value="Antigua_and_Barbuda">Antigua and Barbuda</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Armenia">Armenia</option>
+        <option value="Aruba">Aruba</option>
+        <option value="Australia">Australia</option>
+        <option value="Austria">Austria</option>
+        <option value="Azerbaijan">Azerbaijan</option>
+        <option value="Bahrain">Bahrain</option>
+        <option value="Barbados">Barbados</option>
+        <option value="Belarus">Belarus</option>
+        <option value="Belgium">Belgium</option>
+        <option value="Bolivia">Bolivia</option>
+        <option value="Bosnia_Herzegovina">Bosnia Herzegovina</option>
+        <option value="Brazil">Brazil</option>
+        <option value="Brunei_Darussalam">Brunei Darussalam</option>
+        <option value="Bulgaria">Bulgaria</option>
+        <option value="Burkina_Faso">Burkina Faso</option>
+        <option value="Burundi">Burundi</option>
+        <option value="Cabo_Verde">Cabo Verde</option>
+        <option value="Cameroon">Cameroon</option>
+        <option value="Canada">Canada</option>
+        <option value="Central_African_Rep">Central African Republic</option>
+        <option value="Chile">Chile</option>
+        <option value="China">China</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Croatia">Croatia</option>
+        <option value="Cyprus">Cyprus</option>
+        <option value="Czech_Rep">Czech Republic</option>
+        <option value="Denmark">Denmark</option>
+        <option value="Dominica">Dominica</option>
+        <option value="Dominican_Rep">Dominican Republic</option>
+        <option value="Ecuador">Ecuador</option>
+        <option value="Egypt">Egypt</option>
+        <option value="El_Salvador">El Salvador</option>
+        <option value="Estonia">Estonia</option>
+        <option value="Ethiopia">Ethiopia</option>
+        <option value="Finland">Finland</option>
+        <option value="France">France</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Germany">Germany</option>
+        <option value="Greece">Greece</option>
+        <option value="Guatemala">Guatemala</option>
+        <option value="Hong_Kong">Hong Kong SAR</option>
+        <option value="Hungary">Hungary</option>
+        <option value="Iceland">Iceland</option>
+        <option value="India">India</option>
+        <option value="Indonesia">Indonesia</option>
+        <option value="Ireland">Ireland</option>
+        <option value="Israel">Israel</option>
+        <option value="Italy">Italy</option>
+        <option value="Japan">Japan</option>
+        <option value="Jordan">Jordan</option>
+        <option value="Kazakhstan">Kazakhstan</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Kyrgyzstan">Kyrgyzstan</option>
+        <option value="Latvia">Latvia</option>
+        <option value="Lithuania">Lithuania</option>
+        <option value="Luxembourg">Luxembourg</option>
+        <option value="Macedonia">Macedonia</option>
+        <option value="Madagascar">Madagascar</option>
+        <option value="Malaysia">Malaysia</option>
+        <option value="Mali">Mali</option>
+        <option value="Malta">Malta</option>
+        <option value="Mauritius">Mauritius</option>
+        <option value="Mexico">Mexico</option>
+        <option value="Montenegro">Montenegro</option>
+        <option value="Morocco">Morocco</option>
+        <option value="Mozambique">Mozambique</option>
+        <option value="Namibia">Namibia</option>
+        <option value="Netherlands">Netherlands</option>
+        <option value="New_Caledonia">New Caledonia</option>
+        <option value="New_Zealand">New Zealand</option>
+        <option value="Nicaragua">Nicaragua</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Norway">Norway</option>
+        <option value="Pakistan">Pakistan</option>
+        <option value="Panama">Panama</option>
+        <option value="Paraguay">Paraguay</option>
+        <option value="Peru">Peru</option>
+        <option value="Philippines">Philippines</option>
+        <option value="Poland">Poland</option>
+        <option value="Portugal">Portugal</option>
+        <option value="Rep_of_Korea">Republic of Korea</option>
+        <option value="Rep_of_Moldova">Republic of Moldova</option>
+        <option value="Romania">Romania</option>
+        <option value="Russian_Federation">Russian Federation</option>
+        <option value="Rwanda">Rwanda</option>
+        <option value="Senegal">Senegal</option>
+        <option value="Serbia">Serbia</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Slovakia">Slovakia</option>
+        <option value="Slovenia">Slovenia</option>
+        <option value="South_Africa">South Africa</option>
+        <option value="Spain">Spain</option>
+        <option value="Sri_Lanka">Sri Lanka</option>
+        <option value="State_of_Palestine">State of Palestine</option>
+        <option value="Sweden">Sweden</option>
+        <option value="Switzerland">Switzerland</option>
+        <option value="Thailand">Thailand</option>
+        <option value="Togo">Togo</option>
+        <option value="Turkey">Turkey</option>
+        <option value="Ukraine">Ukraine</option>
+        <option value="United_Kingdom">United Kingdom</option>
+        <option value="United_Rep_of_Tanzania">United Republic of Tanzania</option>
+        <option value="Uruguay">Uruguay</option>
+        <option value="USA">USA</option>
+        <option value="Zambia">Zambia</option>
+        <option value="Zimbabwe">Zimbabwe</option>
+      </select>
+    <!-- </div> -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
-
-    <div class="container">
-    <script type="text/javascript" id="line_chart">
+    <script type="text/javascript">
       var margin = {top: 0, right: 0, bottom: 0, left: 0},
-          width = 960 - margin.left - margin.right,
-          height = 550 - margin.top - margin.bottom,
-          padding = 3;
+            width = 960 - margin.left - margin.right,
+            height = 550 - margin.top - margin.bottom,
+            padding = 3;
 
       var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
 
@@ -162,22 +273,33 @@
       var global_sum_min;
       var global_sum_max;
 
+      var centroid_data;
+      function set_centroid_data() {
+        d3.csv("data/reporters_centroid.csv", function(data){
+          centroid_data = data;
+        }
+        )};
+      set_centroid_data();
+
       var range_min;
       var range_max;
 
+      var mapFilename = "data/world-50m.json";
       var jsonFilename = "data/country_json/albania.json";
       var slice_start = 0;
       var slice_end = 48;
+
+      var brush_change = d3.select("#extent");
 
       //reset the slice_start and slice_end with values from brush
       var change_date_range = function() {
        slice_start = date_position_array[range_min.toJSON().slice(0,4) + range_min.toJSON().slice(5,7)];
        slice_end = date_position_array[range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)];
-       dorling;
+       // svg.selectAll("circle.country")
+       update_sum();
       };
 
-
- //____Initial draw of line chart 
+       //____Initial draw of line chart 
       d3.json(jsonFilename, function(error, data){
 
         var margin = {top: 15, right: 14, bottom: 50, left: 125},
@@ -302,22 +424,22 @@
                  // if empty when rounded, use floor & ceil instead
                  if (extent1[0] >= extent1[1]) {
                         extent1[0] = d3.time.month.floor(extent0[0]);
-                        extent1[1] = d3.time.month.ceil(extent0[1]);			  
+                        extent1[1] = d3.time.month.ceil(extent0[1]);       
                           };
-    	      range_min = extent1[0];
-    	      range_max = extent1[1];
+           range_min = extent1[0];
+           range_max = extent1[1];
             change_date_range();
 
             d3.select(this).transition()
                .call(brush.extent(extent1))
-               .call(brush.event);					 
+               .call(brush.event);          
           };
-    	});
+     });
 //____END OF TIME SLIDER INITIAL DRAWING
 
-      
 
-      var dorling = d3.json("data/world-50m.json", function(error, world) {
+      function display_map() {  
+       d3.json(mapFilename, function(error, world) {
         svg.insert("path", ".graticule")
             .datum(topojson.feature(world, world.objects.land))
             .attr("class", "land")
@@ -328,6 +450,14 @@
             .attr("class", "boundary")
             .attr("d", path);
 
+        display_sum();
+
+        })
+      } //end function display_map
+
+      display_map();
+
+      function display_sum() {
         d3.json(jsonFilename, function(error, country_data) {
           
           var country_sum = {};
@@ -348,21 +478,94 @@
                       .domain([sum_min,sum_max]) //.nice to round up! 
                       .range([2,50]);
 
-
-
-          var tip = d3.tip()
-              .attr("class", "d3-tip")
-              .html(function(d) { 
-                return d.country + "</br>" + country_sum[d.country] + "kg"; 
-              }); // not sure what 
-          svg.call(tip);
-          
           //assign local variables to global variables in order to debug
           global_country_data = country_data;
           global_country_sum = country_sum;
+
+          display_country_circles(country_sum,rScale);
+          draw_legend(rScale, sum_max, sum_min);
+        });//end json call
+
+      } //end function display_sum
+
+      function update_sum() {
+          d3.json(jsonFilename, function(error, country_data) {
           
-          //y = height; x = rscale(sum_max)
-          svg.selectAll("circle.legend")
+          var country_sum = {};
+          for (var i = 0,len = country_data.length; i < len; i++ ) {
+            if (country_data[i].partner_country != "undefined") {
+              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight.slice(slice_start,slice_end));
+            }
+          } //still generating some random undefined value (total sum?)
+
+          var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
+          var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
+
+          global_sum_min = sum_min;
+          global_sum_max = sum_max;
+
+          var rScale = d3.scale
+                      .linear()
+                      .domain([sum_min,sum_max]) //.nice to round up! 
+                      .range([2,50]);
+
+          //assign local variables to global variables in order to debug
+          global_country_data = country_data;
+          global_country_sum = country_sum;
+
+          d3.csv("data/reporters_centroid.csv", function(data){
+            svg.selectAll("circle.country")
+                .data(data)
+                .attr("r", function(d){
+                  if (country_sum[d.country]) {
+                    return rScale(Math.sqrt(country_sum[d.country]));
+                  } else {
+                    return 0;
+                  }
+                })
+                // .on('mouseover', tip.show) //tooltip 
+                // .on('mouseout', tip.hide); // tooltip 
+                
+              }); //end of d3.csv
+          update_legend(rScale,sum_max, sum_min);
+
+          });//end json call
+      } //end function update_sum
+
+      function display_country_circles(country_sum,rScale) {
+        d3.csv("data/reporters_centroid.csv", function(data){
+
+          // console.log(data);
+          svg.selectAll("circle.country")
+                  .data(data)
+                  .enter()
+                  .append("circle")
+                  .attr("class","country")
+                  .attr("cx", function(d){
+                    return projection([d.lon, d.lat])[0];
+                  })
+                  .attr("cy", function(d){
+                    return projection([d.lon, d.lat])[1];
+                  })
+                  .attr("r", function(d){
+                    if (country_sum[d.country]) {
+                      return rScale(Math.sqrt(country_sum[d.country]));
+                    } else {
+                      return 0;
+                    }
+                  })
+                  .style("fill",function(d){
+                    return region_color[d.region];
+                  })
+                  .style("opacity",0.6);
+                  // .on('mouseover', tip.show) //tooltip 
+              });//end csv function  
+      } //end function display_country_circles
+
+      function draw_legend(rScale, sum_max, sum_min) {
+        var sum_avg = (sum_max + sum_min) / 2;
+
+        svg.selectAll("circle.legend")
               .data([1])
               .enter()
               .append("circle")
@@ -370,8 +573,6 @@
               .attr("cx",rScale(sum_max) + padding)
               .attr("cy",height)
               .attr("r",function(d){
-                var sum_avg = (sum_max + sum_min) / 2;
-                // var sum_spread = sum_max - sum_min;
                 if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                   return rScale(100000000); //10^8
                 } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
@@ -412,8 +613,6 @@
                 return height - rScale(sum_max);
               })
               .text(function(){
-                var sum_avg = (sum_max + sum_min) / 2;
-                // var sum_spread = sum_max - sum_min;
                 if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
                   return "1000T";//rScale(100000000); //10^8 -> 10^16
                 } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
@@ -438,164 +637,92 @@
                   return " 10M "; //rScale(1000); //10^3
                 }
               });
+      } //function draw_legend
 
-          d3.csv("data/reporters_centroid.csv", function(data){
-            svg.selectAll("circle.country")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("class","country")
-                .attr("cx", function(d){
-                  return projection([d.lon, d.lat])[0];
-                })
-                .attr("cy", function(d){
-                  return projection([d.lon, d.lat])[1];
-                })
-                .attr("r", function(d){
-                  if (country_sum[d.country]) {
-                    return rScale(Math.sqrt(country_sum[d.country]));
-                  } else {
-                    return 0;
-                  }
-                })
-                .style("fill",function(d){
-                  return region_color[d.region];
-                })
-                .style("opacity",0.6)
-                .on('mouseover', tip.show) //tooltip 
-                .on('mouseout', tip.hide); // tooltip
-            }); //end reporters_centroid.csv
-        }); //end country json
-      
- 
-      var dropdown = d3.select("#country-list");
-      var brush_change = d3.select("#extent");
-      
-      var change = function() {
+      function update_legend(rScale, sum_max, sum_min) {
+        var sum_avg = (sum_max + sum_min) / 2;
+
+        svg.select("circle.legend")
+            .data([1])
+            .attr("cx",rScale(sum_max) + padding)
+            // .attr("fill","none")
+            .attr("r",function(d){
+              if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                return rScale(100000000); //10^8
+              } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                return rScale(50000000); //5 * 10^7
+              } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
+                return rScale(10000000); //10^7
+              } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                return rScale(5000000); //5 * 10^6
+              } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
+                return rScale(1000000); //10^6
+              } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                return rScale(500000); //5 * 10^5
+              } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
+                return rScale(100000); //10^5
+              } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                return rScale(50000); //5 * 10^4
+              } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
+                return rScale(10000); //10^4
+              } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                return rScale(5000); //5 * 10^3
+              } else {
+                return rScale(1000); //10^3
+              }
+            })
+
+        svg.select("text.legend-text")
+            .data([1])
+            .attr("x",function(){
+              return rScale(sum_max) - (padding * 5);
+            })
+            .attr("y", function(){
+              return height - rScale(sum_max);
+            })
+            .text(function(){
+              if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
+                return "1000T";//rScale(100000000); //10^8 -> 10^16
+              } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
+                return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14
+              } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
+                return " 10T "; //rScale(10000000); //10^7
+              } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
+                return " 2.5T"; //rScale(5000000); //5 * 10^6
+              } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
+                return " 100B"; //rScale(1000000); //10^6
+              } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
+                return " 25B "; //rScale(500000); //5 * 10^5
+              } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
+                return " 10B "; //rScale(100000); //10^5
+              } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
+                return " 2.5B"; //rScale(50000); //5 * 10^4
+              } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
+                return " 100M"; //rScale(10000); //10^4
+              } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
+                return " 25M "; //rScale(5000); //5 * 10^3
+              } else {
+                return " 10M "; //rScale(1000); //10^3
+              }
+            });
+
+      } //end function update_legend
+
+      var dropdown = d3.select("#country-list"); //listener for change in menu options
+
+      function change () {
         var country = d3.event.target.value;
         country = country.toLowerCase();
 
+
         jsonFilename = "data/country_json/" + country + ".json";
+        console.log(jsonFilename);
+        update_sum(); //rerun the draw on update
+      } //end function change
 
-        d3.json(jsonFilename, function(error, country_data) {
-          
-          var country_sum = {};
-          for (var i = 0,len = country_data.length; i < len; i++ ) {
-            if (country_data[i].partner_country != "undefined") {
-              country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight.slice(slice_start,slice_end));
-            }
-          } //still generating some random undefined value (total sum?)
+      dropdown.on("change", change); //event listener
 
-
-
-          var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
-          var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
-
-          global_sum_min = sum_min;
-          global_sum_max = sum_max;
-
-          var rScale = d3.scale
-                      .linear()
-                      .domain([sum_min,sum_max]) //.nice to round up! 
-                      .range([2,50]);
-
-          var tip = d3.tip()
-              .attr("class", "d3-tip")
-              .html(function(d) { 
-                return d.country + "</br>" + country_sum[d.country] + "kg"; 
-              });
-          svg.call(tip);
-
-          global_country_data = country_data;
-          global_country_sum = country_sum;
-
-          svg.select("circle.legend")
-              .data([1])
-              .attr("cx",rScale(sum_max) + padding)
-              // .attr("fill","none")
-              .attr("r",function(d){
-                var sum_avg = (sum_max + sum_min) / 2;
-                var sum_spread = sum_max - sum_min;
-                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
-                  return rScale(100000000); //10^8
-                } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
-                  return rScale(50000000); //5 * 10^7
-                } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
-                  return rScale(10000000); //10^7
-                } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
-                  return rScale(5000000); //5 * 10^6
-                } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
-                  return rScale(1000000); //10^6
-                } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
-                  return rScale(500000); //5 * 10^5
-                } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
-                  return rScale(100000); //10^5
-                } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
-                  return rScale(50000); //5 * 10^4
-                } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
-                  return rScale(10000); //10^4
-                } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
-                  return rScale(5000); //5 * 10^3
-                } else {
-                  return rScale(1000); //10^3
-                }
-              })
-
-          svg.select("text.legend-text")
-              .data([1])
-              .attr("x",function(){
-                return rScale(sum_max) - (padding * 5);
-              })
-              .attr("y", function(){
-                return height - rScale(sum_max);
-              })
-              .text(function(){
-                var sum_avg = (sum_max + sum_min) / 2;
-                // var sum_spread = sum_max - sum_min;
-                if (Math.abs(100000000 - sum_avg) < Math.abs(50000000 - sum_avg)) {
-                  return "1000T";//rScale(100000000); //10^8 -> 10^16
-                } else if (Math.abs(50000000 - sum_avg) < Math.abs(10000000 - sum_avg)) {
-                  return " 250T";//rScale(50000000); //5 * 10^7 -> 10^14
-                } else if (Math.abs(10000000 - sum_avg) < Math.abs(5000000 - sum_avg)) {
-                  return " 10T "; //rScale(10000000); //10^7
-                } else if (Math.abs(5000000 - sum_avg) < Math.abs(1000000 - sum_avg)) {
-                  return " 2.5T"; //rScale(5000000); //5 * 10^6
-                } else if (Math.abs(1000000 - sum_avg) < Math.abs(500000 - sum_avg)) {
-                  return " 100B"; //rScale(1000000); //10^6
-                } else if (Math.abs(500000 - sum_avg) < Math.abs(100000 - sum_avg)) {
-                  return " 25B "; //rScale(500000); //5 * 10^5
-                } else if (Math.abs(100000 - sum_avg) < Math.abs(50000 - sum_avg)) {
-                  return " 10B "; //rScale(100000); //10^5
-                } else if (Math.abs(50000 - sum_avg) < Math.abs(10000 - sum_avg)) {
-                  return " 2.5B"; //rScale(50000); //5 * 10^4
-                } else if (Math.abs(10000 - sum_avg) < Math.abs(5000 - sum_avg)) {
-                  return " 100M"; //rScale(10000); //10^4
-                } else if (Math.abs(5000 - sum_avg) < Math.abs(1000 - sum_avg)) {
-                  return " 25M "; //rScale(5000); //5 * 10^3
-                } else {
-                  return " 10M "; //rScale(1000); //10^3
-                }
-              });
-
-          d3.csv("data/reporters_centroid.csv", function(data){
-            svg.selectAll("circle.country")
-                .data(data)
-                .attr("r", function(d){
-                  if (country_sum[d.country]) {
-                    return rScale(Math.sqrt(country_sum[d.country]));
-                  } else {
-                    return 0;
-                  }
-                })
-                .on('mouseover', tip.show) //tooltip 
-                .on('mouseout', tip.hide); // tooltip 
-                
-              }); //end of d3.csv
-          });//end of d3 county 
-
-        
-
-//______Start Line Graph Code 
+      //______Start Line Graph Code 
 
        d3.json(jsonFilename, function(error, data){
         d3.select("#line_graph").remove().transition(); //Transition so that it redraws graph in same place
@@ -709,162 +836,22 @@
                // if empty when rounded, use floor & ceil instead
                if (extent1[0] >= extent1[1]) {
                       extent1[0] = d3.time.month.floor(extent0[0]);
-                      extent1[1] = d3.time.month.ceil(extent0[1]);			  
+                      extent1[1] = d3.time.month.ceil(extent0[1]);       
                         };
-  	      range_min = extent1[0];
-  	      range_max = extent1[1];
+         range_min = extent1[0];
+         range_max = extent1[1];
 
-          // d3.selectAll("p.hidden")
-          //   .data([1])
-          //   .enter()
-          //   .append("p")
-          //   .attr("class","hidden")
-          //   .text("TEST");
+          change_date_range();
 
-          // rebrush();
 
           d3.select(this).transition()
              .call(brush.extent(extent1))
-             .call(brush.event);					 
+             .call(brush.event);          
       };
-	}); 
+ }); 
 
 //______End Line Graph Code 
 
-        }; //end of function change
-
-      
-      dropdown.on("change", change);
-      // brush_change.on("change",rebrush);
-      
-
-      }); //end world json (dorling function)
-
-      dorling;
-
-
-      d3.select(self.frameElement).style("height", height + "px");
-
     </script>
 
-    <select id="country-list" name="country-list">
-      <option value="Albania">Albania</option>
-      <option value="Algeria">Algeria</option>
-      <option value="Antigua_and_Barbuda">Antigua and Barbuda</option>
-      <option value="Argentina">Argentina</option>
-      <option value="Armenia">Armenia</option>
-      <option value="Aruba">Aruba</option>
-      <option value="Australia">Australia</option>
-      <option value="Austria">Austria</option>
-      <option value="Azerbaijan">Azerbaijan</option>
-      <option value="Bahrain">Bahrain</option>
-      <option value="Barbados">Barbados</option>
-      <option value="Belarus">Belarus</option>
-      <option value="Belgium">Belgium</option>
-      <option value="Bolivia">Bolivia</option>
-      <option value="Bosnia_Herzegovina">Bosnia Herzegovina</option>
-      <option value="Brazil">Brazil</option>
-      <option value="Brunei_Darussalam">Brunei Darussalam</option>
-      <option value="Bulgaria">Bulgaria</option>
-      <option value="Burkina_Faso">Burkina Faso</option>
-      <option value="Burundi">Burundi</option>
-      <option value="Cabo_Verde">Cabo Verde</option>
-      <option value="Cameroon">Cameroon</option>
-      <option value="Canada">Canada</option>
-      <option value="Central_African_Rep">Central African Republic</option>
-      <option value="Chile">Chile</option>
-      <option value="China">China</option>
-      <option value="Colombia">Colombia</option>
-      <option value="Croatia">Croatia</option>
-      <option value="Cyprus">Cyprus</option>
-      <option value="Czech_Rep">Czech Republic</option>
-      <option value="Denmark">Denmark</option>
-      <option value="Dominica">Dominica</option>
-      <option value="Dominican_Rep">Dominican Republic</option>
-      <option value="Ecuador">Ecuador</option>
-      <option value="Egypt">Egypt</option>
-      <option value="El_Salvador">El Salvador</option>
-      <option value="Estonia">Estonia</option>
-      <option value="Ethiopia">Ethiopia</option>
-      <option value="Finland">Finland</option>
-      <option value="France">France</option>
-      <option value="Georgia">Georgia</option>
-      <option value="Germany">Germany</option>
-      <option value="Greece">Greece</option>
-      <option value="Guatemala">Guatemala</option>
-      <option value="Hong_Kong">Hong Kong SAR</option>
-      <option value="Hungary">Hungary</option>
-      <option value="Iceland">Iceland</option>
-      <option value="India">India</option>
-      <option value="Indonesia">Indonesia</option>
-      <option value="Ireland">Ireland</option>
-      <option value="Israel">Israel</option>
-      <option value="Italy">Italy</option>
-      <option value="Japan">Japan</option>
-      <option value="Jordan">Jordan</option>
-      <option value="Kazakhstan">Kazakhstan</option>
-      <option value="Kenya">Kenya</option>
-      <option value="Kyrgyzstan">Kyrgyzstan</option>
-      <option value="Latvia">Latvia</option>
-      <option value="Lithuania">Lithuania</option>
-      <option value="Luxembourg">Luxembourg</option>
-      <option value="Macedonia">Macedonia</option>
-      <option value="Madagascar">Madagascar</option>
-      <option value="Malaysia">Malaysia</option>
-      <option value="Mali">Mali</option>
-      <option value="Malta">Malta</option>
-      <option value="Mauritius">Mauritius</option>
-      <option value="Mexico">Mexico</option>
-      <option value="Montenegro">Montenegro</option>
-      <option value="Morocco">Morocco</option>
-      <option value="Mozambique">Mozambique</option>
-      <option value="Namibia">Namibia</option>
-      <option value="Netherlands">Netherlands</option>
-      <option value="New_Caledonia">New Caledonia</option>
-      <option value="New_Zealand">New Zealand</option>
-      <option value="Nicaragua">Nicaragua</option>
-      <option value="Nigeria">Nigeria</option>
-      <option value="Norway">Norway</option>
-      <option value="Pakistan">Pakistan</option>
-      <option value="Panama">Panama</option>
-      <option value="Paraguay">Paraguay</option>
-      <option value="Peru">Peru</option>
-      <option value="Philippines">Philippines</option>
-      <option value="Poland">Poland</option>
-      <option value="Portugal">Portugal</option>
-      <option value="Rep_of_Korea">Republic of Korea</option>
-      <option value="Rep_of_Moldova">Republic of Moldova</option>
-      <option value="Romania">Romania</option>
-      <option value="Russian_Federation">Russian Federation</option>
-      <option value="Rwanda">Rwanda</option>
-      <option value="Senegal">Senegal</option>
-      <option value="Serbia">Serbia</option>
-      <option value="Singapore">Singapore</option>
-      <option value="Slovakia">Slovakia</option>
-      <option value="Slovenia">Slovenia</option>
-      <option value="South_Africa">South Africa</option>
-      <option value="Spain">Spain</option>
-      <option value="Sri_Lanka">Sri Lanka</option>
-      <option value="State_of_Palestine">State of Palestine</option>
-      <option value="Sweden">Sweden</option>
-      <option value="Switzerland">Switzerland</option>
-      <option value="Thailand">Thailand</option>
-      <option value="Togo">Togo</option>
-      <option value="Turkey">Turkey</option>
-      <option value="Ukraine">Ukraine</option>
-      <option value="United_Kingdom">United Kingdom</option>
-      <option value="United_Rep_of_Tanzania">United Republic of Tanzania</option>
-      <option value="Uruguay">Uruguay</option>
-      <option value="USA">USA</option>
-      <option value="Zambia">Zambia</option>
-      <option value="Zimbabwe">Zimbabwe</option>
-    </select>
-
-    </div><!-- /.container -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    
   </body>
-</html>
-

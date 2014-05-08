@@ -162,9 +162,18 @@
       var global_sum_min;
       var global_sum_max;
 
+      var range_min;
+      var range_max;
+
       var jsonFilename = "data/country_json/albania.json";
       var slice_start = 0;
       var slice_end = 48;
+
+      //reset the slice_start and slice_end with values from brush
+      var change_date_range = function() {
+       slice_start = date_position_array[range_min.toJSON().slice(0,4) + range_min.toJSON().slice(5,7)];
+       slice_end = date_position_array[range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)];
+      };
 
 
  //____Initial draw of line chart 
@@ -291,8 +300,7 @@
     	});
 //____END OF TIME SLIDER INITIAL DRAWING
 
-
-      // range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)
+      
 
       d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")

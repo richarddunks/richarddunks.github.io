@@ -173,6 +173,7 @@
       var change_date_range = function() {
        slice_start = date_position_array[range_min.toJSON().slice(0,4) + range_min.toJSON().slice(5,7)];
        slice_end = date_position_array[range_max.toJSON().slice(0,4) + range_max.toJSON().slice(5,7)];
+       dorling;
       };
 
 
@@ -316,7 +317,7 @@
 
       
 
-      d3.json("data/world-50m.json", function(error, world) {
+      var dorling = d3.json("data/world-50m.json", function(error, world) {
         svg.insert("path", ".graticule")
             .datum(topojson.feature(world, world.objects.land))
             .attr("class", "land")
@@ -592,6 +593,8 @@
               }); //end of d3.csv
           });//end of d3 county 
 
+        
+
 //______Start Line Graph Code 
 
        d3.json(jsonFilename, function(error, data){
@@ -709,26 +712,35 @@
                       extent1[1] = d3.time.month.ceil(extent0[1]);			  
                         };
   	      range_min = extent1[0];
-  	      range_max = extent1[1];	
+  	      range_max = extent1[1];
+
+          // d3.selectAll("p.hidden")
+          //   .data([1])
+          //   .enter()
+          //   .append("p")
+          //   .attr("class","hidden")
+          //   .text("TEST");
+
+          // rebrush();
 
           d3.select(this).transition()
              .call(brush.extent(extent1))
              .call(brush.event);					 
       };
-	});
+	}); 
 
 //______End Line Graph Code 
 
         }; //end of function change
 
-      var rebrush = function(){
-        alert("You made a change with min " + range_min + " and max " + range_max);
-      }
+      
       dropdown.on("change", change);
-      brush_change.on("change",rebrush);
+      // brush_change.on("change",rebrush);
       
 
-      }); //end world json
+      }); //end world json (dorling function)
+
+      dorling;
 
 
       d3.select(self.frameElement).style("height", height + "px");

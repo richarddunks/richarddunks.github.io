@@ -136,8 +136,8 @@
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
     <script type="text/javascript">
       var margin = {top: 0, right: 0, bottom: 0, left: 0},
-            width = 960 - margin.left - margin.right,
-            height = 550 - margin.top - margin.bottom,
+            width = 800 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom,
             padding = 3;
 
       //associative array for coloring the regions
@@ -522,8 +522,8 @@
           d3.selectAll("#line_graph").remove().transition(); //Transition so that it redraws graph in same place
 
           var margin = {top: 15, right: 14, bottom: 50, left: 125},
-                width = 960 - margin.left - margin.right,
-                height = 500 - margin.top - margin.bottom;
+                width = 800 - margin.left - margin.right,
+                height = 300 - margin.top - margin.bottom;
 
           var x = d3.time.scale()
               .domain([new Date(2009, 11) , new Date(2013, 11)])

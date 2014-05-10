@@ -140,8 +140,10 @@
             height = 550 - margin.top - margin.bottom,
             padding = 3;
 
+      //associative array for coloring the regions
       var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
 
+      //for converting the datetime object coming out of the time slider
       var date_position_array = {201001: 0, 201002: 1, 201003: 2, 201004: 3, 201005: 4, 201006: 5, 201007: 6, 201008: 7, 201009: 8, 201010: 9, 201011: 10, 201012: 11, 201101: 12, 201102: 13, 201103: 14, 201104: 15, 201105: 16, 201106: 17, 201107: 18, 201108: 19, 201109: 20, 201110: 21, 201111: 22, 201112: 23, 201201: 24, 201202: 25, 201203: 26, 201204: 27, 201205: 28, 201206: 29, 201207: 30, 201208: 31, 201209: 32, 201210: 33, 201211: 34, 201212: 35, 201301: 36, 201302: 37, 201303: 38, 201304: 39, 201305: 40, 201306: 41, 201307: 42, 201308: 43, 201309: 44, 201310: 45, 201311: 46, 201312: 47};
 
       var projection = d3.geo.mercator()
@@ -165,13 +167,13 @@
       // var global_sum_min;
       // var global_sum_max;
 
-      var centroid_data;
-      function set_centroid_data() {
-        d3.csv("data/reporters_centroid.csv", function(data){
-          centroid_data = data;
-        }
-        )};
-      set_centroid_data();
+      var centroid_data_path = "data/reporters_centroid.csv";
+      // function set_centroid_data() {
+      //   d3.csv(, function(data){
+      //     centroid_data = data;
+      //   }
+      //   )};
+      // set_centroid_data();
 
       var range_min;
       var range_max;
@@ -269,7 +271,7 @@
           // global_country_data = country_data;
           // global_country_sum = country_sum;
 
-          d3.csv("data/reporters_centroid.csv", function(data){
+          d3.csv(centroid_data_path, function(data){
             var tip = d3.tip()
                       .attr("class", "d3-tip")
                       .html(function(d) { 
@@ -300,7 +302,7 @@
 
       //display the country circles based on passed values and scale
       function display_country_circles(country_sum,rScale) {
-        d3.csv("data/reporters_centroid.csv", function(data){
+        d3.csv(centroid_data_path, function(data){
           var tip = d3.tip()
                       .attr("class", "d3-tip")
                       .html(function(d) { 

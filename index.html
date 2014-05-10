@@ -13,119 +13,11 @@
 
     <!-- Custom styles for this template -->
     <!-- <link href="starter-template.css" rel="stylesheet"> -->
-    <style>
-
-      svg.dorling,
-      svg.line_chart {
-        margin-left:1.5em;
-        margin-top:1em;
-      }
-
-      .axis text {
-        font: 11px sans-serif;
-      }
-
-      .axis path {
-        display: none;
-      }
-
-      .axis line {
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-
-      .grid line,
-      .grid path {
-        fill: none;
-        stroke: #C0C0C0;
-        shape-rendering: crispEdges;
-      }
-
-      .grid .minor.tick line {
-        stroke-opacity: .5;
-      }
-
-      .brush .extent {
-        fill-opacity: .125;
-        shape-rendering: crispEdges;
-      }
-
-      .graticule {
-        fill: none;
-        stroke: #777;
-        stroke-opacity: .5;
-        stroke-width: .5px;
-      }
-
-      .land {
-        fill: #E6E6E6;
-      }
-
-      .boundary {
-        fill: none;
-        stroke: #fff;
-        stroke-width: 1px;
-      }
-
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: black;
-        shape-rendering: crispEdges;
-        }
-
-      .axis text {
-        font-family: sans-serif;
-        font-size: 11px;
-        }
-      
-      rect:hover {
-        fill:orange;
-      }
-      
-      .brush .extent {
-      stroke: #fff;
-      fill-opacity: .125;
-      shape-rendering: crispEdges;
-      }
-      /* tooltip */
-      .d3-tip {
-      line-height: 1;
-      font-weight: bold;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      border-radius: 2px;
-      }
-
-      /* Creates a small triangle extender for the tooltip 
-      .d3-tip:after {
-      box-sizing: border-box;
-      display: inline;
-      font-size: 10px;
-      width: 100%;
-      line-height: 1;
-      color: rgba(0, 0, 0, 0.8);
-      content: "\25BC";
-      position: absolute;
-      text-align: center;
-      }
-
-      Style northward tooltips differently 
-      .d3-tip.n:after {
-      margin: -1px 0 0 0;
-      top: 100%;
-      left: 0;
-      }
-      */
-
-
-    </style>
-
+    <link href="css/tradeviz.css" rel="stylesheet">
   </head>
 
   <body>
-        <!-- <div class="country_selector"> -->
+    <div class="country_selector">
       <select id="country-list" name="country-list">
         <option value="Albania">Albania</option>
         <option value="Algeria">Algeria</option>
@@ -238,7 +130,7 @@
         <option value="Zambia">Zambia</option>
         <option value="Zimbabwe">Zimbabwe</option>
       </select>
-    <!-- </div> -->
+    </div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
@@ -248,8 +140,10 @@
             height = 550 - margin.top - margin.bottom,
             padding = 3;
 
+      //associative array for coloring the regions
       var region_color = { "Americas" : "orange", "Oceania" : "blue", "Africa" : "green", "Asia" : "red", "Europe" : "purple" };
 
+      //for converting the datetime object coming out of the time slider
       var date_position_array = {201001: 0, 201002: 1, 201003: 2, 201004: 3, 201005: 4, 201006: 5, 201007: 6, 201008: 7, 201009: 8, 201010: 9, 201011: 10, 201012: 11, 201101: 12, 201102: 13, 201103: 14, 201104: 15, 201105: 16, 201106: 17, 201107: 18, 201108: 19, 201109: 20, 201110: 21, 201111: 22, 201112: 23, 201201: 24, 201202: 25, 201203: 26, 201204: 27, 201205: 28, 201206: 29, 201207: 30, 201208: 31, 201209: 32, 201210: 33, 201211: 34, 201212: 35, 201301: 36, 201302: 37, 201303: 38, 201304: 39, 201305: 40, 201306: 41, 201307: 42, 201308: 43, 201309: 44, 201310: 45, 201311: 46, 201312: 47};
 
       var projection = d3.geo.mercator()
@@ -268,18 +162,18 @@
           .attr("height", height);
     
       //global variables for checking data types
-      var global_country_sum;
-      var global_country_data;
-      var global_sum_min;
-      var global_sum_max;
+      // var global_country_sum;
+      // var global_country_data;
+      // var global_sum_min;
+      // var global_sum_max;
 
-      var centroid_data;
-      function set_centroid_data() {
-        d3.csv("data/reporters_centroid.csv", function(data){
-          centroid_data = data;
-        }
-        )};
-      set_centroid_data();
+      var centroid_data_path = "data/reporters_centroid.csv";
+      // function set_centroid_data() {
+      //   d3.csv(, function(data){
+      //     centroid_data = data;
+      //   }
+      //   )};
+      // set_centroid_data();
 
       var range_min;
       var range_max;
@@ -299,9 +193,7 @@
        update_sum();
       };
 
-   
-
-
+      //draw base map
       function display_map() {  
        d3.json(mapFilename, function(error, world) {
         svg.insert("path", ".graticule")
@@ -319,8 +211,9 @@
         })
       } //end function display_map
 
-      display_map();
+      display_map(); //call map function to draw the base map
 
+      //display the circles and scale radius based on sum for the first time
       function display_sum() {
         d3.json(jsonFilename, function(error, country_data) {
           
@@ -329,13 +222,13 @@
             if (country_data[i].partner_country != "undefined") {
               country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight.slice(slice_start,slice_end));
             }
-          } //still generating some random undefined value (total sum?)
+          }
 
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
-          global_sum_min = sum_min;
-          global_sum_max = sum_max;
+          // global_sum_min = sum_min;
+          // global_sum_max = sum_max;
 
           var rScale = d3.scale
                       .linear()
@@ -343,8 +236,8 @@
                       .range([2,50]);
 
           //assign local variables to global variables in order to debug
-          global_country_data = country_data;
-          global_country_sum = country_sum;
+          // global_country_data = country_data;
+          // global_country_sum = country_sum;
 
           display_country_circles(country_sum,rScale);
           draw_legend(rScale, sum_max, sum_min);
@@ -352,6 +245,7 @@
 
       } //end function display_sum
 
+      //subsequent updates to the circles only changing radius, updating the tooltip, and rescaling the leged
       function update_sum() {
           d3.json(jsonFilename, function(error, country_data) {
           
@@ -365,8 +259,8 @@
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
-          global_sum_min = sum_min;
-          global_sum_max = sum_max;
+          // global_sum_min = sum_min;
+          // global_sum_max = sum_max;
 
           var rScale = d3.scale
                       .linear()
@@ -374,17 +268,17 @@
                       .range([2,50]);
 
           //assign local variables to global variables in order to debug
-          global_country_data = country_data;
-          global_country_sum = country_sum;
+          // global_country_data = country_data;
+          // global_country_sum = country_sum;
 
-          d3.csv("data/reporters_centroid.csv", function(data){
+          d3.csv(centroid_data_path, function(data){
             var tip = d3.tip()
                       .attr("class", "d3-tip")
                       .html(function(d) { 
                         if (country_sum[d.country] != undefined){
                           return d.country + "</br>" + country_sum[d.country] + "kg"; 
                         };
-                      }); // not sure what 
+                      });
 
             svg.selectAll("circle.country")
                 .data(data)
@@ -395,8 +289,8 @@
                     return 0;
                   }
                 })
-                .on('mouseover', tip.show) //tooltip 
-                .on('mouseout', tip.hide); // tooltip 
+                .on('mouseover', tip.show) 
+                .on('mouseout', tip.hide); 
             
             svg.call(tip);
               }); //end of d3.csv
@@ -405,17 +299,18 @@
           });//end json call
       } //end function update_sum
 
+
+      //display the country circles based on passed values and scale
       function display_country_circles(country_sum,rScale) {
-        d3.csv("data/reporters_centroid.csv", function(data){
+        d3.csv(centroid_data_path, function(data){
           var tip = d3.tip()
                       .attr("class", "d3-tip")
                       .html(function(d) { 
                         if (country_sum[d.country] != undefined){
                           return d.country + "</br>" + country_sum[d.country] + "kg"; 
                         };
-                      }); // not sure what                 
+                      });
 
-          // console.log(data);
           svg.selectAll("circle.country")
                   .data(data)
                   .enter()
@@ -439,12 +334,13 @@
                   })
                   .style("opacity",0.6)
                   .on('mouseover', tip.show)
-                  .on('mouseout', tip.hide); //tooltip 
+                  .on('mouseout', tip.hide);
 
-          svg.call(tip);
+          svg.call(tip); //call tooltip function to load
         });//end csv function  
       } //end function display_country_circles
 
+      //initial draw of the legend
       function draw_legend(rScale, sum_max, sum_min) {
         var sum_avg = (sum_max + sum_min) / 2;
 
@@ -524,8 +420,9 @@
                   return " 10M "; //rScale(1000); //10^3
                 }
               });
-      } //function draw_legend
+      } //end function draw_legend
 
+      //update the legend when updating the graph
       function update_legend(rScale, sum_max, sum_min) {
         var sum_avg = (sum_max + sum_min) / 2;
 
@@ -601,23 +498,25 @@
 
       var dropdown = d3.select("#country-list"); //listener for change in menu options
 
+      //handles change of the country based on the dropdown menu values
       function change () {
-        var country = d3.event.target.value;
-        country = country.toLowerCase();
+        var country = d3.event.target.value; //get the new value from the dropdown menu
+        country = country.toLowerCase(); //reformat the value
 
 
-        jsonFilename = "data/country_json/" + country + ".json";
-        slice_start = 0;
-        slice_end = 48;
-        // console.log(jsonFilename);
+        jsonFilename = "data/country_json/" + country + ".json"; //concatenate the json name and bind to global variable
+        
+        //reset the length of time displayed on the dorling to the full 48 months
+        slice_start = 0; 
+        slice_end = 48; 
+
         update_sum(); //rerun the draw on update
-        line_draw();
+        line_draw(); //redraw the line graphs for the new country
       } //end function change
 
       dropdown.on("change", change); //event listener
 
       //______Start Line Graph Code 
-
       function line_draw() {
         d3.json(jsonFilename, function(error, data){
           d3.selectAll("#line_graph").remove().transition(); //Transition so that it redraws graph in same place
@@ -680,7 +579,12 @@
           //line for each partner country
           svg.selectAll("line.partner").data(data).enter()
                               .append("path")
-                              .attr("d", function(d) {if (d.partner_country != undefined) { console.log("I'm in the draw function"); return line(d.net_weight);};})   
+                              .attr("d", function(d) {
+                                if (d.partner_country != undefined) { 
+                                  // console.log("I'm in the draw function"); 
+                                  return line(d.net_weight);
+                                };
+                              })   
                               .attr("class","partner")
                               .attr("id",function(d){
                                 if (d.partner_country != undefined) {
@@ -759,156 +663,10 @@
 
         }); //end json
       } //end function line_draw
-      line_draw();
-
-
-
-//       function line_draw() {
-//         d3.json(jsonFilename, function(error, data){
-//          d3.selectAll("line.partner").remove().transition(); //Transition so that it redraws graph in same place 
-//          console.log("I'm in the redraw!");
-//          console.log(jsonFilename);
-
-//           var margin = {top: 15, right: 14, bottom: 50, left: 125},
-//               width = 960 - margin.left - margin.right,
-//               height = 500 - margin.top - margin.bottom;
-
-//           var x = d3.time.scale()
-//               .domain([new Date(2009, 11) , new Date(2013, 11)])
-//               .range([0, width]);
-
-//           var brush = d3.svg.brush()
-//               .x(x)
-//               .on("brushend", brushended);
-
-//           var svg = d3.select("body").append("svg").attr("id","line_graph")
-//               .attr("class","line_chart")
-//               .attr("width", width + margin.left + margin.right)
-//               .attr("height", height + margin.top + margin.bottom)
-//             .append("g")
-//               .attr("class","whole")
-//               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-//           //Line Graph vars
-//           //some type of if function here to adjust the input if it is weight of value input
-//           var max = d3.max(d3.max(data, function(d){ if (d.partner_country == undefined){return d.net_weight;};}));
-
-//         //Y-Scale Function Defined based on max 
-//           var yScale = d3.scale
-//                         .linear()
-//                         .domain([0,max]).nice() //.nice to round up! 
-//                         .range([height,0]);
-
-//         //Create the array for x date values: 
-//          date_range = [new Date(2009, 12), new Date(2010, 1), new Date(2010, 2), new Date(2010, 3), new Date(2010, 4), new Date(2010, 5), new Date(2010, 6), new Date(2010, 7), new Date(2010, 8), new Date(2010, 9), new Date(2010, 10), new Date(2010, 11), new Date(2010, 12), new Date(2011, 1), new Date(2011, 2), new Date(2011, 3), new Date(2011, 4), new Date(2011, 5), new Date(2011, 6), new Date(2011, 7), new Date(2011, 8), new Date(2011, 9), new Date(2011, 10), new Date(2011, 11), new Date(2011, 12),new Date(2012, 1), new Date(2012, 2), new Date(2012, 3), new Date(2012, 4), new Date(2012, 5), new Date(2012, 6), new Date(2012, 7), new Date(2012, 8), new Date(2012, 9), new Date(2012, 10), new Date(2012, 11), new Date(2012, 12),new Date(2013, 1), new Date(2013, 2), new Date(2013, 3), new Date(2013, 4), new Date(2013, 5), new Date(2013, 6), new Date(2013, 7), new Date(2013, 8), new Date(2013, 9), new Date(2013, 10), new Date(2013, 11)]  ;
-   
-
-//           //Grid lines
-//           svg.append("g")
-//               .attr("class", "x grid")
-//               .attr("transform", "translate(0," + height + ")")
-//               .call(d3.svg.axis()
-//                   .scale(x)
-//                   .orient("bottom")
-//                   .ticks(d3.time.month)
-//                   .tickSize(-height)
-//                   .tickFormat(""))
-
-//           svg.append("g")
-//               .attr("class", "y grid")
-//               .call(d3.svg.axis()
-//                   .scale(yScale)
-//                   .orient("left")
-//                   .tickSize(-width)
-//                   .tickFormat(""));
-
-//                //Drawing the line function + call
-//           var line = d3.svg.line().x(function(d,i) { return x(date_range[i]); })
-//                             .y(function(d) {  return yScale(d); });
-          
-//           //line for each partner country
-//           svg.selectAll("line.partner").data(data).enter()
-//                               .append("path")
-//                               .attr("d", function(d) {if (d.partner_country != undefined) { console.log("I'm in the draw function"); return line(d.net_weight);};})   
-//                               .attr("class","partner")
-//                               .attr("id",function(d){
-//                                 if (d.partner_country != undefined) {
-//                                   return d.partner_country;
-//                                 };
-//                               })
-//                               .attr("stroke", "gray")
-//                               .attr("stroke-width", 1)
-//                               .attr("fill", "none");
-
-//          //Aggregate line for reporting country -> still draws lots of unnecessary lines
-//           svg.selectAll("line.reporter").data(data).enter()
-//                              .append("path")
-//                              .attr("d", function(d) {
-//                                 if (d.reporting_country) {
-//                                   return line(d.net_weight);
-//                                 };
-//                               })   
-//                              .attr("class","reporter")
-//                              .attr("stroke", "red")
-//                              .attr("stroke-width", 1)
-//                              .attr("fill", "none");
-
-
-//           //y-axis
-//           var yAxis = d3.svg.axis();
-//           yAxis.scale(yScale).orient("left").ticks(10);
-//           svg.append("g").attr("class","y axis")
-//               .attr("transform", "translate(" - margin.right + ",0)").call(yAxis);
-
-//           //x-axis
-//           svg.append("g")
-//               .attr("class", "x axis")
-//               .attr("transform", "translate(0," + height + ")")
-//               .call(d3.svg.axis()
-//                 .scale(x)
-//                 .orient("bottom")
-//                 .ticks(d3.time.month,2)
-//                 .tickFormat(d3.time.format("%m/%y"))
-//                 .tickPadding(0))
-//             .selectAll("text")
-//               .attr("x", -15)
-//               .style("text-anchor", null);
-
-//           //Highlight brushed area
-//           var gBrush = svg.append("g")
-//               .attr("class", "brush")
-//               .call(brush)
-//               .call(brush.event);
-
-//           gBrush.selectAll("rect")
-//               .attr("height", height);
-
-//           //Brushing function with snapping
-//           function brushended() {
-//             if (!d3.event.sourceEvent) return; // only transition after input
-//             var extent0 = brush.extent(),
-//                 extent1 = extent0.map(d3.time.month.round);
-       
-//                  // if empty when rounded, use floor & ceil instead
-//                  if (extent1[0] >= extent1[1]) {
-//                         extent1[0] = d3.time.month.floor(extent0[0]);
-//                         extent1[1] = d3.time.month.ceil(extent0[1]);       
-//                           };
-//            range_min = extent1[0];
-//            range_max = extent1[1];
-
-//             change_date_range();
-
-
-//             d3.select(this).transition()
-//                .call(brush.extent(extent1))
-//                .call(brush.event);          
-//         };
-//    }); 
-// } //end function line_draw
-console.log("I'm after the redraw");
-
 //______End Line Graph Code 
+
+
+      line_draw(); //draw the lines
 
     </script>
 

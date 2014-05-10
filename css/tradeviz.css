@@ -1,0 +1,109 @@
+/*CSS styling for TradeViz*/
+
+
+svg.dorling,
+svg.line_chart {
+  margin-left:1.5em;
+  margin-top:1em;
+}
+
+.axis text {
+  font: 11px sans-serif;
+}
+
+.axis path {
+  display: none;
+}
+
+.axis line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.grid line,
+.grid path {
+  fill: none;
+  stroke: #C0C0C0;
+  shape-rendering: crispEdges;
+}
+
+.grid .minor.tick line {
+  stroke-opacity: .5;
+}
+
+.brush .extent {
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-opacity: .5;
+  stroke-width: .5px;
+}
+
+.land {
+  fill: #E6E6E6;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+  }
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+  }
+
+rect:hover {
+  fill:orange;
+}
+
+.brush .extent {
+stroke: #fff;
+fill-opacity: .125;
+shape-rendering: crispEdges;
+}
+/* tooltip */
+.d3-tip {
+line-height: 1;
+font-weight: bold;
+padding: 12px;
+background: rgba(0, 0, 0, 0.8);
+color: #fff;
+border-radius: 2px;
+}
+
+div.country_selector {
+  float:right;
+}
+/* Creates a small triangle extender for the tooltip 
+.d3-tip:after {
+box-sizing: border-box;
+display: inline;
+font-size: 10px;
+width: 100%;
+line-height: 1;
+color: rgba(0, 0, 0, 0.8);
+content: "\25BC";
+position: absolute;
+text-align: center;
+}
+
+Style northward tooltips differently 
+.d3-tip.n:after {
+margin: -1px 0 0 0;
+top: 100%;
+left: 0;
+}
+*/

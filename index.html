@@ -137,7 +137,7 @@
     <script type="text/javascript">
       var margin = {top: 0, right: 0, bottom: 0, left: 0},
             width = 800 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom,
+            height = 425 - margin.top - margin.bottom,
             padding = 3;
 
       //associative array for coloring the regions
@@ -177,6 +177,9 @@
 
       var range_min;
       var range_max;
+
+      var rScale_min = 1.5;
+      var rScale_max = 40;
 
       var mapFilename = "data/world-50m.json";
       var jsonFilename = "data/country_json/albania.json";
@@ -233,7 +236,7 @@
           var rScale = d3.scale
                       .linear()
                       .domain([sum_min,sum_max]) //.nice to round up! 
-                      .range([2,50]);
+                      .range([rScale_min,rScale_max]);
 
           //assign local variables to global variables in order to debug
           // global_country_data = country_data;
@@ -265,7 +268,7 @@
           var rScale = d3.scale
                       .linear()
                       .domain([sum_min,sum_max]) //.nice to round up! 
-                      .range([2,50]);
+                      .range([rScale_min,rScale_max]);
 
           //assign local variables to global variables in order to debug
           // global_country_data = country_data;
@@ -622,11 +625,16 @@
                 .scale(x)
                 .orient("bottom")
                 .ticks(d3.time.month,2)
-                .tickFormat(d3.time.format("%m/%y"))
+                .tickFormat(d3.time.format("%b %Y"))
                 .tickPadding(0))
             .selectAll("text")
-              .attr("x", -15)
-              .style("text-anchor", null);
+              .attr("x", -1)
+              .style("text-anchor", "end")
+              .attr("dx", "-.8em")
+              .attr("dy", ".15em")
+              .attr("transform", function(d) {
+                  return "rotate(-45)" 
+                });
 
           //Highlight brushed area
           var gBrush = svg.append("g")

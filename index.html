@@ -160,10 +160,10 @@
           .attr("height", height);
     
       //global variables for checking data types
-      var global_country_sum;
-      var global_country_data;
-      var global_sum_min;
-      var global_sum_max;
+      // var global_country_sum;
+      // var global_country_data;
+      // var global_sum_min;
+      // var global_sum_max;
 
       var centroid_data;
       function set_centroid_data() {
@@ -191,9 +191,7 @@
        update_sum();
       };
 
-   
-
-
+      //draw base map
       function display_map() {  
        d3.json(mapFilename, function(error, world) {
         svg.insert("path", ".graticule")
@@ -211,8 +209,9 @@
         })
       } //end function display_map
 
-      display_map();
+      display_map(); //call map function to draw the base map
 
+      //display the circles and scale radius based on sum
       function display_sum() {
         d3.json(jsonFilename, function(error, country_data) {
           
@@ -221,13 +220,13 @@
             if (country_data[i].partner_country != "undefined") {
               country_sum[country_data[i].partner_country] = d3.sum(country_data[i].net_weight.slice(slice_start,slice_end));
             }
-          } //still generating some random undefined value (total sum?)
+          }
 
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
-          global_sum_min = sum_min;
-          global_sum_max = sum_max;
+          // global_sum_min = sum_min;
+          // global_sum_max = sum_max;
 
           var rScale = d3.scale
                       .linear()
@@ -235,8 +234,8 @@
                       .range([2,50]);
 
           //assign local variables to global variables in order to debug
-          global_country_data = country_data;
-          global_country_sum = country_sum;
+          // global_country_data = country_data;
+          // global_country_sum = country_sum;
 
           display_country_circles(country_sum,rScale);
           draw_legend(rScale, sum_max, sum_min);
@@ -257,8 +256,8 @@
           var sum_min = Math.sqrt(d3.min(d3.values(country_sum)));
           var sum_max = Math.sqrt(d3.max(d3.values(country_sum)));
 
-          global_sum_min = sum_min;
-          global_sum_max = sum_max;
+          // global_sum_min = sum_min;
+          // global_sum_max = sum_max;
 
           var rScale = d3.scale
                       .linear()
@@ -266,8 +265,8 @@
                       .range([2,50]);
 
           //assign local variables to global variables in order to debug
-          global_country_data = country_data;
-          global_country_sum = country_sum;
+          // global_country_data = country_data;
+          // global_country_sum = country_sum;
 
           d3.csv("data/reporters_centroid.csv", function(data){
             var tip = d3.tip()

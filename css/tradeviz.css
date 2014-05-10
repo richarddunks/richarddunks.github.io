@@ -87,6 +87,10 @@ border-radius: 2px;
 div.right-sidebar {
   float:right;
 }
+
+p.selected {
+  font-weight:bold;
+}
 /* Creates a small triangle extender for the tooltip 
 .d3-tip:after {
 box-sizing: border-box;

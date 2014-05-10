@@ -19,7 +19,7 @@
   <body>
     <div class="right-sidebar">
       <div class="weight-value-selector">
-        <p id="weight">Net Weight (kg)</p>
+        <p class="selected" id="weight">Net Weight (kg)</p>
         <p id="value">Value</p>
       </div>
       <div class="country-selector">
@@ -725,6 +725,15 @@
       select_weight.on("click",function(){
         // alert("you selected weight");
         net_weight_flag = true;
+
+        //remove the old selected tag
+        d3.select("p.selected")
+        .attr("class",null);
+
+        //make the text bold
+        d3.select("p#weight")
+          .attr("class","selected");
+
         // console.log(net_weight_flag);
         update_sum();
       });
@@ -732,6 +741,12 @@
       select_value.on("click",function() {
         // alert("you selected value");
         net_weight_flag = false;
+  
+        d3.select("p.selected")
+          .attr("class",null);
+
+        d3.select("p#value")
+          .attr("class","selected");
         // console.log(net_weight_flag);
         update_sum();
       });

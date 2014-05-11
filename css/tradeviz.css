@@ -1,6 +1,4 @@
 /*CSS styling for TradeViz*/
-
-
 svg.dorling,
 svg.line_chart {
   margin-left:1.5em;
@@ -88,9 +86,22 @@ div.right-sidebar {
   float:right;
 }
 
-p.selected {
+div.selected {
   font-weight:bold;
 }
+
+div.right-sidebar{
+  margin:1.5em;
+}
+
+div#weight {
+  float:left;
+}
+
+div#value {
+  float:right;
+}
+
 /* Creates a small triangle extender for the tooltip 
 .d3-tip:after {
 box-sizing: border-box;

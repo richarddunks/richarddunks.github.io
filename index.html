@@ -19,8 +19,8 @@
   <body>
     <div class="right-sidebar">
       <div class="weight-value-selector">
-        <p class="selected" id="weight">Net Weight (kg)</p>
-        <p id="value">Value</p>
+        <div class="selected" id="weight">Net Weight (kg)</div>
+        <div id="value">Value</div>
       </div>
       <div class="country-selector">
         <select id="country-list" name="country-list">
@@ -718,8 +718,8 @@
       //   console.log(net_weight_flag);
       // }
 
-      var select_weight = d3.select("p#weight"); //listener for net_weight
-      var select_value = d3.select("p#value"); //listener for value
+      var select_weight = d3.select("div#weight"); //listener for net_weight
+      var select_value = d3.select("div#value"); //listener for value
 
       
       select_weight.on("click",function(){
@@ -727,11 +727,11 @@
         net_weight_flag = true;
 
         //remove the old selected tag
-        d3.select("p.selected")
+        d3.select("div.selected")
         .attr("class",null);
 
         //make the text bold
-        d3.select("p#weight")
+        d3.select("div#weight")
           .attr("class","selected");
 
         // console.log(net_weight_flag);
@@ -742,10 +742,10 @@
         // alert("you selected value");
         net_weight_flag = false;
   
-        d3.select("p.selected")
+        d3.select("div.selected")
           .attr("class",null);
 
-        d3.select("p#value")
+        d3.select("div#value")
           .attr("class","selected");
         // console.log(net_weight_flag);
         update_sum();

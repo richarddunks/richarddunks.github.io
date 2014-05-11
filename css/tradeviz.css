@@ -61,38 +61,38 @@ svg.line_chart {
 .axis text {
   font-family: sans-serif;
   font-size: 11px;
-  }
+}
 
 rect:hover {
   fill:orange;
 }
 
 .brush .extent {
-stroke: #fff;
-fill-opacity: .125;
-shape-rendering: crispEdges;
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
 }
 /* tooltip */
 .d3-tip {
-line-height: 1;
-font-weight: bold;
-padding: 12px;
-background: rgba(0, 0, 0, 0.8);
-color: #fff;
-border-radius: 2px;
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
 }
 
 div.right-sidebar {
   float:right;
+  margin:1em;
+  width:525px;
+  margin-right:1.5em;
 }
 
-div.selected {
+.selected {
   font-weight:bold;
 }
 
-div.right-sidebar{
-  margin:1.5em;
-}
 
 div#weight {
   float:left;
@@ -101,6 +101,16 @@ div#weight {
 div#value {
   float:right;
 }
+
+.country-name {
+  float:left;
+ }
+
+text {
+  font-size: 10px;
+  /*background-color: none;*/
+}
+
 
 /* Creates a small triangle extender for the tooltip 
 .d3-tip:after {

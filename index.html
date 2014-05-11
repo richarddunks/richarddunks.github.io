@@ -18,10 +18,13 @@
 
   <body>
     <div class="right-sidebar">
-      <div class="weight-value-selector">
-        <div class="selected" id="weight">Net Weight (kg)</div>
-        <div id="value">Value</div>
-      </div>
+      <span class="header">
+        <div class="weight-value-selector">
+          <div class="selected" id="weight">Net Weight (kg)</div>
+          <div id="value">Value</div>
+        </div>
+      </span>
+<!--       
       <div class="country-selector">
         <select id="country-list" name="country-list">
           <option value="Albania">Albania</option>
@@ -136,6 +139,8 @@
           <option value="Zimbabwe">Zimbabwe</option>
         </select>
       </div>
+ -->
+    <div id="sparklines"></div>
     </div>
     <div id="dorling"></div>
     <div id="line_graph"></div>
@@ -174,6 +179,8 @@
       // var global_country_data;
       // var global_sum_min;
       // var global_sum_max;
+      var global_sparkline_data;
+      var global_countries_sum;
 
       var centroid_data_path = "data/reporters_centroid.csv";
       // function set_centroid_data() {
@@ -205,6 +212,79 @@
        // svg.selectAll("circle.country")
        update_sum();
       };
+
+      function draw_sparklines() {
+
+
+        var sl_width = 175;
+        var sl_height = 19;
+        // var x = d3.scale.linear().domain([0,47]).range([0, sl_width]);
+        // var y = d3.scale.linear().range([sl_height, 0]);
+        // var line = d3.svg.line()
+        //                   .x(function(d,i) {
+        //                     return x(i);
+        //                   })
+        //                  .y(function(d) { 
+        //                     return y(d.net_weight); 
+        //                   });
+
+        // function sparkline(elemId, data) {
+        //     // data.forEach(function(d) {
+        //     //   d.date = parseDate(d.Date);
+        //     //   d.close = +d.Close;
+        //     // });
+            
+        //     // x.domain(48);
+            
+        //     y.domain(d3.extent(data, function(d) { return d.net_weight; }));
+
+        //     d3.select(elemId)
+        //       .append('svg')
+        //       .attr('width', sl_width)
+        //       .attr('height', sl_height)
+        //       .append('path')
+        //       .datum(data)
+        //       .attr('class', 'sparkline')
+        //       .attr('d', line);
+        // } //end function sparkline
+
+
+        d3.json("data/country_sparkline.json",function(sparkline_data) {
+          global_sparkline_data = sparkline_data;
+          countries_sum = {};
+          for (i = 0, len = sparkline_data.length; i < len; i++ ) {
+            countries_sum[sparkline_data[i].country_name] = sparkline_data[i].net_weight;
+          }
+          global_countries_sum = countries_sum;
+
+          var sl = d3.select("div#sparklines")
+                        .selectAll("svg")
+                        .data(sparkline_data)
+                        .enter()
+                        .append("svg")
+                        .attr("class","country-name")
+                        .attr("width",sl_width)
+                        .attr("height",sl_height)
+                        .append("text")
+                        .text(function(d){
+                            return d.country_name;
+                        });
+                        
+          var text_labels = d3.selectAll("text")
+                              .attr("x",0)
+                              .attr("y",sl_height-5)
+                              .attr("class","country-list")
+                              .attr("value",function(d){
+                                  return d.country_name;
+                              });
+
+
+
+          // draw_sparklines('div#sparklines',countries_sum);
+        });
+      } //end function draw_sparklines
+
+      draw_sparklines();
 
       //draw base map
       function display_map() {  
@@ -524,7 +604,7 @@
       function change () {
         var country = d3.event.target.value; //get the new value from the dropdown menu
         country = country.toLowerCase(); //reformat the value
-
+        alert("you clicked " + country)
 
         jsonFilename = "data/country_json/" + country + ".json"; //concatenate the json name and bind to global variable
         
@@ -536,7 +616,7 @@
         line_draw(); //redraw the line graphs for the new country
       } //end function change
 
-      dropdown.on("change", change); //event listener
+      dropdown.on("click", change); //event listener
 
       
 

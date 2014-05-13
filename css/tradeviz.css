@@ -95,6 +95,8 @@ span.header {
 
 .selected {
   font-weight:bold;
+  color:#000;
+  background-color: #E6E6E6;
 }
 
 
@@ -114,7 +116,11 @@ div#value {
 
 text {
   font-size: 10px;
+  color:#e6e6e6;
   /*background-color: none;*/
+}
+text.selected{
+  font-size: 12px;
 }
 
 

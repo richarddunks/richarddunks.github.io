@@ -89,6 +89,10 @@ div.right-sidebar {
   margin-right:1.5em;
 }
 
+span.header {
+  width:520px;
+}
+
 .selected {
   font-weight:bold;
 }
@@ -96,10 +100,12 @@ div.right-sidebar {
 
 div#weight {
   float:left;
+  width:260px;
 }
 
 div#value {
   float:right;
+  width:260px;
 }
 
 .country-name {

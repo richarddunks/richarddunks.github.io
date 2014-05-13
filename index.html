@@ -99,39 +99,8 @@
 
       function draw_sparklines() {
 
-
         var sl_width = 175;
         var sl_height = 19;
-        // var x = d3.scale.linear().domain([0,47]).range([0, sl_width]);
-        // var y = d3.scale.linear().range([sl_height, 0]);
-        // var line = d3.svg.line()
-        //                   .x(function(d,i) {
-        //                     return x(i);
-        //                   })
-        //                  .y(function(d) { 
-        //                     return y(d.net_weight); 
-        //                   });
-
-        // function sparkline(elemId, data) {
-        //     // data.forEach(function(d) {
-        //     //   d.date = parseDate(d.Date);
-        //     //   d.close = +d.Close;
-        //     // });
-            
-        //     // x.domain(48);
-            
-        //     y.domain(d3.extent(data, function(d) { return d.net_weight; }));
-
-        //     d3.select(elemId)
-        //       .append('svg')
-        //       .attr('width', sl_width)
-        //       .attr('height', sl_height)
-        //       .append('path')
-        //       .datum(data)
-        //       .attr('class', 'sparkline')
-        //       .attr('d', line);
-        // } //end function sparkline
-
 
         d3.json("data/country_sparkline.json",function(sparkline_data) {
           global_sparkline_data = sparkline_data;
@@ -174,7 +143,8 @@
                                   return d.country_name;
                               });
 
-
+          var albania_selected = d3.select("text.country-list")
+                                  .attr("class","selected");
 
           // draw_sparklines('div#sparklines',countries_sum);
         });
@@ -529,7 +499,20 @@
 
           //Line Graph vars
           //some type of if function here to adjust the input if it is weight of value input
-          var max = d3.max(d3.max(data, function(d){ if (d.partner_country == undefined){return d.net_weight;};}));
+          //based on net_weight_flag
+          var max = d3.max(
+            d3.max(
+              data, function(d){ 
+                if (d.partner_country == undefined){
+                  if(net_weight_flag == true){
+                    return d.net_weight;
+                  } else {
+                    return d.usd_value;
+                  };
+                };
+              }
+            )
+          );
 
           //Y-Scale Function Defined based on max 
           var yScale = d3.scale
@@ -568,7 +551,11 @@
                               .attr("d", function(d) {
                                 if (d.partner_country != undefined) { 
                                   // console.log("I'm in the draw function"); 
-                                  return line(d.net_weight);
+                                  if(net_weight_flag == true){
+                                    return line(d.net_weight);
+                                  } else {
+                                    return line(d.usd_value);
+                                  };
                                 };
                               })   
                               .attr("class","partner")
@@ -586,7 +573,11 @@
                              .append("path")
                              .attr("d", function(d) {
                                 if (d.reporting_country) {
-                                  return line(d.net_weight);
+                                  if(net_weight_flag == true){
+                                    return line(d.net_weight);
+                                  } else {
+                                    return line(d.usd_value);
+                                  };
                                 };
                               })   
                              .attr("class","reporter")

@@ -87,6 +87,14 @@
       var slice_start = 0;
       var slice_end = 48;
 
+      function numberWithCommas(x) {
+          x = x.toString();
+          var pattern = /(-?\d+)(\d{3})/;
+          while (pattern.test(x))
+              x = x.replace(pattern, "$1,$2");
+          return x;
+      }
+
       // var brush_change = d3.select("#extent");
 
       //reset the slice_start and slice_end with values from brush
@@ -244,7 +252,7 @@
                       .attr("class", "d3-tip")
                       .html(function(d) { 
                         if (country_sum[d.country] != undefined){
-                          return d.country + "</br>" + country_sum[d.country] + "kg"; 
+                          return d.country + "</br>" + numberWithCommas(country_sum[d.country]) + (net_weight_flag==true ? " kg" : " USD"); 
                         };
                       });
 
@@ -275,7 +283,7 @@
                       .attr("class", "d3-tip")
                       .html(function(d) { 
                         if (country_sum[d.country] != undefined){
-                          return d.country + "</br>" + country_sum[d.country] + "kg"; 
+                          return d.country + "</br>" + numberWithCommas(country_sum[d.country]) + (net_weight_flag==true ? " kg" : " USD");  
                         };
                       });
 

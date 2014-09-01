@@ -51,6 +51,12 @@ svg.line_chart {
   stroke-width: 1px;
 }
 
+.countries {
+  fill: #E6E6E6;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
 .axis path,
 .axis line {
   fill: none;

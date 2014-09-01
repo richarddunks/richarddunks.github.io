@@ -30,6 +30,7 @@
     <div id="line_graph"></div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
     <script type="text/javascript">
       var margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -63,8 +64,12 @@
       // var global_country_data;
       // var global_sum_min;
       // var global_sum_max;
+      var global_data;
       var global_sparkline_data;
       var global_countries_sum;
+
+      var color = d3.scale.category10(); //to test the json color example
+
 
       var centroid_data_path = "data/reporters_centroid.csv";
       // function set_centroid_data() {
@@ -162,10 +167,32 @@
 
       //draw base map
       function display_map() {  
+
        d3.json(mapFilename, function(error, world) {
-        svg.insert("path", ".graticule")
-            .datum(topojson.feature(world, world.objects.land))
+        // global_data = world.objects.countries;
+        // svg.insert("path", ".graticule")
+        //     .datum(topojson.feature(world, world.objects.land))
+        //     .attr("class", "land")
+        //     .attr("d", path);
+
+        // svg.insert("path", ".graticule")
+        //     .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+        //     .attr("class", "boundary")
+        //     .attr("d", path);
+
+        //Based on http://bl.ocks.org/mbostock/4180634
+        var countries = topojson.feature(world, world.objects.countries).features,
+            neighbors = topojson.neighbors(world.objects.countries.geometries);
+        global_data = countries;
+
+        svg.selectAll(".country")
+            .data(countries)
+            .enter()
+            .insert("path", ".graticule")
             .attr("class", "land")
+            // .attr("id",function(d){
+            //   return names[d.id];
+            // })
             .attr("d", path);
 
         svg.insert("path", ".graticule")
@@ -173,9 +200,14 @@
             .attr("class", "boundary")
             .attr("d", path);
 
+
+
+        }) //end d3.json
+
+
         display_sum();
 
-        })
+
       } //end function display_map
 
       display_map(); //call map function to draw the base map

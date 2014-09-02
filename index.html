@@ -192,23 +192,13 @@
             .data(countries)
             .enter()
             .insert("path", ".graticule")
-            .attr("class", function(d){
-              if (country_name_array[d.id] == current_country){
-                return "land_select";
-              } else {
-                return "land";
-              }
-            })
+            .attr("class", "land")
             .attr("id",function(d){
               return country_name_array[d.id];
             })
-            .attr("d", path)
-            // .attr("fill", function(d){
-            //   if (country_name_array[d.id] == current_country){
-            //     return "red";
-            //   }
-            // })
-            ;
+            .attr("d", path);
+
+        color_select_country();
 
         svg.insert("path", ".graticule")
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
@@ -222,6 +212,20 @@
 
 
       } //end function display_map
+
+      //highlight the selected country
+      function color_select_country(){
+        svg.selectAll("path.land")
+            .attr("fill", function(d){
+              if (country_name_array[d.id] == current_country){
+                return "red";
+              } else {
+                return "#E6E6E6";
+              }
+            })
+
+      } //end function color_select_country
+
 
       display_map(); //call map function to draw the base map
 
@@ -517,13 +521,6 @@
 
       } //end function update_legend
 
-      // //highlight the selected country
-      // function color_select_country(){
-      //   svg.selectAll("path.land")
-      //     .attr("fill", function(){
-      //       if 
-      //     })
-      // }
 
       //______Start Line Graph Code 
       function line_draw() {
@@ -762,6 +759,7 @@
 
         jsonFilename = "data/country_json/" + country_file + ".json"; //concatenate the json name and bind to global variable
         current_country = country;
+        color_select_country();
         
         //reset the length of time displayed on the dorling to the full 48 months
         slice_start = 0; 

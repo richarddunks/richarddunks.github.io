@@ -41,14 +41,14 @@ svg.line_chart {
   stroke-width: .5px;
 }
 
-.land {
+/*.land {
   fill: #E6E6E6;
 }
 
 .land_select {
   fill: red;
 }
-
+*/
 .boundary {
   fill: none;
   stroke: #fff;

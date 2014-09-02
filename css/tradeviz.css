@@ -41,12 +41,22 @@ svg.line_chart {
   stroke-width: .5px;
 }
 
-.land {
+/*.land {
   fill: #E6E6E6;
 }
 
+.land_select {
+  fill: red;
+}
+*/
 .boundary {
   fill: none;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.countries {
+  fill: #E6E6E6;
   stroke: #fff;
   stroke-width: 1px;
 }

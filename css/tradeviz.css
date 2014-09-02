@@ -45,6 +45,10 @@ svg.line_chart {
   fill: #E6E6E6;
 }
 
+.land_select {
+  fill: red;
+}
+
 .boundary {
   fill: none;
   stroke: #fff;

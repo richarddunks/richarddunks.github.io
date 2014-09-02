@@ -44,6 +44,8 @@
       //for converting the datetime object coming out of the time slider
       var date_position_array = {201001: 0, 201002: 1, 201003: 2, 201004: 3, 201005: 4, 201006: 5, 201007: 6, 201008: 7, 201009: 8, 201010: 9, 201011: 10, 201012: 11, 201101: 12, 201102: 13, 201103: 14, 201104: 15, 201105: 16, 201106: 17, 201107: 18, 201108: 19, 201109: 20, 201110: 21, 201111: 22, 201112: 23, 201201: 24, 201202: 25, 201203: 26, 201204: 27, 201205: 28, 201206: 29, 201207: 30, 201208: 31, 201209: 32, 201210: 33, 201211: 34, 201212: 35, 201301: 36, 201302: 37, 201303: 38, 201304: 39, 201305: 40, 201306: 41, 201307: 42, 201308: 43, 201309: 44, 201310: 45, 201311: 46, 201312: 47};
 
+      var country_name_array = {4:"afghanistan", 8:"albania", 10:"antarctica", 12:"algeria", 16:"american samoa", 20:"andorra", 24:"angola", 28:"antigua and barbuda", 31:"azerbaijan", 32:"argentina", 36:"australia", 40:"austria", 44:"bahamas", 48:"bahrain", 50:"bangladesh", 51:"armenia", 52:"barbados", 56:"belgium", 60:"bermuda", 64:"bhutan", 68:"bolivia, plurinational state of", 70:"bosnia and herzegovina", 72:"botswana", 74:"bouvet island", 76:"brazil", 84:"belize", 86:"british indian ocean territory", 90:"solomon islands", 92:"virgin islands, british", 96:"brunei darussalam", 100:"bulgaria", 104:"myanmar", 108:"burundi", 112:"belarus", 116:"cambodia", 120:"cameroon", 124:"canada", 132:"cape verde", 136:"cayman islands", 140:"central african republic", 144:"sri lanka", 148:"chad", 152:"chile", 156:"china", 158:"taiwan, province of china", 162:"christmas island", 166:"cocos (keeling) islands", 170:"colombia", 174:"comoros", 175:"mayotte", 178:"congo", 180:"congo, the democratic republic of the", 184:"cook islands", 188:"costa rica", 191:"croatia", 192:"cuba", 196:"cyprus", 203:"czech republic", 204:"benin", 208:"denmark", 212:"dominica", 214:"dominican republic", 218:"ecuador", 222:"el salvador", 226:"equatorial guinea", 231:"ethiopia", 232:"eritrea", 233:"estonia", 234:"faroe islands", 238:"falkland islands (malvinas)", 239:"south georgia and the south sandwich islands", 242:"fiji", 246:"finland", 248:"Åland islands", 250:"france", 254:"french guiana", 258:"french polynesia", 260:"french southern territories", 262:"djibouti", 266:"gabon", 268:"georgia", 270:"gambia", 275:"palestinian territory, occupied", 276:"germany", 288:"ghana", 292:"gibraltar", 296:"kiribati", 300:"greece", 304:"greenland", 308:"grenada", 312:"guadeloupe", 316:"guam", 320:"guatemala", 324:"guinea", 328:"guyana", 332:"haiti", 334:"heard island and mcdonald islands", 336:"holy see (vatican city state)", 340:"honduras", 344:"hong kong", 348:"hungary", 352:"iceland", 356:"india", 360:"indonesia", 364:"iran, islamic republic of", 368:"iraq", 372:"ireland", 376:"israel", 380:"italy", 384:"côte d'ivoire", 388:"jamaica", 392:"japan", 398:"kazakhstan", 400:"jordan", 404:"kenya", 408:"korea, democratic people's republic of", 410:"korea, republic of", 414:"kuwait", 417:"kyrgyzstan", 418:"lao people's democratic republic", 422:"lebanon", 426:"lesotho", 428:"latvia", 430:"liberia", 434:"libya", 438:"liechtenstein", 440:"lithuania", 442:"luxembourg", 446:"macao", 450:"madagascar", 454:"malawi", 458:"malaysia", 462:"maldives", 466:"mali", 470:"malta", 474:"martinique", 478:"mauritania", 480:"mauritius", 484:"mexico", 492:"monaco", 496:"mongolia", 498:"moldova, republic of", 499:"montenegro", 500:"montserrat", 504:"morocco", 508:"mozambique", 512:"oman", 516:"namibia", 520:"nauru", 524:"nepal", 528:"netherlands", 531:"curaçao", 533:"aruba", 534:"sint maarten (dutch part)", 535:"bonaire, sint eustatius and saba", 540:"new caledonia", 548:"vanuatu", 554:"new zealand", 558:"nicaragua", 562:"niger", 566:"nigeria", 570:"niue", 574:"norfolk island", 578:"norway", 580:"northern mariana islands", 581:"united states minor outlying islands", 583:"micronesia, federated states of", 584:"marshall islands", 585:"palau", 586:"pakistan", 591:"panama", 598:"papua new guinea", 600:"paraguay", 604:"peru", 608:"philippines", 612:"pitcairn", 616:"poland", 620:"portugal", 624:"guinea-bissau", 626:"timor-leste", 630:"puerto rico", 634:"qatar", 638:"réunion", 642:"romania", 643:"russian federation", 646:"rwanda", 652:"saint barthélemy", 654:"saint helena, ascension and tristan da cunha", 659:"saint kitts and nevis", 660:"anguilla", 662:"saint lucia", 663:"saint martin (french part)", 666:"saint pierre and miquelon", 670:"saint vincent and the grenadines", 674:"san marino", 678:"sao tome and principe", 682:"saudi arabia", 686:"senegal", 688:"serbia", 690:"seychelles", 694:"sierra leone", 702:"singapore", 703:"slovakia", 704:"viet nam", 705:"slovenia", 706:"somalia", 710:"south africa", 716:"zimbabwe", 724:"spain", 728:"south sudan", 729:"sudan", 732:"western sahara", 740:"suriname", 744:"svalbard and jan mayen", 748:"swaziland", 752:"sweden", 756:"switzerland", 760:"syrian arab republic", 762:"tajikistan", 764:"thailand", 768:"togo", 772:"tokelau", 776:"tonga", 780:"trinidad and tobago", 784:"united arab emirates", 788:"tunisia", 792:"turkey", 795:"turkmenistan", 796:"turks and caicos islands", 798:"tuvalu", 800:"uganda", 804:"ukraine", 807:"macedonia, the former yugoslav republic of", 818:"egypt", 826:"united kingdom", 831:"guernsey", 832:"jersey", 833:"isle of man", 834:"tanzania, united republic of", 840:"united states", 850:"virgin islands, u.s.", 854:"burkina faso", 858:"uruguay", 860:"uzbekistan", 862:"venezuela, bolivarian republic of", 876:"wallis and futuna", 882:"samoa", 887:"yemen", 894:"zambia"};
+
       var projection = d3.geo.mercator()
                               .scale((width + 1) / 2 / Math.PI)
                               .translate([(width / 2), (height / 2) + 65])
@@ -88,7 +90,8 @@
       var net_weight_flag = true; //flag to toggle net_weight and usd_value
 
       var mapFilename = "data/world-50m.json";
-      var jsonFilename = "data/country_json/albania.json";
+      var jsonFilename = "data/country_json/canada.json";
+      var current_country = "canada";
       var slice_start = 0;
       var slice_end = 48;
 
@@ -185,22 +188,32 @@
             neighbors = topojson.neighbors(world.objects.countries.geometries);
         global_data = countries;
 
-        svg.selectAll(".country")
+        svg.selectAll(".land")
             .data(countries)
             .enter()
             .insert("path", ".graticule")
-            .attr("class", "land")
-            // .attr("id",function(d){
-            //   return names[d.id];
+            .attr("class", function(d){
+              if (country_name_array[d.id] == current_country){
+                return "land_select";
+              } else {
+                return "land";
+              }
+            })
+            .attr("id",function(d){
+              return country_name_array[d.id];
+            })
+            .attr("d", path)
+            // .attr("fill", function(d){
+            //   if (country_name_array[d.id] == current_country){
+            //     return "red";
+            //   }
             // })
-            .attr("d", path);
+            ;
 
         svg.insert("path", ".graticule")
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
             .attr("class", "boundary")
             .attr("d", path);
-
-
 
         }) //end d3.json
 
@@ -503,14 +516,14 @@
             });
 
       } //end function update_legend
-      
-      // function set_net_weight_false () {
-      //   alert("You selected value");
-      //   //set
-      //   net_weight_flag = false;
-      //   console.log(net_weight_flag);
-      // }
 
+      // //highlight the selected country
+      // function color_select_country(){
+      //   svg.selectAll("path.land")
+      //     .attr("fill", function(){
+      //       if 
+      //     })
+      // }
 
       //______Start Line Graph Code 
       function line_draw() {
@@ -748,6 +761,7 @@
         // alert("you clicked " + country);
 
         jsonFilename = "data/country_json/" + country_file + ".json"; //concatenate the json name and bind to global variable
+        current_country = country;
         
         //reset the length of time displayed on the dorling to the full 48 months
         slice_start = 0; 

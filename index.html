@@ -218,9 +218,16 @@
         svg.selectAll("path.land")
             .attr("fill", function(d){
               if (country_name_array[d.id] == current_country){
-                return "red";
+                return "#04B4AE";
               } else {
                 return "#E6E6E6";
+              }
+            })
+            .attr("fill-opacity", function(d){
+              if (country_name_array[d.id] == current_country){
+                return 0.5;
+              } else {
+                return 1;
               }
             })
 

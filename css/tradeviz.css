@@ -109,6 +109,9 @@ span.header {
   background-color: #E6E6E6;
   text-transform: uppercase;
 }
+text.selected {
+  fill:#04B4AE;
+}
 
 
 div#weight {

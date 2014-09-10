@@ -184,9 +184,8 @@
         //     .attr("d", path);
 
         //Based on http://bl.ocks.org/mbostock/4180634
-        var countries = topojson.feature(world, world.objects.countries).features,
-            neighbors = topojson.neighbors(world.objects.countries.geometries);
-        global_data = countries;
+        var countries = topojson.feature(world, world.objects.countries).features;
+        // global_data = countries;
 
         svg.selectAll(".land")
             .data(countries)
@@ -205,11 +204,9 @@
             .attr("class", "boundary")
             .attr("d", path);
 
+          display_sum();
+
         }) //end d3.json
-
-
-        display_sum();
-
 
       } //end function display_map
 

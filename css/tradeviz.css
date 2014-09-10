@@ -137,6 +137,19 @@ div#value {
   width:260px;
 }
 
+footer{
+    height: 25px; 
+    width:100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: right;
+    padding-left:.5em; 
+    padding-right:.5em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+}
+
 .country-name {
   float:left;
  }

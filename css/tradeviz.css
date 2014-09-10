@@ -98,6 +98,11 @@ div.right-sidebar {
   width:525px;
   margin-right:1.5em;
 }
+div.left-sidebar {
+  float:left; 
+  width:50px; 
+  min-height:900px;
+}
 
 span.header {
   width:520px;

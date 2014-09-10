@@ -1,12 +1,8 @@
 /*CSS styling for TradeViz*/
 svg.dorling,
 svg.line_chart {
-  margin-left:1.5em;
+  margin-left:0.75em;
   margin-top:0.5em;
-}
-
-.axis text {
-  font: 11px sans-serif;
 }
 
 .axis path {
@@ -92,9 +88,20 @@ rect:hover {
   border-radius: 2px;
 }
 
+div#header {
+  width:100%;
+  background-color: #00aeef;
+  color: #fff;
+  line-height: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-size:1.5em;
+}
+
 div.right-sidebar {
   float:right;
-  margin:1em;
+  margin:0.75em;
   width:525px;
   margin-right:1.5em;
 }
@@ -102,6 +109,7 @@ div.left-sidebar {
   float:left; 
   width:50px; 
   min-height:900px;
+  /*background-color: #E6E6E6;*/
 }
 
 span.header {
